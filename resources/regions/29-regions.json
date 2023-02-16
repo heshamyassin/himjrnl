@@ -1,0 +1,24 @@
+[
+	{
+		"x":300,
+		"y":305,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data" : 
+			{
+				"url": "https://www.giorgioarmanibeauty-usa.com/private-sale/emporio-armani-stronger-with-you-soft-beard-balm/A2064.html"
+			}
+	},
+	{
+		"x":300,
+		"y":530,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data" : 
+			{
+				"url": "https://www.oakbeardcare.com/product/beard-balm/"
+			}
+	}
+]

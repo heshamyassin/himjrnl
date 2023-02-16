@@ -1,0 +1,24 @@
+[
+	{
+		"x":300,
+		"y":305,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data" : 
+			{
+				"url": "https://www.tomford.com/oud-wood-conditioning-beard-oil/T3EX-01-0001.html"
+			}
+	},
+	{
+		"x":300,
+		"y":530,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data" : 
+			{
+				"url": "https://www.oarsandalps.com/products/all-natural-beard-oil-citrus"
+			}
+	}
+]
