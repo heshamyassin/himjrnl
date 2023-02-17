@@ -29,429 +29,427 @@
 <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 
-<head>
+	<head>
 
-<title>HiM Journal: The Rugged Gentleman Lifestyle</title>
+	<title>HiM Journal: The Rugged Gentleman Lifestyle</title>
 
-<link rel="icon" type="image/png" href="resources/pics/pngwing.png" />
+	<link rel="icon" type="image/png" href="resources/pics/pngwing.png" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no" />
-<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
-<script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
-<script type="text/javascript" src="lib/hash.js"></script>
+	<meta name="viewport" content="width=device-width-30px, initial-scale=1, user-scalable = no" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
+	<script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
+	<script type="text/javascript" src="lib/hash.js"></script>
 
-</head>
+	</head>
 
-<body>
-	<div id="canvas">
-		<!--<div class="zoom-icon zoom-icon-in"></div>-->
-		<div class="magazine-viewport">
-			<div class="container">
-				<div class="magazine">
-					<!-- Next button -->
-					<div ignore="1" class="next-button"><i class="fas fa-angle-right" style="font-size:50px;color:#FFC71F;position:absolute;left:15px;"></i></div>
-					<!-- Previous button -->
-					<div ignore="1" class="previous-button"><i class="fas fa-angle-left" style="font-size:50px;color:#FFC71F;position:absolute;right:14px;"></i></div>
+	<body>
+		<div id="canvas">
+			<!--<div class="zoom-icon zoom-icon-in"></div>-->
+			<div class="magazine-viewport" width="device-width" initial-scale="1" user-scalable="no" position="absolute">
+				<div class="container">
+					<div class="magazine">
+						<!-- Next button -->
+						<div ignore="1" class="next-button"><i class="fas fa-angle-right" style="height:auto;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+						<!-- Previous button -->
+						<div ignore="1" class="previous-button"><i class="fas fa-angle-left" style="height:auto;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+					</div>
+
+					<!-- turnPage Audio -->
+					<audio id="audio" src="resources/audio/turnPage.mp3"></audio>
 				</div>
+			</div>
+			<!-- Thumbnails -->
+			<div class="thumbnails">
+				<div>
+					<ul>
+						<li class="i">
+							<img src="resources/pages/1.png" width="76" height="100" class="page-1">
+							<span>Front Cover</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/2.png" width="76" height="100" class="page-2">
+							<img src="resources/pages/3.png" width="76" height="100" class="page-3">
+							<span>2-3</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/4.png" width="76" height="100" class="page-4">
+							<img src="resources/pages/5.png" width="76" height="100" class="page-5">
+							<span>4-5</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/6.png" width="76" height="100" class="page-6">
+							<img src="resources/pages/7.png" width="76" height="100" class="page-7">
+							<span>6-7</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/8.png" width="76" height="100" class="page-8">
+							<img src="resources/pages/9.png" width="76" height="100" class="page-9">
+							<span>8-9</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/10.png" width="76" height="100" class="page-10">
+							<img src="resources/pages/11.png" width="76" height="100" class="page-11">
+							<span>10-11</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/12.png" width="76" height="100" class="page-12">
+							<img src="resources/pages/13.png" width="76" height="100" class="page-13">
+							<span>12-13</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/14.png" width="76" height="100" class="page-14">
+							<img src="resources/pages/15.png" width="76" height="100" class="page-15">
+							<span>14-15</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/16.png" width="76" height="100" class="page-16">
+							<img src="resources/pages/17.png" width="76" height="100" class="page-17">
+							<span>16-17</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/18.png" width="76" height="100" class="page-18">
+							<img src="resources/pages/19.png" width="76" height="100" class="page-19">
+							<span>18-19</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/20.png" width="76" height="100" class="page-20">
+							<img src="resources/pages/21.png" width="76" height="100" class="page-21">
+							<span>20-21</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/22.png" width="76" height="100" class="page-22">
+							<img src="resources/pages/23.png" width="76" height="100" class="page-23">
+							<span>22-23</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/24.png" width="76" height="100" class="page-24">
+							<img src="resources/pages/25.png" width="76" height="100" class="page-25">
+							<span>24-25</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/26.png" width="76" height="100" class="page-26">
+							<img src="resources/pages/27.png" width="76" height="100" class="page-27">
+							<span>26-27</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/28.png" width="76" height="100" class="page-28">
+							<img src="resources/pages/29.png" width="76" height="100" class="page-29">
+							<span>28-29</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/30.png" width="76" height="100" class="page-30">
+							<img src="resources/pages/31.png" width="76" height="100" class="page-31">
+							<span>30-31</span>
+						</li>
+						<li class="i">
+							<img src="resources/pages/32.png" width="76" height="100" class="page-32">
+							<span>Back Cover</span>
+						</li>
+					<ul>
+				<div>
 			</div>
 		</div>
 
-		<!-- turnPage Audio -->
-		<audio id="audio" src="resources/audio/turnPage.mp3"></audio>
+		<script type="text/javascript">
 
-		<!-- Thumbnails -->
-		<div class="thumbnails">
-			<div>
-				<ul>
-					<li class="i">
-						<img src="resources/pages/1.png" width="76" height="100" class="page-1">
-						<span>Front Cover</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/2.png" width="76" height="100" class="page-2">
-						<img src="resources/pages/3.png" width="76" height="100" class="page-3">
-						<span>2-3</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/4.png" width="76" height="100" class="page-4">
-						<img src="resources/pages/5.png" width="76" height="100" class="page-5">
-						<span>4-5</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/6.png" width="76" height="100" class="page-6">
-						<img src="resources/pages/7.png" width="76" height="100" class="page-7">
-						<span>6-7</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/8.png" width="76" height="100" class="page-8">
-						<img src="resources/pages/9.png" width="76" height="100" class="page-9">
-						<span>8-9</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/10.png" width="76" height="100" class="page-10">
-						<img src="resources/pages/11.png" width="76" height="100" class="page-11">
-						<span>10-11</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/12.png" width="76" height="100" class="page-12">
-						<img src="resources/pages/13.png" width="76" height="100" class="page-13">
-						<span>12-13</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/14.png" width="76" height="100" class="page-14">
-						<img src="resources/pages/15.png" width="76" height="100" class="page-15">
-						<span>14-15</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/16.png" width="76" height="100" class="page-16">
-						<img src="resources/pages/17.png" width="76" height="100" class="page-17">
-						<span>16-17</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/18.png" width="76" height="100" class="page-18">
-						<img src="resources/pages/19.png" width="76" height="100" class="page-19">
-						<span>18-19</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/20.png" width="76" height="100" class="page-20">
-						<img src="resources/pages/21.png" width="76" height="100" class="page-21">
-						<span>20-21</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/22.png" width="76" height="100" class="page-22">
-						<img src="resources/pages/23.png" width="76" height="100" class="page-23">
-						<span>22-23</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/24.png" width="76" height="100" class="page-24">
-						<img src="resources/pages/25.png" width="76" height="100" class="page-25">
-						<span>24-25</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/26.png" width="76" height="100" class="page-26">
-						<img src="resources/pages/27.png" width="76" height="100" class="page-27">
-						<span>26-27</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/28.png" width="76" height="100" class="page-28">
-						<img src="resources/pages/29.png" width="76" height="100" class="page-29">
-						<span>28-29</span>
-					</li>
-					<li class="d">
-						<img src="resources/pages/30.png" width="76" height="100" class="page-30">
-						<img src="resources/pages/31.png" width="76" height="100" class="page-31">
-						<span>30-31</span>
-					</li>
-					<li class="i">
-						<img src="resources/pages/32.png" width="76" height="100" class="page-32">
-						<span>Back Cover</span>
-					</li>
-				<ul>
-			<div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-
-		function loadApp() {
-	
-			$('#canvas').fadeIn(1000);
-	
-			var flipbook = $('.magazine');
-	
-			// Check if the CSS was already loaded
-			
-			if (flipbook.width()==0 || flipbook.height()==0) {
-				setTimeout(loadApp, 10);
-				return;
-			}
-			
-			// Create the flipbook
-	
-			flipbook.turn({
-					
-					// Magazine width
-					width: 922,
-	
-					// Magazine height
-					height: 600,
-	
-					// Duration in millisecond
-					duration: 1000,
-	
-					// Hardware acceleration
-					acceleration: !isChrome(),
-	
-					// Enables gradients
-					gradients: true,
-					
-					// Auto center this flipbook
-					autoCenter: true,
-	
-					// Elevation from the edge of the flipbook when turning a page
-					elevation: 50,
-	
-					// The number of pages
-					pages: 32,
-	
-					// Events
-					when: {
-						turning: function(event, page, view) {
-							
-							var book = $(this),
-							currentPage = book.turn('page'),
-							pages = book.turn('pages');
-					
-							// Update the current URI
-	
-							Hash.go('page/' + page).update();
-	
-							// Show and hide navigation buttons
-	
-							disableControls(page);
-							
-	
-							$('.thumbnails .page-'+currentPage).
-								parent().
-								removeClass('current');
-	
-							$('.thumbnails .page-'+page).
-								parent().
-								addClass('current');
-							
-								/* Play Turning	Sound */
-							var audio = document.getElementById("audio");
-							audio.play();
-	
-						},
-	
-						turned: function(event, page, view) {
-	
-							disableControls(page);
-	
-							$(this).turn('center');
-	
-							if (page==1) { 
-								$(this).turn('peel', 'br');
+			function loadApp() {
+		
+				$('#canvas').fadeIn(1000);
+		
+				var flipbook = $('.magazine');
+		
+				// Check if the CSS was already loaded
+				
+				if (flipbook.width()==0 || flipbook.height()==0) {
+					setTimeout(loadApp, 10);
+					return;
+				}
+				
+				// Create the flipbook
+		
+				flipbook.turn({
+						
+						// Magazine width
+						width: 922,
+		
+						// Magazine height
+						height: 600,
+		
+						// Duration in millisecond
+						duration: 1000,
+		
+						// Hardware acceleration
+						acceleration: !isChrome(),
+		
+						// Enables gradients
+						gradients: true,
+						
+						// Auto center this flipbook
+						autoCenter: true,
+		
+						// Elevation from the edge of the flipbook when turning a page
+						elevation: 50,
+		
+						// The number of pages
+						pages: 32,
+		
+						// Events
+						when: {
+							turning: function(event, page, view) {
+								
+								var book = $(this),
+								currentPage = book.turn('page'),
+								pages = book.turn('pages');
+						
+								// Update the current URI
+		
+								Hash.go('page/' + page).update();
+		
+								// Show and hide navigation buttons
+		
+								disableControls(page);
+								
+		
+								$('.thumbnails .page-'+currentPage).
+									parent().
+									removeClass('current');
+		
+								$('.thumbnails .page-'+page).
+									parent().
+									addClass('current');
+								
+									/* Play Turning	Sound */
+								var audio = document.getElementById("audio");
+								audio.play();
+		
+							},
+		
+							turned: function(event, page, view) {
+		
+								disableControls(page);
+		
+								$(this).turn('center');
+		
+								if (page==1) { 
+									$(this).turn('peel', 'br');
+								}
+		
+							},
+		
+							missing: function (event, pages) {
+		
+								// Add pages that aren't in the magazine
+								for (var i = 0; i < pages.length; i++)
+									addPage(pages[i], $(this));
+		
 							}
-	
-						},
-	
-						missing: function (event, pages) {
-	
-							// Add pages that aren't in the magazine
-							for (var i = 0; i < pages.length; i++)
-								addPage(pages[i], $(this));
-	
 						}
-					}
-	
-			});
-	
-			// Zoom.js
-			
-			$('.magazine-viewport').zoom({
-				flipbook: $('.magazine'),
-	
-				when: {
-	
-					swipeLeft: function() {
-	
-						$(this).zoom('flipbook').turn('next');
-	
-					},
-	
-					swipeRight: function() {
-						
-						$(this).zoom('flipbook').turn('previous');
-	
-					},
+		
+				});
+		
+				// Zoom.js
+				
+				$('.magazine-viewport').zoom({
+					flipbook: $('.magazine'),
+		
+					when: {
+		
+						swipeLeft: function() {
+		
+							$(this).zoom('flipbook').turn('next');
+		
+						},
+		
+						swipeRight: function() {
+							
+							$(this).zoom('flipbook').turn('previous');
+		
+						},
 
-				}
-			});
-			
-			// Using arrow keys to turn the page
-	
-			$(document).keydown(function(e){
-	
-				var previous = 37, next = 39, esc = 27;
-	
-				switch (e.keyCode) {
-					case previous:
-	
-						// left arrow
-						$('.magazine').turn('previous');
-						e.preventDefault();
-	
-					break;
-					case next:
-	
-						//right arrow
-						$('.magazine').turn('next');
-						e.preventDefault();
-	
-					break;
-					case esc:
-						
-						$('.magazine-viewport').zoom('zoomOut');	
-						e.preventDefault();
-	
-					break;
-				}
-			});
-	
-			// URIs - Format #/page/1 
-	
-			Hash.on('^page\/([0-9]*)$', {
-				yep: function(path, parts) {
-					var page = parts[1];
-	
-					if (page!==undefined) {
-						if ($('.magazine').turn('is'))
-							$('.magazine').turn('page', page);
 					}
-	
-				},
-				nop: function(path) {
-	
-					if ($('.magazine').turn('is'))
-						$('.magazine').turn('page', 1);
-				}
-			});
-	
-	
-			$(window).resize(function() {
-				resizeViewport();
-			}).bind('orientationchange', function() {
-				resizeViewport();
-			});
-	
-			// Events for thumbnails
-	
-			$('.thumbnails').click(function(event) {
+				});
 				
-				var page;
-	
-				if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
-				
-					$('.magazine').turn('page', page[1]);
-				}
-			});
-	
-			$('.thumbnails li').
-				bind($.mouseEvents.over, function() {
+				// Using arrow keys to turn the page
+		
+				$(document).keydown(function(e){
+		
+					var previous = 37, next = 39, esc = 27;
+		
+					switch (e.keyCode) {
+						case previous:
+		
+							// left arrow
+							$('.magazine').turn('previous');
+							e.preventDefault();
+		
+						break;
+						case next:
+		
+							//right arrow
+							$('.magazine').turn('next');
+							e.preventDefault();
+		
+						break;
+						case esc:
+							
+							$('.magazine-viewport').zoom('zoomOut');	
+							e.preventDefault();
+		
+						break;
+					}
+				});
+		
+				// URIs - Format #/page/1 
+		
+				Hash.on('^page\/([0-9]*)$', {
+					yep: function(path, parts) {
+						var page = parts[1];
+		
+						if (page!==undefined) {
+							if ($('.magazine').turn('is'))
+								$('.magazine').turn('page', page);
+						}
+		
+					},
+					nop: function(path) {
+		
+						if ($('.magazine').turn('is'))
+							$('.magazine').turn('page', 1);
+					}
+				});
+		
+		
+				$(window).resize(function() {
+					resizeViewport();
+				}).bind('orientationchange', function() {
+					resizeViewport();
+				});
+		
+				// Events for thumbnails
+		
+				$('.thumbnails').click(function(event) {
 					
-					$(this).addClass('thumb-hover');
-	
+					var page;
+		
+					if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
+					
+						$('.magazine').turn('page', page[1]);
+					}
+				});
+		
+				$('.thumbnails li').
+					bind($.mouseEvents.over, function() {
+						
+						$(this).addClass('thumb-hover');
+		
+					}).bind($.mouseEvents.out, function() {
+						
+						$(this).removeClass('thumb-hover');
+		
+					});
+		
+				if ($.isTouch) {
+				
+					$('.thumbnails').
+						addClass('thumbanils-touch').
+						bind($.mouseEvents.move, function(event) {
+							event.preventDefault();
+						});
+		
+				} else {
+		
+					$('.thumbnails ul').mouseover(function() {
+		
+						$('.thumbnails').addClass('thumbnails-hover');
+		
+					}).mousedown(function() {
+		
+						return false;
+		
+					}).mouseout(function() {
+		
+						$('.thumbnails').removeClass('thumbnails-hover');
+		
+					});
+				}
+
+
+				// Regions
+
+				if ($.isTouch) {
+					$('.magazine').bind('touchstart', regionClick);
+				} else {
+					$('.magazine').click(regionClick);	
+				}
+
+				// Events for the next button
+		
+				$('.next-button').bind($.mouseEvents.over, function() {
+					
+					$(this).addClass('next-button-hover');
+		
 				}).bind($.mouseEvents.out, function() {
 					
-					$(this).removeClass('thumb-hover');
-	
+					$(this).removeClass('next-button-hover');
+		
+				}).bind($.mouseEvents.down, function() {
+					
+					$(this).addClass('next-button-down');
+		
+				}).bind($.mouseEvents.up, function() {
+					
+					$(this).removeClass('next-button-down');
+		
+				}).click(function() {
+					
+					$('.magazine').turn('next');
+		
 				});
-	
-			if ($.isTouch) {
-			
-				$('.thumbnails').
-					addClass('thumbanils-touch').
-					bind($.mouseEvents.move, function(event) {
-						event.preventDefault();
-					});
-	
-			} else {
-	
-				$('.thumbnails ul').mouseover(function() {
-	
-					$('.thumbnails').addClass('thumbnails-hover');
-	
-				}).mousedown(function() {
-	
-					return false;
-	
-				}).mouseout(function() {
-	
-					$('.thumbnails').removeClass('thumbnails-hover');
-	
+		
+				// Events for the next button
+				
+				$('.previous-button').bind($.mouseEvents.over, function() {
+					
+					$(this).addClass('previous-button-hover');
+		
+				}).bind($.mouseEvents.out, function() {
+					
+					$(this).removeClass('previous-button-hover');
+		
+				}).bind($.mouseEvents.down, function() {
+					
+					$(this).addClass('previous-button-down');
+		
+				}).bind($.mouseEvents.up, function() {
+					
+					$(this).removeClass('previous-button-down');
+		
+				}).click(function() {
+					
+					$('.magazine').turn('previous');
+		
 				});
+		
+				resizeViewport();
+		
+				$('.magazine').addClass('animated');
+		
 			}
-
-
-			// Regions
-
-			if ($.isTouch) {
-				$('.magazine').bind('touchstart', regionClick);
-			} else {
-				$('.magazine').click(regionClick);	
-			}
-
-			// Events for the next button
-	
-			$('.next-button').bind($.mouseEvents.over, function() {
-				
-				$(this).addClass('next-button-hover');
-	
-			}).bind($.mouseEvents.out, function() {
-				
-				$(this).removeClass('next-button-hover');
-	
-			}).bind($.mouseEvents.down, function() {
-				
-				$(this).addClass('next-button-down');
-	
-			}).bind($.mouseEvents.up, function() {
-				
-				$(this).removeClass('next-button-down');
-	
-			}).click(function() {
-				
-				$('.magazine').turn('next');
-	
+		
+			$('#canvas').hide();
+		
+			// Load the HTML4 version if there's not CSS transform
+		
+			yepnope({
+				test : Modernizr.csstransforms,
+				yep: ['lib/turn.js'],
+				nope: ['lib/turn.html4.min.js'],
+				both: ['lib/zoom.min.js', 'js/magazine.js', 'css/magazine.css'],
+				complete: loadApp
 			});
-	
-			// Events for the next button
-			
-			$('.previous-button').bind($.mouseEvents.over, function() {
-				
-				$(this).addClass('previous-button-hover');
-	
-			}).bind($.mouseEvents.out, function() {
-				
-				$(this).removeClass('previous-button-hover');
-	
-			}).bind($.mouseEvents.down, function() {
-				
-				$(this).addClass('previous-button-down');
-	
-			}).bind($.mouseEvents.up, function() {
-				
-				$(this).removeClass('previous-button-down');
-	
-			}).click(function() {
-				
-				$('.magazine').turn('previous');
-	
-			});
-	
-			resizeViewport();
-	
-			$('.magazine').addClass('animated');
-	
-		}
-	
-		$('#canvas').hide();
-	
-		// Load the HTML4 version if there's not CSS transform
-	
-		yepnope({
-			test : Modernizr.csstransforms,
-			yep: ['lib/turn.js'],
-			nope: ['lib/turn.html4.min.js'],
-			both: ['lib/zoom.min.js', 'js/magazine.js', 'css/magazine.css'],
-			complete: loadApp
-		});
-	
+		
 		</script>
-
-</body>
+	</body>
 </html>
