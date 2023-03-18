@@ -89,7 +89,7 @@ function loadRegions(page, element) {
 
 function addRegion(region, pageElement) {
 	
-	var reg = $('<div />', {'class': 'region  ' + region['class']}),
+	var reg = $('<div />', {'id': 'region-'+region['class'], 'class': 'region '+region['class']}),
 		options = $('.magazine').turn('options'),
 		pageWidth = options.width/2,
 		pageHeight = options.height;
@@ -100,7 +100,6 @@ function addRegion(region, pageElement) {
 		width: Math.round(region.width/pageWidth*100)+'%',
 		height: Math.round(region.height/pageHeight*100)+'%'
 	}).attr('region-data', $.param(region.data||''));
-
 
 	reg.appendTo(pageElement);
 }
@@ -131,13 +130,35 @@ function regionClick(event) {
 
 function processRegion(region, regionType) {
 
-	data = decodeParams(region.attr('region-data'));
+	var data = decodeParams(region.attr('region-data'));
 
 	switch (regionType) {
 		case 'link' :
-
 			window.open(data.url);
-
+		break;
+		case 'video':
+			var videoPlayer = $('<video controls />', {'id': 'myVideo', 'class': ''});
+			document.getElementById("region-video").style.opacity = '1';
+			videoPlayer.css({
+				top: 'region.y',
+				left: 'region.x',
+				width: '100%',
+				height: '94%'
+			}).attr('src', data.url);
+			videoPlayer.appendTo(region);
+			document.getElementById("myVideo").style.opacity = '1';
+		break;
+		case 'iframe':
+			var videoPlayer = $('<iframe />', {'id': 'myiframe', 'class': ''});
+			document.getElementById("region-iframe").style.opacity = '1';
+			videoPlayer.css({
+				top: 'region.y',
+				left: 'region.x',
+				width: '100%',
+				height: '94%'
+			}).attr('src', data.url);
+			videoPlayer.appendTo(region);
+			document.getElementById("myiframe").style.opacity = '1';
 		break;
 	}
 
@@ -168,55 +189,92 @@ function disableControls(page) {
 
 function resizeViewport() {
 
-	var width = $(window).width(),
-		height = $(window).height(),
-		options = $('.magazine').turn('options');
-
-	$('.magazine').removeClass('animated');
+	var deviceWidth = $(window).width(),
+		deviceHeight = $(window).height(),
+		options = $('.magazine').turn('options'),
+		pageWidth = options.width/2,
+		pageHeight = options.height,
+		responsiveViewTreshold = 768,
+		currPage = $('.magazine').turn('page');
 
 	$('.magazine-viewport').css({
-		width: width,
-		height: height
-	}).
-	zoom('resize');
-
+		width: deviceWidth,
+		height: deviceHeight
+	}).zoom('resize');
 
 	if ($('.magazine').turn('zoom')==1) {
-		var bound = calculateBound({
-			width: options.width,
-			height: options.height,
-			boundWidth: Math.min(options.width, width),
-			boundHeight: Math.min(options.height, height)
-		});
+		var boundWidth = Math.min(options.width, deviceWidth),
+		boundHeight = Math.min(options.height, deviceHeight),
+		boundScale = boundWidth / boundHeight,
+        pageScale = pageWidth / pageHeight,
+		viewScale = 1;
 
-		if (bound.width%2!==0)
-			bound.width-=1;
+		$('.magazine').removeClass('animated');
 
+		/* HYASEIN: Responsiveness */
+		if (boundWidth <= responsiveViewTreshold && boundScale < 2 * pageScale)
+		{
+			if (boundScale < pageScale) {
+				viewScale = 0.90 * boundScale / (pageScale * 0.80);
+			} else {
+				viewScale = 1;
+			}
 			
-		if (bound.width!=$('.magazine').width() || bound.height!=$('.magazine').height()) {
+			$('.magazine').turn('size', 2*viewScale*boundWidth, viewScale*boundHeight);
+			$('.magazine').css({top: -viewScale*boundHeight/2, left: -viewScale*boundWidth});
 
-			$('.magazine').turn('size', bound.width, bound.height);
+			$('.next-button').css({height: 2*viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			
+			/* HYASEIN: Algorithm */
+			/*
+				- calculate page center and window center
+				- if page turn = right -> translate to right
+				- else translate to left
+			*/
 
-			if ($('.magazine').turn('page')==1)
-				$('.magazine').turn('peel', 'br');
+			//$('.magazine').css({display: "none"});
+		}
+		else
+		{
+			if (boundScale < pageScale * 2) {
+				viewScale = 0.90 * boundScale / (2 * pageScale * 0.80);
+			} else {
+				viewScale = 1;
+			}
 
-			$('.next-button').css({height: bound.height, backgroundPosition: '-3.5vw'});
-			$('.previous-button').css({height: bound.height, backgroundPosition: '-3.5vw'});
+			$('.magazine').turn('size', viewScale*boundWidth, viewScale*boundHeight);
+			//$('.magazine').turn('center', viewScale*boundWidth, viewScale*boundHeight);
+			$('.magazine').css({top: -viewScale*boundHeight/2, left: -viewScale*boundWidth/2});
+
+			$('.next-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			
+			/* HYASEIN: Algorithm */
+			/*
+				- calculate page(s) center and window center
+				- translate back to center
+			*/
+			
+			// $('.magazine').css({display: "block"});
 		}
 
-		$('.magazine').css({top: -bound.height/2, left: -bound.width/2});
+		if (currPage==1)
+			$('.magazine').turn('peel', 'br');
+		
 	}
 
-	var magazineOffset = $('.magazine').offset(),
-		boundH = height - magazineOffset.top - $('.magazine').height(),
-		marginTop = (boundH - $('.thumbnails > div').height()) / 2;
+	var magazineOffset = $('.magazine').offset();
+	/*var magazineOffset = $('.magazine').offset(),
+		boundH = deviceHeight - magazineOffset.top - $('.magazine').height(),
+		marginTop = (boundH - $('.thumbnails > div').height()*viewScale) / 2;
 
 	if (marginTop<0) {
 		$('.thumbnails').css({height:1});
 	} else {
 		$('.thumbnails').css({height: boundH});
 		$('.thumbnails > div').css({marginTop: marginTop});
-	}
+	}*/
 
 	if (magazineOffset.top<$('.made').height())
 		$('.made').hide();
@@ -240,7 +298,7 @@ function decodeParams(data) {
 	return obj;
 }
 
-// Calculate the width and height of a square within another square
+/* Calculate the width and height of a square within another square
 
 function calculateBound(d) {
 	
@@ -264,4 +322,4 @@ function calculateBound(d) {
 	}
 		
 	return bound;
-}
+} */

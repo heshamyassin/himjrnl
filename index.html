@@ -35,13 +35,14 @@
 
 	<link rel="icon" type="image/png" href="resources/pics/pngwing.png" />
 
-	<meta name="viewport" content="width=device-width-30px, initial-scale=1, user-scalable = no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no" />
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
 	<script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
 	<script type="text/javascript" src="lib/hash.js"></script>
-
+	<!-- turnPage Audio -->
+	<audio id="audio" src="resources/audio/turnPage.mp3"></audio>
 	</head>
 
 	<body>
@@ -51,13 +52,10 @@
 				<div class="container">
 					<div class="magazine">
 						<!-- Next button -->
-						<div ignore="1" class="next-button"><i class="fas fa-angle-right" style="height:auto;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+						<div ignore="1" class="next-button"><i class="fas fa-angle-right" style="height:auto;vertical-align:center;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
 						<!-- Previous button -->
-						<div ignore="1" class="previous-button"><i class="fas fa-angle-left" style="height:auto;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+						<div ignore="1" class="previous-button"><i class="fas fa-angle-left" style="height:auto;vertical-align:center;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
 					</div>
-
-					<!-- turnPage Audio -->
-					<audio id="audio" src="resources/audio/turnPage.mp3"></audio>
 				</div>
 			</div>
 			<!-- Thumbnails -->
@@ -166,9 +164,11 @@
 					setTimeout(loadApp, 10);
 					return;
 				}
-				
+
+				/* Load Turning	Sound */
+				var audio = document.getElementById("audio");
+								
 				// Create the flipbook
-		
 				flipbook.turn({
 						
 						// Magazine width
@@ -202,7 +202,7 @@
 								var book = $(this),
 								currentPage = book.turn('page'),
 								pages = book.turn('pages');
-						
+								
 								// Update the current URI
 		
 								Hash.go('page/' + page).update();
@@ -220,8 +220,7 @@
 									parent().
 									addClass('current');
 								
-									/* Play Turning	Sound */
-								var audio = document.getElementById("audio");
+								/* Play Turning	Sound */
 								audio.play();
 		
 							},
@@ -231,7 +230,7 @@
 								disableControls(page);
 		
 								$(this).turn('center');
-		
+								
 								if (page==1) { 
 									$(this).turn('peel', 'br');
 								}
