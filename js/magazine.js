@@ -215,7 +215,7 @@ function resizeViewport() {
 		if (boundWidth <= responsiveViewTreshold && boundScale < 2 * pageScale)
 		{
 			if (boundScale < pageScale) {
-				viewScale = 0.90 * boundScale / (pageScale * 0.80);
+				viewScale = boundScale / (pageScale);
 			} else {
 				viewScale = 1;
 			}
@@ -238,7 +238,7 @@ function resizeViewport() {
 		else
 		{
 			if (boundScale < pageScale * 2) {
-				viewScale = 0.90 * boundScale / (2 * pageScale * 0.80);
+				viewScale = boundScale / (2 * pageScale);
 			} else {
 				viewScale = 1;
 			}
