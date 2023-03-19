@@ -1,0 +1,24 @@
+[
+	{
+		"x":140,
+		"y":205,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data":
+			{
+				"url": "https://www.crankbrothers.com/products/m19"
+			}
+	},
+	{
+		"x":140,
+		"y":515,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data":
+			{
+				"url": "https://bike.shimano.com/en-US/product/component/sora-r3000/RD-R3000-GS.html"
+			}
+	}
+]

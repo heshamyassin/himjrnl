@@ -1,0 +1,24 @@
+[
+	{
+		"x":140,
+		"y":450,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data":
+			{
+				"url": "https://www.bennettwinch.com/products/the-sc-holdall-olive"
+			}
+	},
+	{
+		"x":365,
+		"y":232,
+		"width":85,
+		"height":30,
+		"class":"link",
+		"data":
+			{
+				"url": "https://www.mulberry.com/gb/shop/women/bags/totes/medium-clipper-mole-cognac-printed-eco-scotchgrain-flat-calf"
+			}
+	}
+]

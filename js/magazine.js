@@ -76,8 +76,8 @@ function loadPage(page, pageElement) {
 
 function loadRegions(page, element) {
 
-	$.getJSON('resources/regions/'+page+'-regions.json').
-		done(function(data) {
+	$.getJSON(('resources/regions/'+page+'-regions.json'),
+		function(data) {
 
 			$.each(data, function(key, region) {
 				addRegion(region, element);
@@ -131,7 +131,7 @@ function regionClick(event) {
 function processRegion(region, regionType) {
 
 	var data = decodeParams(region.attr('region-data'));
-
+	
 	switch (regionType) {
 		case 'link' :
 			window.open(data.url);
