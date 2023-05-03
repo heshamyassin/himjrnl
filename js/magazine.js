@@ -80,14 +80,14 @@ function loadRegions(page, element) {
 		function(data) {
 
 			$.each(data, function(key, region) {
-				addRegion(region, element);
+				addRegion(page, region, element);
 			});
 		});
 }
 
 // Add region
 
-function addRegion(region, pageElement) {
+function addRegion(page, region, pageElement) {
 	
 	var reg = $('<div />', {'id': 'region-'+region['class'], 'class': 'region '+region['class']}),
 		options = $('.magazine').turn('options'),
@@ -98,10 +98,26 @@ function addRegion(region, pageElement) {
 		top: Math.round(region.y/pageHeight*100)+'%',
 		left: Math.round(region.x/pageWidth*100)+'%',
 		width: Math.round(region.width/pageWidth*100)+'%',
-		height: Math.round(region.height/pageHeight*100)+'%'
+		height: Math.round(region.height/pageHeight*100)+'%',
+		/*background: region['color'],*/
+		border: '0'
 	}).attr('region-data', $.param(region.data||''));
 
 	reg.appendTo(pageElement);
+
+	if (region['class'] == 'iframe' || region['class'] == 'video'
+	|| region['class'] == 'gif' || region['class'] == 'twitter-timeline'
+	|| region['class'] == 'twitter-tweet' || region['class'] == 'instagram-media'
+	|| region['class'] == 'instagram-feed') {
+		reg.css({opacity: '1'});
+		$('.magazine-viewport').data().regionClicked = true;
+		setTimeout(function() {
+			$('.magazine-viewport').data().regionClicked = false;
+		}, 100);
+		processRegion(reg, region['class'], region);
+	}
+	else if (region['class'] == 'link')
+		reg.css({zIndex:'1'});
 }
 
 // Process click on a region
@@ -128,40 +144,143 @@ function regionClick(event) {
 
 // Process the data of every region
 
-function processRegion(region, regionType) {
+function processRegion(regionElement, regionType, regionJSON) {
 
-	var data = decodeParams(region.attr('region-data'));
+	var data = decodeParams(regionElement.attr('region-data'));
 	
 	switch (regionType) {
 		case 'link' :
 			window.open(data.url);
 		break;
-		case 'video':
-			var videoPlayer = $('<video controls />', {'id': 'myVideo', 'class': ''});
-			document.getElementById("region-video").style.opacity = '1';
-			videoPlayer.css({
-				top: 'region.y',
-				left: 'region.x',
+		case 'instagram-feed':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			regionElement.css({borderRadius:'8px'});
+			var instagramBlock = $('<iframe ></iframe><script async src="lib/instagram.js" charset="utf-8"></script>', {'id': 'myInstagram', 'class': 'instagram-feed'});
+			instagramBlock.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
 				width: '100%',
-				height: '94%'
+				height: '100%',
+				opacity: '1',
+				background: regionJSON['color'],
+				zIndex: '0',
+				border: '0',
+				display: 'inline',
+				overflow: 'scroll',
+				borderRadius: '8px'
 			}).attr('src', data.url);
-			videoPlayer.appendTo(region);
-			document.getElementById("myVideo").style.opacity = '1';
+			instagramBlock.appendTo(regionElement);
+		break;
+		case 'instagram-media':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			regionElement.css({borderRadius:'8px'});
+			var instagramBlock = $('<blockquote class="instagram-media" data-instgrm-version="14" data-instgrm-permalink='+data.url+'></blockquote><script async src="lib/instagram.js" charset="utf-8"></script>', {'id': 'myInstagram', 'class': 'instagram-media'});
+			instagramBlock.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				background: regionJSON['color'],
+				zIndex: '0',
+				border: '0',
+				display: 'inline',
+				overflow: 'scroll',
+				borderRadius: '8px'
+			});
+			instagramBlock.appendTo(regionElement);
+		break;
+		case 'twitter-tweet':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			var twitterBlock = $('<blockquote class="twitter-tweet"><a href='+data.url+'></a></blockquote><script async src="lib/twitter.js" charset="utf-8"></script>', {'id': 'myTwitter', 'class': 'twitter-tweet'});
+			twitterBlock.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				background: regionJSON['color'],
+				zIndex: '0',
+				border: '0',
+				display: 'inline',
+				overflow: 'scroll'
+			});
+			twitterBlock.appendTo(regionElement);
+		break;
+		case 'twitter-timeline':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			var twitterBlock = $('<a class="twitter-timeline" data-height="500" data-theme="light" href='+data.url+'></a><script async src="lib/twitter.js" charset="utf-8"></script>', {'id': "myTwitter", 'class': "twitter-timeline"});
+			twitterBlock.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				background: regionJSON['color'],
+				zIndex: '0',
+				border: '0',
+				display: 'inline',
+				overflow: 'scroll'
+			});
+			twitterBlock.appendTo(regionElement);
+		break;
+		case 'gif':
+			regionElement.css({zIndex:'0'});
+			var gifPlayer = $('<img />', {'id': 'myGif', 'class': ''});
+			gifPlayer.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				zIndex: '0',
+				border: '0'
+			}).attr('src', data.url);
+			if (regionJSON.autoplay)
+				gifPlayer.attr('autoplay', '');
+			gifPlayer.appendTo(regionElement);
+		break;
+		case 'video':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			var videoPlayer = $('<video controls loop allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"/>', {'id': 'myVideo', 'class': ''});
+			videoPlayer.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				zIndex: '1',
+				background: regionJSON['color'],
+				border: '0'
+			}).attr('src', data.url);
+			if (regionJSON.autoplay)
+				videoPlayer.attr('autoplay', '');
+			videoPlayer.appendTo(regionElement);
 		break;
 		case 'iframe':
-			var videoPlayer = $('<iframe />', {'id': 'myiframe', 'class': ''});
-			document.getElementById("region-iframe").style.opacity = '1';
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			var videoPlayer = $('<iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>', {'id': 'myiframe', 'class': ''});
 			videoPlayer.css({
-				top: 'region.y',
-				left: 'region.x',
+				top: 'regionElement.y',
+				left: 'regionElement.x',
 				width: '100%',
-				height: '94%'
+				height: '100%',
+				opacity: '1',
+				zIndex: '1',
+				background: regionJSON['color'],
+				border: '0',
 			}).attr('src', data.url);
-			videoPlayer.appendTo(region);
-			document.getElementById("myiframe").style.opacity = '1';
+			if (regionJSON.autoplay)
+				videoPlayer.attr('src', data.url+"?autoplay=1");
+			videoPlayer.appendTo(regionElement);
 		break;
 	}
-
 }
 
 

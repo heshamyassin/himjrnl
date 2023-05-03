@@ -1,0 +1,31 @@
+[
+	{
+		"x":12,
+		"y":255,
+		"width":210,
+		"height":180,
+		"page":15,
+		"autoplay":1,
+		"color":"#f3bbc2",
+		"class":"gif",
+		"data":
+			{
+				"url": "resources/video/266393622_3035702430090264_8250807974598258817_n_MP4_AdobeExpress.gif"
+			}
+	},
+	
+	{
+		"x":235,
+		"y":250,
+		"width":215,
+		"height":295,
+		"page":15,
+		"autoplay":0,
+		"color":"#f2f2f2",
+		"class":"twitter-tweet",
+		"data":
+			{
+				"url": "https://twitter.com/ChristiesInc/status/1361670588608176128?ref_src=twsrc%5Etfw"
+			}
+	}
+]

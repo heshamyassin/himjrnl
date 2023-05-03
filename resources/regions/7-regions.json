@@ -1,0 +1,16 @@
+[
+	{
+		"x":185,
+		"y":450,
+		"width":245,
+		"height":130,
+		"page":7,
+		"autoplay":0,
+		"color":"#000",
+		"class":"instagram-feed",
+		"data":
+			{
+				"url": "https://www.instagram.com/himjrnl/embed"
+			}
+	}
+]
