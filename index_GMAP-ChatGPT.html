@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Instagram Map</title>
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Instagram Map</h1>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"></script>
+    <script>
+      // Initialize and center the map
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: { lat: 52.5197913, lng: 13.3192783 }
+        });
+
+        // Retrieve the location and photo data from up to 5 Instagram posts
+        var locationUrls = [
+          "https://www.instagram.com/p/ABC123/",
+          "https://www.instagram.com/p/DEF456/",
+          "https://www.instagram.com/p/GHI789/",
+          "https://www.instagram.com/p/JKL012/",
+          "https://www.instagram.com/p/MNO345/"
+        ]; // Replace with the URLs of your Instagram posts
+
+        // Loop through the locationUrls array and add a marker for each post
+        locationUrls.forEach(function(locationUrl) {
+          fetch("https://api.instagram.com/oembed?url=" + locationUrl + "&omitscript=true")
+            .then(response => response.json())
+            .then(data => {
+              var locationName = data.location.name;
+              var photoUrl = data.thumbnail_url;
+
+              var geocoder = new google.maps.Geocoder();
+              geocoder.geocode({ address: locationName }, function(results, status) {
+                if (status === "OK") {
+                  var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    map: map,
+                    icon: photoUrl
+                  });
+                } else {
+                  console.error("Geocode was not successful for the following reason: " + status);
+                }
+              });
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap"></script>
+  </body>
+</html>
