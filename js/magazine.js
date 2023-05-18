@@ -210,6 +210,8 @@ function loadApp() {
 		if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
 		
 			$('.magazine').turn('page', page[1]);
+
+			toggleThumbnailPanel();
 		}
 	});
 
