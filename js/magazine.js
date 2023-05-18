@@ -740,8 +740,9 @@ function decodeParams(data) {
 
 function toggleShareMenu() {
 	const sharePanel = document.getElementById("share-panel");
-	var deviceWidth = $(window).width(),
-	responsiveViewTreshold = 768;
+	const shareButton = document.getElementById("shareButton");
+	var deviceWidth = $(window).width();
+	var responsiveViewTreshold = 768;
 	
 	if (deviceWidth > responsiveViewTreshold) {
 		if (thumbPanel.style.display === "none") {
@@ -752,8 +753,10 @@ function toggleShareMenu() {
 	} else {
 		if (sharePanel.style.display === "none") {
 			sharePanel.style.display = "inline-flex";
+			shareButton.className = 'top-share fa fa-close';
 		} else {
 			sharePanel.style.display = "none";
+			shareButton.className = 'top-share fa fa-share';
 		}
 	}
 }
@@ -761,6 +764,7 @@ function toggleShareMenu() {
 function toggleThumbnailPanel() {
 	const thumbPanel = document.getElementById("thumbnails-panel");
 	const thumbnails = document.getElementById("thumbnails-panel-list");
+	const thumbButton = document.getElementById("thumbButton");
 	var deviceWidth = $(window).width(),
 	responsiveViewTreshold = 768;
 	
@@ -773,9 +777,11 @@ function toggleThumbnailPanel() {
 			thumbPanel.style.width = 'var(--thumbnail-panel-width)';
 			thumbnails.style.left = 'calc(var(--thumbnail-panel-width)/2 - 76px)';
 			thumbPanel.style.height = '100%';
+			thumbButton.className = 'top-thumb fa fa-close';
 		} else {
 			thumbPanel.style.display = "none";
 			$('.magazine-viewport .container').css({left: '50%'});
+			thumbButton.className = 'top-thumb fa fa-bars';
 		}
 	} else {
 		if (thumbPanel.style.display === "none") {
@@ -786,11 +792,13 @@ function toggleThumbnailPanel() {
 			thumbPanel.style.width = '100vw';
 			thumbnails.style.left = 'calc(50% - 76px)';
 			thumbPanel.style.height = 'auto';
+			thumbButton.className = 'top-thumb fa fa-close';
 		} else {
 			thumbPanel.style.display = "none";
 			$('.magazine-viewport .container').css({
 				display: "block"
 			});
+			thumbButton.className = 'top-thumb fa fa-bars';
 		}
 	}
 }
@@ -869,19 +877,19 @@ function desktopMenu(topPanel) {
 }
 
 function mobileThumbnail(topPanel) {
-	var topThumb = $('<i />', {id:"", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
+	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
 	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
 }
 
 function desktopThumbnail(topPanel) {
-	var topThumb = $('<i />', {id:"", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
+	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
 	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
 }
 
 function mobileShare(topPanel) {
 	// create a new menu similar to #top-panel .top-thumb and code shall be similar to toggleThumbnailPanel()
 	// call mobileShare to attach to this menu
-	var topShare = $('<i />', {id:"", title:"Share To", class:"top-share fa fa-share"});
+	var topShare = $('<i />', {id:"shareButton", title:"Share To", class:"top-share fa fa-share"});
 	topShare.attr('onClick','toggleShareMenu()').appendTo(topPanel);
 }
 
