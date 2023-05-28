@@ -1,0 +1,143 @@
+<!--
+/*!
+ *
+ * HiM is a men lifestyle journal, issued on monthly basis, to cover all subjects of interest of the
+ * modern-age rugged gentleman all over the world; from travel, business, entertainment, entrepreneurship,
+ * finance, fashion, skills, gadgets and a lot more
+ *
+ * EDITOR IN CHIEF. Hesham Yasein. heshamgyassin@gmail.com
+ *
+ * Copyright © 2023 The HiM Journal. All rights reserved
+ *
+ * License:
+ * This code is based on turnjs - http://turnjs.com
+ * Copyright (C) 2012 Emmanuel Garcia
+ * The turn.js project is released under the BSD license and it's available on GitHub.
+ * This license doesn't include features of the 4th release.
+ *
+ * Opinions expressed are solely those of the contributors.
+ * No part of this magazine may be reproduced or transmitted in any form or by any means without a written
+ * permission of the publisher.
+ *
+ */
+-->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+  <title>The HiM Journal: Rugged Gentleman Lifestyle</title>
+
+  <link rel="icon" type="image/png" href="../resources/pics/HiMIcon.png" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no" />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/archive.style.css">
+  <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/archive.js"></script>
+
+  <script>
+		var MemberSpace = window.MemberSpace || {"subdomain":"himjrnl"};
+		
+		(function(d){
+		  	var s = d.createElement("script");
+			s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+			var e = d.getElementsByTagName("script")[0];
+			e.parentNode.insertBefore(s,e);
+		}(document));
+	</script>
+  
+  </head>
+
+	<body>
+    <div class="archive">
+
+      <div id="top-panel" class="top-panel">
+
+        <span style="transform: translateY(-45%);">
+          <h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1>
+          <h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1>
+          <h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>
+        </span>
+
+        <a title="Back" href="../index.html"><i class="top-download fa fa-undo"></i></a>
+      
+      </div>
+      <!-- PDF HERE -->
+      <div class="bookshelf">
+          <div class="covers">
+            <div class="thumb">
+              <a href="https://drive.google.com/uc?id=1nEkBuxol0eCZ5J-TYvbTDMQZwckvKVhr&export=download">
+                <img src="resources/HiM-January-2023.png">
+              </a>
+            </div>
+          
+            <div class="thumb">
+              <a href="https://drive.google.com/uc?id=1JDekjV2Ek3_Xn58Oa1tgOLZegWywh5vQ&export=download">
+                <img src="resources/HiM-February-2023.png">
+              </a>
+            </div>
+          
+            <div class="thumb">
+              <a href="https://drive.google.com/uc?id=1zcIZ11gmLUADD4gLRMP2mQ82yvxmcAir&export=download">
+                <img src="resources/HiM-March-2023.png">
+              </a>
+            </div>
+          </div>
+          <img class="shelf-img" src="resources/woodenShelf.png">
+
+          <div class="covers">
+            <div class="thumb">
+              <a href="https://drive.google.com/uc?id=1yXb10TfXTa42qKW7RjXJWLlslY3j3IL4&export=download">
+                <img src="resources/HiM-April-2023.png">
+              </a>
+            </div>
+          
+            <div class="thumb">
+              <a href="">
+                <img src="">
+              </a>
+            </div>
+              
+            <div class="thumb">
+              <a href="">
+                <img src="">
+              </a>
+            </div>
+          </div>
+          <img class="shelf-img" src="resources/woodenShelf.png">
+      </div>
+
+      <div title="Scroll to Bottom" id="scrollToBottom" style="border-radius: 1em; outline: none; position: fixed; z-index: 99; transform: translate(-20%,0); bottom: 2em; right: 2em; background: rgb(45, 45, 45); width: 2em; height: 2em;" onClick="scrollToBottom()">
+				<i title="Scroll to Bottom" class="fa fa-angle-double-down" style="transform: translate(46%, 17%); color: #FFC71F; cursor: pointer; align-items: center; font-size:min(max(25px, 2vw), 25px);"></i>
+			</div>
+    </div>
+
+    <script>loadArchive()</script>
+    <!-- <button onclick="loadArchive()">click</button> -->
+    <!-- Bootstrap Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+    <span style="float: right">
+
+    </span>
+	</body>
+
+  <footer>
+		<div style="height: var(--footer-height); background:rgb(45, 45, 45)">
+			<span style="display: inline-block; width:100vw; align-items: center;">
+				<p style="margin: 1em; float: left; padding: 1em; color: #fff; font: min(max(12px, 2vw), 18px) Bebas Neue Cyrillic">Copyright © 2023 The HiM Journal. All rights reserved</p>
+			</span>
+		</div>
+	</footer>
+
+</html>

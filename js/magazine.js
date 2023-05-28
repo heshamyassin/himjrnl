@@ -20,6 +20,300 @@
  *
  */
 
+const magazineConsts = {
+	width: 922,
+	height: 600,
+	duration: 1000,
+	acceleration: !isChrome(),
+	gradients: true,
+	autoCenter: true,
+	elevation: 50,
+	pages: 34,
+	pdfURL: 'https://drive.google.com/uc?id=1nEkBuxol0eCZ5J-TYvbTDMQZwckvKVhr&export=download'
+}
+
+window.onscroll = function() {scroll()};
+
+function loadApp() {
+	
+	var flipbook = $('.magazine');
+
+	// Check if the CSS was already loaded
+	
+	if (flipbook.width()==0 || flipbook.height()==0) {
+		setTimeout(loadApp, 10);
+		return;
+	}
+
+	loadMenu();
+
+	/* Load Turning	Sound */
+	var audio = document.getElementById("audio");
+					
+	// Create the flipbook
+	flipbook.turn({
+		
+		width: magazineConsts.width,
+		height: magazineConsts.height,
+		duration: magazineConsts.duration,
+		acceleration: magazineConsts.acceleration,
+		gradients: magazineConsts.gradients,
+		autoCenter: magazineConsts.autoCenter,
+		elevation: magazineConsts.elevation,
+		pages: magazineConsts.pages,
+			
+		// Events
+		when: {
+			turning: function(event, page, view) {
+				
+				var book = $(this),
+				currentPage = book.turn('page'),
+				pages = book.turn('pages');
+				
+				// Update the current URI
+
+				Hash.go('page/' + page).update();
+
+				// Show and hide navigation buttons
+
+				disableControls(page);
+				
+
+				$('.thumbnails .page-'+currentPage).
+					parent().
+					removeClass('current');
+
+				$('.thumbnails .page-'+page).
+					parent().
+					addClass('current');
+				
+				/* Play Turning	Sound */
+				audio.play();
+
+			},
+
+			turned: function(event, page, view) {
+
+				disableControls(page);
+
+				$(this).turn('center');
+				
+				if (page==1) { 
+					$(this).turn('peel', 'br');
+				}
+
+			},
+
+			missing: function (event, pages) {
+
+				// Add pages that aren't in the magazine
+				for (var i = 0; i < pages.length; i++)
+					addPage(pages[i], $(this));
+
+			}
+		}
+
+	});
+	
+	// Zoom.js
+	
+	$('.magazine-viewport').zoom({
+		flipbook: $('.magazine'),
+
+		when: {
+
+			swipeLeft: function() {
+
+				$(this).zoom('flipbook').turn('next');
+
+			},
+
+			swipeRight: function() {
+				
+				$(this).zoom('flipbook').turn('previous');
+
+			},
+
+		}
+	});
+	
+	// Using arrow keys to turn the page
+
+	$(document).keydown(function(e){
+
+		var previous = 37, next = 39, esc = 27;
+
+		switch (e.keyCode) {
+			case previous:
+
+				// left arrow
+				$('.magazine').turn('previous');
+				e.preventDefault();
+
+			break;
+			case next:
+
+				//right arrow
+				$('.magazine').turn('next');
+				e.preventDefault();
+
+			break;
+			case esc:
+				
+				$('.magazine-viewport').zoom('zoomOut');	
+				e.preventDefault();
+
+			break;
+		}
+	});
+
+	// URIs - Format #/page/1 
+
+	Hash.on('^page\/([0-9]*)$', {
+		yep: function(path, parts) {
+			var page = parts[1];
+
+			if (page!==undefined) {
+				if ($('.magazine').turn('is'))
+					$('.magazine').turn('page', page);
+			}
+
+		},
+		nop: function(path) {
+
+			if ($('.magazine').turn('is'))
+				$('.magazine').turn('page', 1);
+		}
+	});
+
+
+	$(window).resize(function() {
+		resizeViewport();
+	}).bind('orientationchange', function() {
+		resizeViewport();
+	});
+
+	// Add thumbnails
+	
+	addThumb();
+
+	// Add shares
+
+	addShare();
+	
+	// Events for thumbnails
+
+	$('.thumbnails').click(function(event) {
+		
+		var page;
+
+		if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
+		
+			$('.magazine').turn('page', page[1]);
+
+			toggleThumbnailPanel();
+		}
+	});
+
+	$('.thumbnails li').
+		bind($.mouseEvents.over, function() {
+			
+			$(this).addClass('thumb-hover');
+
+		}).bind($.mouseEvents.out, function() {
+			
+			$(this).removeClass('thumb-hover');
+
+		});
+
+	if ($.isTouch) {
+	
+		$('.thumbnails').
+			addClass('thumbanils-touch').
+			bind($.mouseEvents.move, function(event) {
+				event.preventDefault();
+			});
+
+	} else {
+
+		$('.thumbnails ul').mouseover(function() {
+
+			$('.thumbnails').addClass('thumbnails-hover');
+
+		}).mousedown(function() {
+
+			return false;
+
+		}).mouseout(function() {
+
+			$('.thumbnails').removeClass('thumbnails-hover');
+
+		});
+	}
+
+
+	// Regions
+
+	if ($.isTouch) {
+		$('.magazine').bind('touchstart', regionClick);
+	} else {
+		$('.magazine').click(regionClick);	
+	}
+
+	// Events for the next button
+
+	$('.next-button').bind($.mouseEvents.over, function() {
+		
+		$(this).addClass('next-button-hover');
+
+	}).bind($.mouseEvents.out, function() {
+		
+		$(this).removeClass('next-button-hover');
+
+	}).bind($.mouseEvents.down, function() {
+		
+		$(this).addClass('next-button-down');
+
+	}).bind($.mouseEvents.up, function() {
+		
+		$(this).removeClass('next-button-down');
+
+	}).click(function() {
+		
+		$('.magazine').turn('next');
+
+	});
+
+	// Events for the next button
+	
+	$('.previous-button').bind($.mouseEvents.over, function() {
+		
+		$(this).addClass('previous-button-hover');
+
+	}).bind($.mouseEvents.out, function() {
+		
+		$(this).removeClass('previous-button-hover');
+
+	}).bind($.mouseEvents.down, function() {
+		
+		$(this).addClass('previous-button-down');
+
+	}).bind($.mouseEvents.up, function() {
+		
+		$(this).removeClass('previous-button-down');
+
+	}).click(function() {
+		
+		$('.magazine').turn('previous');
+
+	});
+
+	resizeViewport();
+
+	$('.magazine').addClass('animated');
+
+}
+
 function addPage(page, book) {
 
 	var id, pages = book.turn('pages');
@@ -38,6 +332,61 @@ function addPage(page, book) {
 		loadPage(page, element);
 	}
 
+}
+
+function addShare() {
+	var appendReg = document.getElementById('canvas');
+	
+	var shareReg = $('<div />', {'id': 'share-panel', 'style': 'position: absolute; float: right;', 'class': 'share-panel'});
+	shareReg.appendTo(appendReg);
+	
+	var sharePanel = $('<span> \
+	<i class="shareItems fa fa-download" onClick="downloadPDF()"></i> \
+	<i class="shareItems fa fa-facebook" onClick="shareSM("Facebook")"></i> \
+	<i class="shareItems fa fa-twitter" onClick="shareSM("Twitter")"></i></a> \
+	<i class="shareItems fa fa-linkedin" onClick="shareSM("LinkedIn")"></i></a> \
+	<i class="shareItems fa fa-archive" onClick="openArchive()"></i></span>', {'id': 'share-panel-list', 'class': 'top-share'});
+	sharePanel.appendTo(shareReg);
+}
+
+function addThumb() {
+	var t = 1;
+	var appendReg = document.getElementById('canvas');
+	
+	var thumbReg = $('<div />', {'id': 'thumbnails-panel', 'class': 'thumbnails-panel'});
+	thumbReg.appendTo(appendReg);
+	
+	var thumbPanel = $('<div />', {'id': 'thumbnails-panel-list', 'class': 'thumbnails'});
+	thumbPanel.appendTo(thumbReg);
+
+	while (t <= magazineConsts.pages) {
+		if (t == 1 || t == magazineConsts.pages) {
+			var thumbnail = $('<li />', {'class': 'i'});
+			thumbnail.appendTo(thumbPanel);
+			var thumbnailImg = $('<img />', {'class': 'page-' + t});
+			thumbnailImg.css({
+				width: '76px',
+				height: '100px'
+			}).attr('src', 'resources/pages/'+t+'.png');
+			thumbnailImg.appendTo(thumbnail);
+		}
+		else {
+			var thumbnail = $('<li />', {'class': 'd-inline'});
+			thumbnail.appendTo(thumbPanel);
+			var thumbnailImg = $('<img />', {'class': "page-" + t});
+			thumbnailImg.css({
+				width: '76px', height: '100px'
+			}).attr('src', 'resources/pages/' + t + '.png');
+			thumbnailImg.appendTo(thumbnail);
+			t++;
+			var thumbnailImg = $('<img />', {'class': "page-" + t});
+			thumbnailImg.css({
+				width: '76px', height: '100px'
+			}).attr('src', 'resources/pages/' + t + '.png');
+			thumbnailImg.appendTo(thumbnail);
+		}
+		t++;
+	}
 }
 
 function loadPage(page, pageElement) {
@@ -330,7 +679,6 @@ function resizeViewport() {
 
 		$('.magazine').removeClass('animated');
 
-		/* HYASEIN: Responsiveness */
 		if (boundWidth <= responsiveViewTreshold && boundScale < 2 * pageScale)
 		{
 			if (boundScale < pageScale) {
@@ -344,15 +692,6 @@ function resizeViewport() {
 
 			$('.next-button').css({height: 2*viewScale*boundHeight, backgroundPosition: '-3.5vw'});
 			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
-			
-			/* HYASEIN: Algorithm */
-			/*
-				- calculate page center and window center
-				- if page turn = right -> translate to right
-				- else translate to left
-			*/
-
-			//$('.magazine').css({display: "none"});
 		}
 		else
 		{
@@ -368,32 +707,13 @@ function resizeViewport() {
 
 			$('.next-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
 			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
-			
-			/* HYASEIN: Algorithm */
-			/*
-				- calculate page(s) center and window center
-				- translate back to center
-			*/
-			
-			// $('.magazine').css({display: "block"});
 		}
 
 		if (currPage==1)
 			$('.magazine').turn('peel', 'br');
-		
 	}
 
 	var magazineOffset = $('.magazine').offset();
-	/*var magazineOffset = $('.magazine').offset(),
-		boundH = deviceHeight - magazineOffset.top - $('.magazine').height(),
-		marginTop = (boundH - $('.thumbnails > div').height()*viewScale) / 2;
-
-	if (marginTop<0) {
-		$('.thumbnails').css({height:1});
-	} else {
-		$('.thumbnails').css({height: boundH});
-		$('.thumbnails > div').css({marginTop: marginTop});
-	}*/
 
 	if (magazineOffset.top<$('.made').height())
 		$('.made').hide();
@@ -401,7 +721,8 @@ function resizeViewport() {
 		$('.made').show();
 
 	$('.magazine').addClass('animated');
-	
+
+	loadMenu();
 }
 // decode URL Parameters
 
@@ -417,28 +738,207 @@ function decodeParams(data) {
 	return obj;
 }
 
-/* Calculate the width and height of a square within another square
-
-function calculateBound(d) {
+function toggleShareMenu() {
+	const sharePanel = document.getElementById("share-panel");
+	const shareButton = document.getElementById("shareButton");
+	var deviceWidth = $(window).width();
+	var responsiveViewTreshold = 768;
 	
-	var bound = {width: d.width, height: d.height};
-
-	if (bound.width>d.boundWidth || bound.height>d.boundHeight) {
-		
-		var rel = bound.width/bound.height;
-
-		if (d.boundWidth/rel>d.boundHeight && d.boundHeight*rel<=d.boundWidth) {
-			
-			bound.width = Math.round(d.boundHeight*rel);
-			bound.height = d.boundHeight;
-
+	if (deviceWidth > responsiveViewTreshold) {
+		if (thumbPanel.style.display === "none") {
+			//
 		} else {
-			
-			bound.width = d.boundWidth;
-			bound.height = Math.round(d.boundWidth/rel);
-		
+			//
+		}
+	} else {
+		if (sharePanel.style.display === "none") {
+			sharePanel.style.display = "inline-flex";
+			shareButton.className = 'top-share fa fa-close';
+		} else {
+			sharePanel.style.display = "none";
+			shareButton.className = 'top-share fa fa-share';
 		}
 	}
-		
-	return bound;
-} */
+}
+
+function toggleThumbnailPanel() {
+	const thumbPanel = document.getElementById("thumbnails-panel");
+	const thumbnails = document.getElementById("thumbnails-panel-list");
+	const thumbButton = document.getElementById("thumbButton");
+	var deviceWidth = $(window).width(),
+	responsiveViewTreshold = 768;
+	
+	if (deviceWidth > responsiveViewTreshold) {
+		if (thumbPanel.style.display === "none") {
+			thumbPanel.style.display = "inline-block";
+			$('.magazine-viewport .container').css({
+				left: 'calc((100vw - var(--thumbnail-panel-width))/2 + var(--thumbnail-panel-width))'
+			});
+			thumbPanel.style.width = 'var(--thumbnail-panel-width)';
+			thumbnails.style.left = 'calc(var(--thumbnail-panel-width)/2 - 76px)';
+			thumbPanel.style.height = '100%';
+			thumbButton.className = 'top-thumb fa fa-close';
+		} else {
+			thumbPanel.style.display = "none";
+			$('.magazine-viewport .container').css({left: '50%'});
+			thumbButton.className = 'top-thumb fa fa-bars';
+		}
+	} else {
+		if (thumbPanel.style.display === "none") {
+			$('.magazine-viewport .container').css({
+				display: 'none'
+			});
+			thumbPanel.style.display = "inline-block";
+			thumbPanel.style.width = '100vw';
+			thumbnails.style.left = 'calc(50% - 76px)';
+			thumbPanel.style.height = 'auto';
+			thumbButton.className = 'top-thumb fa fa-close';
+		} else {
+			thumbPanel.style.display = "none";
+			$('.magazine-viewport .container').css({
+				display: "block"
+			});
+			thumbButton.className = 'top-thumb fa fa-bars';
+		}
+	}
+}
+
+function downloadPDF() {
+	window.open(magazineConsts.pdfURL)
+}
+
+function shareSM(platform) {
+	switch (platform) {
+		case 'Facebook':
+			window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhgyassin.github.io%2Fhimjrnl');
+			break;
+		case 'Twitter':
+			window.open('https://twitter.com/intent/tweet?text=https%3A%2F%2Fhgyassin.github.io%2Fhimjrnl');
+			break;
+		case 'LinkedIn':
+			window.open('http://www.linkedin.com/shareArticle?mini=true&url=https://hgyassin.github.io/himjrnl&source=https://hgyassin.github.io/himjrnl');
+			break;
+	}
+
+}
+
+function openArchive() {
+	const page = window.open("archive/archive.html", "_self", "");
+}
+
+function loadMenu() {
+	const element = document.getElementById("canvas");
+	var deviceWidth = $(window).width();
+	var responsiveViewTreshold = 768;
+
+	var topPanel = $('<div />', {id:"top-panel", class:"top-panel"});
+	const topPanelElement = document.getElementsByClassName('top-panel');
+	
+	if (deviceWidth <= responsiveViewTreshold) {
+		// remove the topPanel and its contents
+		for (let p = 0; p < topPanelElement.length; p++) {
+			topPanelElement[p].remove();
+		}
+		mobileMenu(topPanel);
+		topPanel.appendTo(element);
+	} else {
+		// remove the topPanel and its contents
+		for (let p = 0; p < topPanelElement.length; p++) {
+			topPanelElement[p].remove();
+		}
+		desktopMenu(topPanel);
+		topPanel.appendTo(element);
+	}
+}
+
+function mobileMenu(topPanel) {
+	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
+	mobileThumbnail(topPanel);
+	const spanLogoContent = $('<h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1> \
+	<h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1> \
+	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
+	spanLogoContent.appendTo(spanLogo);
+	spanLogo.appendTo(topPanel);
+	mobileShare(topPanel);
+}
+
+function desktopMenu(topPanel) {
+
+	desktopThumbnail(topPanel);
+	
+	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
+	const spanLogoContent = $('<h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1> \
+	<h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1> \
+	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
+	spanLogoContent.appendTo(spanLogo);
+	spanLogo.appendTo(topPanel);
+	
+	desktopShare(topPanel);
+}
+
+function mobileThumbnail(topPanel) {
+	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
+	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
+}
+
+function desktopThumbnail(topPanel) {
+	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
+	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
+}
+
+function mobileShare(topPanel) {
+	// create a new menu similar to #top-panel .top-thumb and code shall be similar to toggleThumbnailPanel()
+	// call mobileShare to attach to this menu
+	var topShare = $('<i />', {id:"shareButton", title:"Share To", class:"top-share fa fa-share"});
+	topShare.attr('onClick','toggleShareMenu()').appendTo(topPanel);
+}
+
+function desktopShare(topPanel) {
+	var topDownload = $('<i />', {id:"", title:"Download PDF", class:"top-download fa fa-download"}); //onClick="downloadPDF()"
+	var topSocialFB = $('<i />', {id:"", title:"Share to FB", class:"top-download fa fa-facebook"}); //onClick="shareSM('Facebook')"
+	var topSocialTR = $('<i />', {id:"", title:"Share to Twitter", class:"top-download fa fa-twitter"}); //onClick="shareSM('Twitter')"
+	var topSocialLI = $('<i />', {id:"", title:"Share to LinkedIn", class:"top-download fa fa-linkedin"}); //onClick="shareSM('LinkedIn')"
+	var topArchive = $('<i />', {id:"", title:"Go to Archive", class:"top-download fa fa-archive"}); //onClick="openArchive()"
+
+	topDownload.attr('onClick','downloadPDF()').appendTo(topPanel);
+	topSocialFB.attr('onClick','shareSM("Facebook")').appendTo(topPanel);
+	topSocialTR.attr('onClick','shareSM("Twitter")').appendTo(topPanel);
+	topSocialLI.attr('onClick','shareSM("LinkedIn")').appendTo(topPanel);
+	topArchive.attr('onClick','openArchive()').appendTo(topPanel);
+}
+
+function scroll() {
+	var footer = document.getElementsByTagName('footer');
+	var footerDiv = footer[0].getElementsByTagName('div');
+	var footerSpan = footerDiv[0].getElementsByTagName('span');
+	var scrollBottomEl = document.getElementById('scrollToBottom');
+	var scrollToTopElement = footerSpan[0].getElementsByTagName('i');
+	var scrollToTopIcon = footerSpan[0].getElementsByTagName('a');
+	var scrollToTop = $('<i title="Scroll to Top" style="float: right; padding: 1em 1em 1em 0.25em !important; margin: 1em 1em 1em 0.25em !important; color: #FFC71F; cursor: pointer; align-items: center; transform: translateY(5%); font-size: min(max(12px, 2vw), 18px)" class="fa fa-angle-double-up" id="scrollTopIc" onClick="scrollToTop()"></i> \
+	<a title="Scroll to Top" style="float: right; padding: 1em 0.25em 1em 1em !important; margin: 1em 0.25em 1em 1em !important; color: #FFC71F; font: min(max(12px, 2vw), 18px) Bebas Neue Cyrillic; cursor: pointer; align-items: center;" id="scrollTopEl" onClick="scrollToTop()">BACK TO TOP</a>');
+	
+	if (document.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+		for (let s = 0; s < scrollToTopElement.length; s++) {
+			scrollToTopElement[s].remove();
+			scrollToTopIcon[s].remove();
+		}
+		scrollToTop.appendTo(footerSpan[0]);
+		scrollBottomEl.style.display = "none";
+	} else {
+		for (let s = 0; s < scrollToTopElement.length; s++) {
+			scrollToTopElement[s].remove();
+			scrollToTopIcon[s].remove();
+		}
+		scrollBottomEl.style.display = "block";
+	}
+}
+
+function scrollToBottom() {
+	document.body.scrollTop = 100;
+  	document.documentElement.scrollTop = 100;
+}
+
+function scrollToTop() {
+	document.body.scrollTop = 0;
+  	document.documentElement.scrollTop = 0;
+}
