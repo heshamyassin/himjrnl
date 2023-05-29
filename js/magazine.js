@@ -861,8 +861,9 @@ function mobileMenu(topPanel) {
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
 	
-	var loginButton = $('<i />', {id:"", title:"Login/SignUp", class:"top-share fa fa-user"}); 
-	loginButton.attr('onclick', "https://hgyassin.github.io?msopen=/member/sign_in").appendTo(topPanel);
+	var loginButton = $('<a id="" title="Login/SignUp" style="top-download" href="https://hgyassin.github.io?msopen=/member/sign_in"> \
+	<i id="" class="top-download fa fa-user"></i></a>'); 
+	loginButton.appendTo(topPanel);
 
 	mobileShare(topPanel);
 }
@@ -878,8 +879,9 @@ function desktopMenu(topPanel) {
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
 	
-	var loginButton = $('<i />', {id:"", title:"Login/SignUp", class:"top-download fa fa-user"}); 
-	loginButton.attr('onclick', "https://hgyassin.github.io?msopen=/member/sign_in").appendTo(topPanel);
+	var loginButton = $('<a id="" title="Login/SignUp" style="top-download" href="https://hgyassin.github.io?msopen=/member/sign_in"> \
+	<i id="" class="top-download fa fa-user"></i></a>'); 
+	loginButton.appendTo(topPanel);
 	
 	desktopShare(topPanel);
 }
