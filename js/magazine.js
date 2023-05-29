@@ -852,13 +852,18 @@ function loadMenu() {
 }
 
 function mobileMenu(topPanel) {
-	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
 	mobileThumbnail(topPanel);
+	
+	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
 	const spanLogoContent = $('<h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1> \
 	<h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1> \
 	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
+	
+	var loginButton = $('<i />', {id:"", title:"Login/SignUp", class:"top-share fa fa-user"}); 
+	loginButton.attr('onclick', "https://hgyassin.github.io?msopen=/member/sign_in").appendTo(topPanel);
+
 	mobileShare(topPanel);
 }
 
@@ -872,6 +877,9 @@ function desktopMenu(topPanel) {
 	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
+	
+	var loginButton = $('<i />', {id:"", title:"Login/SignUp", class:"top-download fa fa-user"}); 
+	loginButton.attr('onclick', "https://hgyassin.github.io?msopen=/member/sign_in").appendTo(topPanel);
 	
 	desktopShare(topPanel);
 }
