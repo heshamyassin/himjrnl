@@ -73,6 +73,7 @@ body{
 	color:#FFC71F;
 	font-size:22px;
 	padding: 0.5em 0.5em;
+	cursor: pointer;
 }
 
 .bookshelf .thumb{
