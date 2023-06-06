@@ -1,0 +1,17 @@
+[
+	{
+		"x":0,
+		"y":0,
+		"width":461,
+		"height":600,
+		"page":29,
+		"autoplay":0,
+		"color":"#000",
+		"class":"video",
+		"data":
+			{
+				"url": "resources/video/68432712231A28F5B389ADC534F4B28D.mp4"
+			}
+	}
+
+]
