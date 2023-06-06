@@ -337,7 +337,7 @@ function addPage(page, book) {
 function addShare() {
 	var appendReg = document.getElementById('canvas');
 	
-	var shareReg = $('<div id="share-panel" style="position: absolute; float: right;" class="share-panel"></div>');
+	var shareReg = $('<div />', {'id': 'share-panel', 'style': 'position: absolute; float: right;', 'class': 'share-panel'});
 	shareReg.appendTo(appendReg);
 
 	var shareSpan = $('<span id="" style=""></span>');
