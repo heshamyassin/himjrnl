@@ -7,7 +7,7 @@
 		"page":16,
 		"autoplay":0,
 		"color":"#000",
-		"class":"pinterest",
+		"class":"iframe",
 		"data":
 			{
 				"url": "https://assets.pinterest.com/ext/embed.html?id=656118239476182607"

@@ -337,16 +337,23 @@ function addPage(page, book) {
 function addShare() {
 	var appendReg = document.getElementById('canvas');
 	
-	var shareReg = $('<div />', {'id': 'share-panel', 'style': 'position: absolute; float: right;', 'class': 'share-panel'});
+	var shareReg = $('<div id="share-panel" style="position: absolute; float: right;" class="share-panel"></div>');
 	shareReg.appendTo(appendReg);
+
+	var shareSpan = $('<span id="" style=""></span>');
+	shareSpan.appendTo(shareReg);
 	
-	var sharePanel = $('<span> \
-	<i class="shareItems fa fa-download" onClick="downloadPDF()"></i> \
-	<i class="shareItems fa fa-facebook" onClick="shareSM("Facebook")"></i> \
-	<i class="shareItems fa fa-twitter" onClick="shareSM("Twitter")"></i></a> \
-	<i class="shareItems fa fa-linkedin" onClick="shareSM("LinkedIn")"></i></a> \
-	<i class="shareItems fa fa-archive" onClick="openArchive()"></i></span>', {'id': 'share-panel-list', 'class': 'top-share'});
-	sharePanel.appendTo(shareReg);
+	var topDownload = $('<i />', {id:"", title:"Download PDF", class:"shareItems fa fa-download"}); //onClick="downloadPDF()"
+	var topSocialFB = $('<i />', {id:"", title:"Share to FB", class:"shareItems fa fa-facebook"}); //onClick="shareSM('Facebook')"
+	var topSocialTR = $('<i />', {id:"", title:"Share to Twitter", class:"shareItems fa fa-twitter"}); //onClick="shareSM('Twitter')"
+	var topSocialLI = $('<i />', {id:"", title:"Share to LinkedIn", class:"shareItems fa fa-linkedin"}); //onClick="shareSM('LinkedIn')"
+	var topArchive = $('<i />', {id:"", title:"Go to Archive", class:"shareItems fa fa-archive"}); //onClick="openArchive()"
+
+	topDownload.attr('onClick','downloadPDF()').appendTo(shareSpan);
+	topSocialFB.attr('onClick','shareSM("Facebook")').appendTo(shareSpan);
+	topSocialTR.attr('onClick','shareSM("Twitter")').appendTo(shareSpan);
+	topSocialLI.attr('onClick','shareSM("LinkedIn")').appendTo(shareSpan);
+	topArchive.attr('onClick','openArchive()').appendTo(shareSpan);
 }
 
 function addThumb() {
@@ -622,26 +629,6 @@ function processRegion(regionElement, regionType, regionJSON) {
 				height: '100%',
 				opacity: '1',
 				zIndex: '1',
-				background: regionJSON['color'],
-				border: '0',
-			}).attr('src', data.url);
-			if (regionJSON.autoplay)
-				videoPlayer.attr('src', data.url+"?autoplay=1");
-			videoPlayer.appendTo(regionElement);
-		break;
-		case 'pinterest':
-			regionElement.css({zIndex:'1'});
-			regionElement.css({background:regionJSON['color']});
-			regionElement.css({borderRadius:'0px'});
-			var videoPlayer = $('<iframe frameborder="0" scrolling="yes"/>', {'id': 'myiframe', 'class': ''});
-			videoPlayer.css({
-				top: 'regionElement.y',
-				left: 'regionElement.x',
-				width: '100%',
-				height: '100%',
-				opacity: '1',
-				zIndex: '1',
-				borderRadius: '0',
 				background: regionJSON['color'],
 				border: '0',
 			}).attr('src', data.url);

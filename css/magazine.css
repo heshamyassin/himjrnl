@@ -319,6 +319,7 @@ body{
 	padding: 0.5em;
 	box-sizing: border-box;
 	align-items: center;
+	z-index: 100;
 }
 
 .thumbnails{
