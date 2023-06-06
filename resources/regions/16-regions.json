@@ -1,44 +1,16 @@
 [
 	{
-		"x":145,
-		"y":380,
-		"width":45,
-		"height":10,
+		"x":0,
+		"y":0,
+		"width":461,
+		"height":290,
 		"page":16,
 		"autoplay":0,
 		"color":"#000",
-		"class":"link",
+		"class":"pinterest",
 		"data":
 			{
-				"url": "https://www.mccoyspace.com/exhibition/180"
-			}
-	},
-	{
-		"x":15,
-		"y":400,
-		"width":100,
-		"height":10,
-		"page":16,
-		"autoplay":0,
-		"color":"#000",
-		"class":"link",
-		"data":
-			{
-				"url": "https://boredapeyachtclub.com"
-			}
-	},
-	{
-		"x":70,
-		"y":435,
-		"width":85,
-		"height":10,
-		"page":16,
-		"autoplay":0,
-		"color":"#000",
-		"class":"link",
-		"data":
-			{
-				"url": "https://onlineonly.christies.com/s/first-open-beeple/beeple-b-1981-1/112924"
+				"url": "https://assets.pinterest.com/ext/embed.html?id=656118239476182607"
 			}
 	}
 

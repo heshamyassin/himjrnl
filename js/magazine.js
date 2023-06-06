@@ -454,7 +454,7 @@ function addRegion(page, region, pageElement) {
 
 	reg.appendTo(pageElement);
 
-	if (region['class'] == 'iframe' || region['class'] == 'video'
+	if (region['class'] == 'pinterest' || region['class'] == 'iframe' || region['class'] == 'video'
 	|| region['class'] == 'gif' || region['class'] == 'twitter-timeline'
 	|| region['class'] == 'twitter-tweet' || region['class'] == 'instagram-media'
 	|| region['class'] == 'instagram-feed') {
@@ -622,6 +622,26 @@ function processRegion(regionElement, regionType, regionJSON) {
 				height: '100%',
 				opacity: '1',
 				zIndex: '1',
+				background: regionJSON['color'],
+				border: '0',
+			}).attr('src', data.url);
+			if (regionJSON.autoplay)
+				videoPlayer.attr('src', data.url+"?autoplay=1");
+			videoPlayer.appendTo(regionElement);
+		break;
+		case 'pinterest':
+			regionElement.css({zIndex:'1'});
+			regionElement.css({background:regionJSON['color']});
+			regionElement.css({borderRadius:'0px'});
+			var videoPlayer = $('<iframe frameborder="0" scrolling="yes"/>', {'id': 'myiframe', 'class': ''});
+			videoPlayer.css({
+				top: 'regionElement.y',
+				left: 'regionElement.x',
+				width: '100%',
+				height: '100%',
+				opacity: '1',
+				zIndex: '1',
+				borderRadius: '0',
 				background: regionJSON['color'],
 				border: '0',
 			}).attr('src', data.url);

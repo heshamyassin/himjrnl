@@ -1,16 +1,17 @@
 [
 	{
-		"x":238,
-		"y":146,
-		"width":211,
-		"height":115,
+		"x":235,
+		"y":125,
+		"width":215,
+		"height":155,
 		"page":17,
-		"autoplay":1,
-		"color":"#e2e2e2",
-		"class":"gif",
+		"autoplay":0,
+		"color":"#000",
+		"class":"pinterest",
 		"data":
 			{
-				"url": "resources/video/a0c865b2497e4726480d9hb2fdf3bc6.gif"
+				"url": "https://assets.pinterest.com/ext/embed.html?id=687291593156561995"
 			}
 	}
+
 ]
