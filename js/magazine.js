@@ -29,7 +29,7 @@ const magazineConsts = {
 	autoCenter: true,
 	elevation: 50,
 	pages: 34,
-	pdfURL: 'https://drive.google.com/uc?id=1nEkBuxol0eCZ5J-TYvbTDMQZwckvKVhr&export=download'
+	pdfURL: 'https://drive.google.com/uc?id=13PyoVuL9I9lSABsgx64hUCahfXHWRh6F&export=download'
 }
 
 window.onscroll = function() {scroll()};
