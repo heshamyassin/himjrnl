@@ -862,9 +862,9 @@ function mobileMenu(topPanel) {
 	mobileThumbnail(topPanel);
 	
 	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
-	const spanLogoContent = $('<h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1> \
-	<h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1> \
-	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
+	const spanLogoContent = $('<h1 style="color:#FFFFFF; font:35px Bebas Neue Cyrillic">THE</h1> \
+	<h1 style="color:#111F4A; font:35px Giaza Stencil">HiM</h1> \
+	<h1 style="color:#111F4A; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
 	
@@ -880,9 +880,9 @@ function desktopMenu(topPanel) {
 	desktopThumbnail(topPanel);
 	
 	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
-	const spanLogoContent = $('<h1 style="color:#FF5757; font:35px Bebas Neue Cyrillic">THE</h1> \
-	<h1 style="color:#FFC71F; font:35px Giaza Stencil">HiM</h1> \
-	<h1 style="color:#FFC71F; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
+	const spanLogoContent = $('<h1 style="color:#FFFFFF; font:35px Bebas Neue Cyrillic">THE</h1> \
+	<h1 style="color:#111F4A; font:35px Giaza Stencil">HiM</h1> \
+	<h1 style="color:#111F4A; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
 	spanLogoContent.appendTo(spanLogo);
 	spanLogo.appendTo(topPanel);
 	
@@ -931,7 +931,7 @@ function scroll() {
 	var scrollBottomEl = document.getElementById('scrollToBottom');
 	var scrollToTopElement = footerSpan[0].getElementsByTagName('i');
 	var scrollToTopIcon = footerSpan[0].getElementsByTagName('a');
-	var scrollToTop = $('<i title="Scroll to Top" style="float: right; padding: 1em 1em 1em 0.25em !important; margin: 1em 1em 1em 0.25em !important; color: #FFC71F; cursor: pointer; align-items: center; transform: translateY(5%); font-size: min(max(12px, 2vw), 18px)" class="fa fa-angle-double-up" id="scrollTopIc" onClick="scrollToTop()"></i>');
+	var scrollToTop = $('<i title="Scroll to Top" style="float: right; padding: 1em 1em 1em 0.25em !important; margin: 1em 1em 1em 0.25em !important; color: #111F4A; cursor: pointer; align-items: center; transform: translateY(5%); font-size: min(max(12px, 2vw), 18px)" class="fa fa-angle-double-up" id="scrollTopIc" onClick="scrollToTop()"></i>');
 	
 	if (document.scrollTop > 10 || document.documentElement.scrollTop > 10) {
 		for (let s = 0; s < scrollToTopElement.length; s++) {

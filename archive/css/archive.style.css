@@ -15,7 +15,9 @@
 }
 
 body{
-    background-color: rgb(45, 45, 45);
+    /**/
+	background-color: #F9F0E6;
+	/**/
 }
 
 .archive{
@@ -24,7 +26,9 @@ body{
 	left: 0;
 	height: calc(100vh - var(--footer-height));
 	width: 100vw;
-	background-color:rgba(200, 200, 200, 0.2);
+	/**/
+	background-color:rgba(255, 255, 255, 0.4);
+	/**/
 	margin:0;
 	padding:0;
 }
@@ -37,7 +41,7 @@ body{
 	top: 0; /* A bit down for the top menu */
 	bottom: 0;
 	overflow-x: none;
-	background: rgb(45, 45, 45);
+	background: #F9F0E6;
 	padding: 0.5em;
 	box-sizing: border-box;
 	align-items: center;
@@ -59,7 +63,7 @@ body{
 	top: 50%;
     cursor: pointer;
 	transform: translate(0, -50%);
-	color:#FFC71F;
+	color:#111F4A;
 	float: left;
 	display:inline-flex;
 	font-size:25px;
@@ -70,7 +74,7 @@ body{
 	top: 50%;
 	transform: translate(0, -50%);
 	float: right;
-	color:#FFC71F;
+	color:#111F4A;
 	font-size:22px;
 	padding: 0.5em 0.5em;
 	cursor: pointer;
