@@ -1,31 +1,17 @@
 [
 	{
-		"x":12,
-		"y":255,
-		"width":210,
-		"height":180,
-		"page":15,
-		"autoplay":1,
-		"color":"#f3bbc2",
-		"class":"gif",
-		"data":
-			{
-				"url": "resources/video/266393622_3035702430090264_8250807974598258817_n_MP4_AdobeExpress.gif"
-			}
-	},
-	
-	{
-		"x":235,
+		"x":10,
 		"y":250,
-		"width":215,
-		"height":295,
+		"width":220,
+		"height":245,
 		"page":15,
 		"autoplay":0,
-		"color":"#f2f2f2",
-		"class":"twitter-tweet",
+		"color":"#000",
+		"class":"iframe",
 		"data":
 			{
-				"url": "https://twitter.com/ChristiesInc/status/1361670588608176128?ref_src=twsrc%5Etfw"
+				"url": "https://assets.pinterest.com/ext/embed.html?id=614248836690643333"
 			}
 	}
+
 ]
