@@ -3,9 +3,19 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PRJ_ID }}
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-      - main
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
