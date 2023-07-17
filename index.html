@@ -7,7 +7,7 @@
  *
  * EDITOR IN CHIEF. Hesham Yasein. heshamgyassin@gmail.com
  *
- * Copyright © 2023 The HiM Journal. All rights reserved
+ * All rights reserved to HiM 2023 (C)
  *
  * License:
  * This code is based on turnjs - http://turnjs.com
@@ -31,44 +31,22 @@
 
 	<head>
 
-	<title>The HiM Journal: Rugged Gentleman Lifestyle</title>
+	<title>HiM Journal: The Rugged Gentleman Lifestyle</title>
 
-	<link rel="icon" type="image/png" href="resources/pics/HiMIcon.png" />
+	<link rel="icon" type="image/png" href="resources/pics/pngwing.png" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable = no" />
-	
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/magazine.css">
-	<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 	<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
 	<script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
 	<script type="text/javascript" src="lib/hash.js"></script>
-	<script type="text/javascript" src="lib/zoom.min.js"></script>
-	<script type="text/javascript" src="js/magazine.js"></script>
-	<script type="text/javascript" src="lib/turn.js"></script>
-	
-	<!--<meta name="robots" content="noindex, nofollow"><style>#__memberspace_modal_protected_page { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:2147483646; }</style><div id="__memberspace_modal_protected_page"></div>-->
-	<script>
-		var MemberSpace = window.MemberSpace || {"subdomain":"himjrnl"};
-		
-		(function(d){
-		  	var s = d.createElement("script");
-			s.src = "https://cdn.memberspace.com/scripts/widgets.js";
-			var e = d.getElementsByTagName("script")[0];
-			e.parentNode.insertBefore(s,e);
-		}(document));
-	</script>
-
 	<!-- turnPage Audio -->
 	<audio id="audio" src="resources/audio/turnPage.mp3"></audio>
-	
 	</head>
 
 	<body>
-		<div id="canvas" class="canvas">
+		<div id="canvas">
 			<!--<div class="zoom-icon zoom-icon-in"></div>-->
 			<div class="magazine-viewport" width="device-width" initial-scale="1" user-scalable="no" position="absolute">
 				<div class="container">
@@ -80,20 +58,402 @@
 					</div>
 				</div>
 			</div>
-		
-			<div id="scrollToBottom" style="border-radius: 1em; outline: none; position: fixed; z-index: 99; transform: translate(-20%,0); bottom: 2em; right: 2em; background: rgb(45, 45, 45); width: 2em; height: 2em;" onClick="scrollToBottom()">
-				<i class="fa fa-angle-double-down" style="transform: translate(46%, 17%); color: #FFC71F; cursor: pointer; align-items: center; font-size:min(max(25px, 2vw), 25px);"></i>
+			<!-- Thumbnails -->
+			<div class="thumbnails">
+				<div>
+					<ul>
+						<li class="i">
+							<img src="resources/pages/1.png" width="76" height="100" class="page-1">
+							<span>Front Cover</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/2.png" width="76" height="100" class="page-2">
+							<img src="resources/pages/3.png" width="76" height="100" class="page-3">
+							<span>2-3</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/4.png" width="76" height="100" class="page-4">
+							<img src="resources/pages/5.png" width="76" height="100" class="page-5">
+							<span>4-5</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/6.png" width="76" height="100" class="page-6">
+							<img src="resources/pages/7.png" width="76" height="100" class="page-7">
+							<span>6-7</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/8.png" width="76" height="100" class="page-8">
+							<img src="resources/pages/9.png" width="76" height="100" class="page-9">
+							<span>8-9</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/10.png" width="76" height="100" class="page-10">
+							<img src="resources/pages/11.png" width="76" height="100" class="page-11">
+							<span>10-11</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/12.png" width="76" height="100" class="page-12">
+							<img src="resources/pages/13.png" width="76" height="100" class="page-13">
+							<span>12-13</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/14.png" width="76" height="100" class="page-14">
+							<img src="resources/pages/15.png" width="76" height="100" class="page-15">
+							<span>14-15</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/16.png" width="76" height="100" class="page-16">
+							<img src="resources/pages/17.png" width="76" height="100" class="page-17">
+							<span>16-17</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/18.png" width="76" height="100" class="page-18">
+							<img src="resources/pages/19.png" width="76" height="100" class="page-19">
+							<span>18-19</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/20.png" width="76" height="100" class="page-20">
+							<img src="resources/pages/21.png" width="76" height="100" class="page-21">
+							<span>20-21</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/22.png" width="76" height="100" class="page-22">
+							<img src="resources/pages/23.png" width="76" height="100" class="page-23">
+							<span>22-23</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/24.png" width="76" height="100" class="page-24">
+							<img src="resources/pages/25.png" width="76" height="100" class="page-25">
+							<span>24-25</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/26.png" width="76" height="100" class="page-26">
+							<img src="resources/pages/27.png" width="76" height="100" class="page-27">
+							<span>26-27</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/28.png" width="76" height="100" class="page-28">
+							<img src="resources/pages/29.png" width="76" height="100" class="page-29">
+							<span>28-29</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/30.png" width="76" height="100" class="page-30">
+							<img src="resources/pages/31.png" width="76" height="100" class="page-31">
+							<span>30-31</span>
+						</li>
+						<li class="d">
+							<img src="resources/pages/32.png" width="76" height="100" class="page-32">
+							<img src="resources/pages/33.png" width="76" height="100" class="page-33">
+							<span>32-33</span>
+						</li>
+						<li class="i">
+							<img src="resources/pages/34.png" width="76" height="100" class="page-34">
+							<span>Back Cover</span>
+						</li>
+					<ul>
+				<div>
 			</div>
 		</div>
 
-		<script type="text/javascript">loadApp()</script>
-	</body>
+		<script type="text/javascript">
 
-	<footer>
-		<div style="bottom: 0; height: var(--footer-height); background:rgb(45, 45, 45)">
-			<span style="display: inline-block; width:100vw; align-items: center;">
-				<p style="margin: 1em; float: left; padding: 1em; color: #fff; font: min(max(12px, 2vw), 18px) Bebas Neue Cyrillic">Copyright © 2023 The HiM Journal. All rights reserved</p>
-			</span>
-		</div>
-	</footer>
+			function loadApp() {
+		
+				$('#canvas').fadeIn(1000);
+		
+				var flipbook = $('.magazine');
+		
+				// Check if the CSS was already loaded
+				
+				if (flipbook.width()==0 || flipbook.height()==0) {
+					setTimeout(loadApp, 10);
+					return;
+				}
+
+				/* Load Turning	Sound */
+				var audio = document.getElementById("audio");
+								
+				// Create the flipbook
+				flipbook.turn({
+						
+						// Magazine width
+						width: 922,
+		
+						// Magazine height
+						height: 600,
+		
+						// Duration in millisecond
+						duration: 1000,
+		
+						// Hardware acceleration
+						acceleration: !isChrome(),
+		
+						// Enables gradients
+						gradients: true,
+						
+						// Auto center this flipbook
+						autoCenter: true,
+		
+						// Elevation from the edge of the flipbook when turning a page
+						elevation: 50,
+		
+						// The number of pages
+						pages: 34,
+		
+						// Events
+						when: {
+							turning: function(event, page, view) {
+								
+								var book = $(this),
+								currentPage = book.turn('page'),
+								pages = book.turn('pages');
+								
+								// Update the current URI
+		
+								Hash.go('page/' + page).update();
+		
+								// Show and hide navigation buttons
+		
+								disableControls(page);
+								
+		
+								$('.thumbnails .page-'+currentPage).
+									parent().
+									removeClass('current');
+		
+								$('.thumbnails .page-'+page).
+									parent().
+									addClass('current');
+								
+								/* Play Turning	Sound */
+								audio.play();
+		
+							},
+		
+							turned: function(event, page, view) {
+		
+								disableControls(page);
+		
+								$(this).turn('center');
+								
+								if (page==1) { 
+									$(this).turn('peel', 'br');
+								}
+		
+							},
+		
+							missing: function (event, pages) {
+		
+								// Add pages that aren't in the magazine
+								for (var i = 0; i < pages.length; i++)
+									addPage(pages[i], $(this));
+		
+							}
+						}
+		
+				});
+		
+				// Zoom.js
+				
+				$('.magazine-viewport').zoom({
+					flipbook: $('.magazine'),
+		
+					when: {
+		
+						swipeLeft: function() {
+		
+							$(this).zoom('flipbook').turn('next');
+		
+						},
+		
+						swipeRight: function() {
+							
+							$(this).zoom('flipbook').turn('previous');
+		
+						},
+
+					}
+				});
+				
+				// Using arrow keys to turn the page
+		
+				$(document).keydown(function(e){
+		
+					var previous = 37, next = 39, esc = 27;
+		
+					switch (e.keyCode) {
+						case previous:
+		
+							// left arrow
+							$('.magazine').turn('previous');
+							e.preventDefault();
+		
+						break;
+						case next:
+		
+							//right arrow
+							$('.magazine').turn('next');
+							e.preventDefault();
+		
+						break;
+						case esc:
+							
+							$('.magazine-viewport').zoom('zoomOut');	
+							e.preventDefault();
+		
+						break;
+					}
+				});
+		
+				// URIs - Format #/page/1 
+		
+				Hash.on('^page\/([0-9]*)$', {
+					yep: function(path, parts) {
+						var page = parts[1];
+		
+						if (page!==undefined) {
+							if ($('.magazine').turn('is'))
+								$('.magazine').turn('page', page);
+						}
+		
+					},
+					nop: function(path) {
+		
+						if ($('.magazine').turn('is'))
+							$('.magazine').turn('page', 1);
+					}
+				});
+		
+		
+				$(window).resize(function() {
+					resizeViewport();
+				}).bind('orientationchange', function() {
+					resizeViewport();
+				});
+		
+				// Events for thumbnails
+		
+				$('.thumbnails').click(function(event) {
+					
+					var page;
+		
+					if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
+					
+						$('.magazine').turn('page', page[1]);
+					}
+				});
+		
+				$('.thumbnails li').
+					bind($.mouseEvents.over, function() {
+						
+						$(this).addClass('thumb-hover');
+		
+					}).bind($.mouseEvents.out, function() {
+						
+						$(this).removeClass('thumb-hover');
+		
+					});
+		
+				if ($.isTouch) {
+				
+					$('.thumbnails').
+						addClass('thumbanils-touch').
+						bind($.mouseEvents.move, function(event) {
+							event.preventDefault();
+						});
+		
+				} else {
+		
+					$('.thumbnails ul').mouseover(function() {
+		
+						$('.thumbnails').addClass('thumbnails-hover');
+		
+					}).mousedown(function() {
+		
+						return false;
+		
+					}).mouseout(function() {
+		
+						$('.thumbnails').removeClass('thumbnails-hover');
+		
+					});
+				}
+
+
+				// Regions
+
+				if ($.isTouch) {
+					$('.magazine').bind('touchstart', regionClick);
+				} else {
+					$('.magazine').click(regionClick);	
+				}
+
+				// Events for the next button
+		
+				$('.next-button').bind($.mouseEvents.over, function() {
+					
+					$(this).addClass('next-button-hover');
+		
+				}).bind($.mouseEvents.out, function() {
+					
+					$(this).removeClass('next-button-hover');
+		
+				}).bind($.mouseEvents.down, function() {
+					
+					$(this).addClass('next-button-down');
+		
+				}).bind($.mouseEvents.up, function() {
+					
+					$(this).removeClass('next-button-down');
+		
+				}).click(function() {
+					
+					$('.magazine').turn('next');
+		
+				});
+		
+				// Events for the next button
+				
+				$('.previous-button').bind($.mouseEvents.over, function() {
+					
+					$(this).addClass('previous-button-hover');
+		
+				}).bind($.mouseEvents.out, function() {
+					
+					$(this).removeClass('previous-button-hover');
+		
+				}).bind($.mouseEvents.down, function() {
+					
+					$(this).addClass('previous-button-down');
+		
+				}).bind($.mouseEvents.up, function() {
+					
+					$(this).removeClass('previous-button-down');
+		
+				}).click(function() {
+					
+					$('.magazine').turn('previous');
+		
+				});
+		
+				resizeViewport();
+		
+				$('.magazine').addClass('animated');
+		
+			}
+		
+			$('#canvas').hide();
+		
+			// Load the HTML4 version if there's not CSS transform
+		
+			yepnope({
+				test : Modernizr.csstransforms,
+				yep: ['lib/turn.js'],
+				nope: ['lib/turn.html4.min.js'],
+				both: ['lib/zoom.min.js', 'js/magazine.js', 'css/magazine.css'],
+				complete: loadApp
+			});
+		
+		</script>
+	</body>
 </html>

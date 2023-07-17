@@ -7,10 +7,10 @@
 		"page":18,
 		"autoplay":0,
 		"color":"#000",
-		"class":"video",
+		"class":"iframe",
 		"data":
 			{
-				"url": "resources/video/68437812231A28F5A349ABC534F4B98D.mp4"
+				"url": "https://www.youtube.com/embed/YU7TcxwFVT4"
 			}
 	}
 

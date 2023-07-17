@@ -1,0 +1,31 @@
+[
+	{
+		"x":10,
+		"y":20,
+		"width":270,
+		"height":140,
+		"page":21,
+		"autoplay":0,
+		"color":"#000",
+		"class":"iframe",
+		"data":
+			{
+				"url": "https://www.youtube.com/embed/YDbnY9Obsfs"
+			}
+	},
+	{
+		"x":10,
+		"y":295,
+		"width":270,
+		"height":145,
+		"page":21,
+		"autoplay":0,
+		"color":"#000",
+		"class":"iframe",
+		"data":
+			{
+				"url": "https://www.youtube.com/embed/af8e17pzHSs"
+			}
+	}
+
+]

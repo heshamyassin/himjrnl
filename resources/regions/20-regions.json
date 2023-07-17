@@ -3,14 +3,14 @@
 		"x":0,
 		"y":0,
 		"width":461,
-		"height":255,
+		"height":250,
 		"page":20,
 		"autoplay":0,
 		"color":"#000",
-		"class":"video",
+		"class":"iframe",
 		"data":
 			{
-				"url": "resources/video/68452812231A28F5A384ABC534F4B28C.mp4"
+				"url": "https://www.youtube.com/embed/SL9aJcqrtnw"
 			}
 	}
 
