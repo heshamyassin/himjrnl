@@ -45,6 +45,7 @@ body{
 	padding: 0.5em;
 	box-sizing: border-box;
 	align-items: center;
+	border-bottom: 1px solid #111F4A !important;
 }
 
 .top-panel > span{

@@ -66,6 +66,7 @@ body{
 	background: #F9F0E6;
 	padding: 0.5em;
 	box-sizing: border-box;
+	border-bottom: 1px solid #111F4A !important;
 	align-items: center;
 }
 
@@ -132,7 +133,7 @@ body{
 .magazine-viewport .container{
 	position:absolute;
 	/* change to js code in case of mobile remove +5em */
-	top:calc((100vh - 5em)/2 + 5em);
+	top:calc((100vh - 10em)/2 + 7.5em);
 	left:50%;
 	width:922px;
 	height:600px;
@@ -309,6 +310,7 @@ body{
 	padding: 0.5em;
 	box-sizing: border-box;
 	align-items: center;
+	border-right: 1px solid #111F4A !important;
 }
 
 #share-panel {
