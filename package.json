@@ -1,0 +1,14 @@
+{
+    "name": "TheHiM",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "newsletter": "node send.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "http-server": "^13.0.1",
+        "nodemailer": "^6.9.4"
+    }
+}

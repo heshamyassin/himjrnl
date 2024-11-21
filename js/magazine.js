@@ -14,6 +14,11 @@
  * The turn.js project is released under the BSD license and it's available on GitHub.
  * This license doesn't include features of the 4th release.
  *
+ * wavesurfer.js 5.0.1 (2021-05-05)
+ * https://wavesurfer-js.org
+ * @license BSD-3-Clause
+ *
+ *
  * Opinions expressed are solely those of the contributors.
  * No part of this magazine may be reproduced or transmitted in any form or by any means without a written
  * permission of the publisher.
@@ -32,20 +37,29 @@ const magazineConsts = {
 	pdfURL: 'https://drive.google.com/uc?id=13PyoVuL9I9lSABsgx64hUCahfXHWRh6F&export=download'
 }
 
-window.onscroll = function() {scroll()};
-
-function loadApp() {
+function loadMagazine() {
 	
-	var flipbook = $('.magazine');
+	var flipbook = $('.magazine'),
+	mgznCntr = $("#magazineContainer");
+	
+	initializeMagazine();
 
+	mgznCntr.css({height: 1.2*magazineConsts.height});
+	flipbook.css({
+		top: 0.1*magazineConsts.height,
+		left: ($(window).width() - 0.5*magazineConsts.width)/2
+	});
+	// left: ($(window).width() - 0.5*magazineConsts.width)/2
+	
 	// Check if the CSS was already loaded
-	
 	if (flipbook.width()==0 || flipbook.height()==0) {
-		setTimeout(loadApp, 10);
+		setTimeout(loadMagazine, 10);
 		return;
 	}
 
-	loadMenu();
+	loadMagazineMenu();
+
+	loadMagazineEditions();
 
 	/* Load Turning	Sound */
 	var audio = document.getElementById("audio");
@@ -61,146 +75,83 @@ function loadApp() {
 		autoCenter: magazineConsts.autoCenter,
 		elevation: magazineConsts.elevation,
 		pages: magazineConsts.pages,
-			
+		
 		// Events
 		when: {
 			turning: function(event, page, view) {
-				
 				var book = $(this),
 				currentPage = book.turn('page'),
 				pages = book.turn('pages');
-				
 				// Update the current URI
-
 				Hash.go('page/' + page).update();
-
 				// Show and hide navigation buttons
-
 				disableControls(page);
-				
-
 				$('.thumbnails .page-'+currentPage).
 					parent().
 					removeClass('current');
-
 				$('.thumbnails .page-'+page).
 					parent().
 					addClass('current');
-				
 				/* Play Turning	Sound */
 				audio.play();
-
 			},
-
 			turned: function(event, page, view) {
-
 				disableControls(page);
-
 				$(this).turn('center');
-				
 				if (page==1) { 
 					$(this).turn('peel', 'br');
 				}
-
 			},
-
 			missing: function (event, pages) {
-
 				// Add pages that aren't in the magazine
 				for (var i = 0; i < pages.length; i++)
 					addPage(pages[i], $(this));
-
 			}
 		}
-
 	});
-	
-	// Zoom.js
-	
-	$('.magazine-viewport').zoom({
-		flipbook: $('.magazine'),
 
-		when: {
-
-			swipeLeft: function() {
-
-				$(this).zoom('flipbook').turn('next');
-
-			},
-
-			swipeRight: function() {
-				
-				$(this).zoom('flipbook').turn('previous');
-
-			},
-
-		}
-	});
-	
 	// Using arrow keys to turn the page
-
 	$(document).keydown(function(e){
-
 		var previous = 37, next = 39, esc = 27;
-
 		switch (e.keyCode) {
 			case previous:
-
 				// left arrow
 				$('.magazine').turn('previous');
 				e.preventDefault();
-
-			break;
+				break;
 			case next:
-
 				//right arrow
 				$('.magazine').turn('next');
 				e.preventDefault();
-
-			break;
+				break;
 			case esc:
-				
 				$('.magazine-viewport').zoom('zoomOut');	
 				e.preventDefault();
-
-			break;
+				break;
 		}
 	});
 
 	// URIs - Format #/page/1 
-
 	Hash.on('^page\/([0-9]*)$', {
 		yep: function(path, parts) {
 			var page = parts[1];
-
 			if (page!==undefined) {
 				if ($('.magazine').turn('is'))
 					$('.magazine').turn('page', page);
 			}
-
 		},
 		nop: function(path) {
-
 			if ($('.magazine').turn('is'))
 				$('.magazine').turn('page', 1);
 		}
 	});
 
-
 	$(window).resize(function() {
-		resizeViewport();
+		magazineResizeViewport();
 	}).bind('orientationchange', function() {
-		resizeViewport();
+		magazineResizeViewport();
 	});
 
-	// Add thumbnails
-	
-	addThumb();
-
-	// Add shares
-
-	addShare();
-	
 	// Events for thumbnails
 
 	$('.thumbnails').click(function(event) {
@@ -215,45 +166,31 @@ function loadApp() {
 		}
 	});
 
+	// Thumbnails
 	$('.thumbnails li').
 		bind($.mouseEvents.over, function() {
-			
 			$(this).addClass('thumb-hover');
-
-		}).bind($.mouseEvents.out, function() {
-			
+		}).bind($.mouseEvents.out, function() {	
 			$(this).removeClass('thumb-hover');
-
 		});
-
 	if ($.isTouch) {
-	
 		$('.thumbnails').
 			addClass('thumbanils-touch').
 			bind($.mouseEvents.move, function(event) {
 				event.preventDefault();
-			});
-
+			}
+		);
 	} else {
-
 		$('.thumbnails ul').mouseover(function() {
-
 			$('.thumbnails').addClass('thumbnails-hover');
-
 		}).mousedown(function() {
-
 			return false;
-
 		}).mouseout(function() {
-
 			$('.thumbnails').removeClass('thumbnails-hover');
-
 		});
 	}
 
-
 	// Regions
-
 	if ($.isTouch) {
 		$('.magazine').bind('touchstart', regionClick);
 	} else {
@@ -261,145 +198,68 @@ function loadApp() {
 	}
 
 	// Events for the next button
-
 	$('.next-button').bind($.mouseEvents.over, function() {
-		
 		$(this).addClass('next-button-hover');
-
 	}).bind($.mouseEvents.out, function() {
-		
 		$(this).removeClass('next-button-hover');
-
 	}).bind($.mouseEvents.down, function() {
-		
 		$(this).addClass('next-button-down');
-
 	}).bind($.mouseEvents.up, function() {
-		
 		$(this).removeClass('next-button-down');
-
 	}).click(function() {
-		
 		$('.magazine').turn('next');
-
 	});
 
 	// Events for the next button
-	
 	$('.previous-button').bind($.mouseEvents.over, function() {
-		
 		$(this).addClass('previous-button-hover');
-
 	}).bind($.mouseEvents.out, function() {
-		
 		$(this).removeClass('previous-button-hover');
-
 	}).bind($.mouseEvents.down, function() {
-		
 		$(this).addClass('previous-button-down');
-
 	}).bind($.mouseEvents.up, function() {
-		
 		$(this).removeClass('previous-button-down');
-
 	}).click(function() {
-		
 		$('.magazine').turn('previous');
-
 	});
 
-	resizeViewport();
+	magazineResizeViewport();
 
 	$('.magazine').addClass('animated');
+}
 
+function isChrome() { // http://code.google.com/p/chromium/issues/detail?id=128488
+	return navigator.userAgent.indexOf('Chrome')!=-1;
+}
+
+function disableControls(page) {
+	if (page==1)
+		$('.previous-button').hide();
+	else
+		$('.previous-button').show();
+				
+	if (page==$('.magazine').turn('pages'))
+		$('.next-button').hide();
+	else
+		$('.next-button').show();
 }
 
 function addPage(page, book) {
-
-	var id, pages = book.turn('pages');
-
-	// Create a new element for this page
-	var element = $('<div />', {});
+	var id, pages = book.turn('pages'),
+	element = $('<div />', {});
 
 	// Add the page to the flipbook
 	if (book.turn('addPage', element, page)) {
-
 		// Add the initial HTML
 		// It will contain a loader indicator and a gradient
 		element.html('<div class="gradient"></div><div class="loader"></div>');
-
 		// Load the page
 		loadPage(page, element);
-	}
-
-}
-
-function addShare() {
-	var appendReg = document.getElementById('canvas');
-	
-	var shareReg = $('<div />', {'id': 'share-panel', 'style': 'border-left: 1px solid #111F4A !important; border-bottom: 1px solid #111F4A !important; position: absolute; float: right;', 'class': 'share-panel'});
-	shareReg.appendTo(appendReg);
-
-	var shareSpan = $('<span id="" style=""></span>');
-	shareSpan.appendTo(shareReg);
-	
-	var topDownload = $('<i />', {id:"", title:"Download PDF", class:"shareItems fa fa-download"}); //onClick="downloadPDF()"
-	var topSocialFB = $('<i />', {id:"", title:"Share to FB", class:"shareItems fa fa-facebook"}); //onClick="shareSM('Facebook')"
-	var topSocialTR = $('<i />', {id:"", title:"Share to Twitter", class:"shareItems fa fa-twitter"}); //onClick="shareSM('Twitter')"
-	var topSocialLI = $('<i />', {id:"", title:"Share to LinkedIn", class:"shareItems fa fa-linkedin"}); //onClick="shareSM('LinkedIn')"
-	var topArchive = $('<i />', {id:"", title:"Go to Archive", class:"shareItems fa fa-archive"}); //onClick="openArchive()"
-
-	topDownload.attr('onClick','downloadPDF()').appendTo(shareSpan);
-	topSocialFB.attr('onClick','shareSM("Facebook")').appendTo(shareSpan);
-	topSocialTR.attr('onClick','shareSM("Twitter")').appendTo(shareSpan);
-	topSocialLI.attr('onClick','shareSM("LinkedIn")').appendTo(shareSpan);
-	topArchive.attr('onClick','openArchive()').appendTo(shareSpan);
-}
-
-function addThumb() {
-	var t = 1;
-	var appendReg = document.getElementById('canvas');
-	
-	var thumbReg = $('<div />', {'id': 'thumbnails-panel', 'class': 'thumbnails-panel'});
-	thumbReg.appendTo(appendReg);
-	
-	var thumbPanel = $('<div />', {'id': 'thumbnails-panel-list', 'class': 'thumbnails'});
-	thumbPanel.appendTo(thumbReg);
-
-	while (t <= magazineConsts.pages) {
-		if (t == 1 || t == magazineConsts.pages) {
-			var thumbnail = $('<li />', {'class': 'i'});
-			thumbnail.appendTo(thumbPanel);
-			var thumbnailImg = $('<img />', {'class': 'page-' + t});
-			thumbnailImg.css({
-				width: '76px',
-				height: '100px'
-			}).attr('src', 'resources/pages/'+t+'.png');
-			thumbnailImg.appendTo(thumbnail);
-		}
-		else {
-			var thumbnail = $('<li />', {'class': 'd-inline'});
-			thumbnail.appendTo(thumbPanel);
-			var thumbnailImg = $('<img />', {'class': "page-" + t});
-			thumbnailImg.css({
-				width: '76px', height: '100px'
-			}).attr('src', 'resources/pages/' + t + '.png');
-			thumbnailImg.appendTo(thumbnail);
-			t++;
-			var thumbnailImg = $('<img />', {'class': "page-" + t});
-			thumbnailImg.css({
-				width: '76px', height: '100px'
-			}).attr('src', 'resources/pages/' + t + '.png');
-			thumbnailImg.appendTo(thumbnail);
-		}
-		t++;
 	}
 }
 
 function loadPage(page, pageElement) {
-
 	// Create an image element
-
 	var img = $('<img />');
 
 	img.mousedown(function(e) {
@@ -407,48 +267,37 @@ function loadPage(page, pageElement) {
 	});
 
 	img.load(function() {
-		
 		// Set the size
 		$(this).css({width: '100%', height: '100%'});
-
 		// Add the image to the page after loaded
-
 		$(this).appendTo(pageElement);
-
 		// Remove the loader indicator
-		
 		pageElement.find('.loader').remove();
 	});
 
 	// Load the page
-
-	img.attr('src', 'resources/pages/' +  page + '.png');
+	img.attr('src', '../resources/pages/' +  page + '.png');
 
 	loadRegions(page, pageElement);
-
 }
 
 // Load regions
-
 function loadRegions(page, element) {
-
-	$.getJSON(('resources/regions/'+page+'-regions.json'),
+	$.getJSON(('../resources/regions/'+page+'-regions.json'),
 		function(data) {
-
 			$.each(data, function(key, region) {
 				addRegion(page, region, element);
 			});
-		});
+		}
+	);
 }
 
 // Add region
-
 function addRegion(page, region, pageElement) {
-	
 	var reg = $('<div />', {'id': 'region-'+region['class'], 'class': 'region '+region['class']}),
-		options = $('.magazine').turn('options'),
-		pageWidth = options.width/2,
-		pageHeight = options.height;
+	options = $('.magazine').turn('options'),
+	pageWidth = options.width/2,
+	pageHeight = options.height;
 
 	reg.css({
 		top: Math.round(region.y/pageHeight*100)+'%',
@@ -476,32 +325,8 @@ function addRegion(page, region, pageElement) {
 		reg.css({zIndex:'1'});
 }
 
-// Process click on a region
-
-function regionClick(event) {
-
-	var region = $(event.target);
-
-	if (region.hasClass('region')) {
-
-		$('.magazine-viewport').data().regionClicked = true;
-		
-		setTimeout(function() {
-			$('.magazine-viewport').data().regionClicked = false;
-		}, 100);
-		
-		var regionType = $.trim(region.attr('class').replace('region', ''));
-
-		return processRegion(region, regionType);
-
-	}
-
-}
-
 // Process the data of every region
-
 function processRegion(regionElement, regionType, regionJSON) {
-
 	var data = decodeParams(regionElement.attr('region-data'));
 	
 	switch (regionType) {
@@ -639,31 +464,31 @@ function processRegion(regionElement, regionType, regionJSON) {
 	}
 }
 
-
-// http://code.google.com/p/chromium/issues/detail?id=128488
-
-function isChrome() {
-
-	return navigator.userAgent.indexOf('Chrome')!=-1;
-
+// Process click on a region
+function regionClick(event) {
+	var region = $(event.target);
+	if (region.hasClass('region')) {
+		$('.magazine-viewport').data().regionClicked = true;
+		setTimeout(function() {
+			$('.magazine-viewport').data().regionClicked = false;
+		}, 100);
+		var regionType = $.trim(region.attr('class').replace('region', ''));
+		return processRegion(region, regionType);
+	}
 }
 
-function disableControls(page) {
-		if (page==1)
-			$('.previous-button').hide();
-		else
-			$('.previous-button').show();
-					
-		if (page==$('.magazine').turn('pages'))
-			$('.next-button').hide();
-		else
-			$('.next-button').show();
+// decode URL Parameters
+function decodeParams(data) {
+	var parts = data.split('&'), d, obj = {};
+	for (var i =0; i<parts.length; i++) {
+		d = parts[i].split('=');
+		obj[decodeURIComponent(d[0])] = decodeURIComponent(d[1]);
+	}
+	return obj;
 }
 
 // Set the width and height for the viewport
-
-function resizeViewport() {
-
+function magazineResizeViewport() {
 	var deviceWidth = $(window).width(),
 		deviceHeight = $(window).height(),
 		options = $('.magazine').turn('options'),
@@ -671,11 +496,6 @@ function resizeViewport() {
 		pageHeight = options.height,
 		responsiveViewTreshold = 768,
 		currPage = $('.magazine').turn('page');
-
-	$('.magazine-viewport').css({
-		width: deviceWidth,
-		height: deviceHeight
-	}).zoom('resize');
 
 	if ($('.magazine').turn('zoom')==1) {
 		var boundWidth = Math.min(options.width, deviceWidth),
@@ -689,16 +509,17 @@ function resizeViewport() {
 		if (boundWidth <= responsiveViewTreshold && boundScale < 2 * pageScale)
 		{
 			if (boundScale < pageScale) {
-				viewScale = 0.75 * boundScale / (pageScale * 0.80);
+				viewScale = 0.75 * boundScale / (pageScale * 0.65);
 			} else {
 				viewScale = 1;
 			}
 			
 			$('.magazine').turn('size', 2*viewScale*boundWidth, viewScale*boundHeight);
-			$('.magazine').css({top: -viewScale*boundHeight/2, left: -viewScale*boundWidth});
+			$('#magazineContainer').css({height: 1.2*viewScale*boundHeight});
+			$('.magazine').css({top: 0.1*viewScale*boundHeight});
 
-			$('.next-button').css({height: 2*viewScale*boundHeight, backgroundPosition: '-3.5vw'});
-			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			$('.next-button').css({backgroundPosition: '-3.5vw'});
+			$('.previous-button').css({backgroundPosition: '-3.5vw'});
 		}
 		else
 		{
@@ -709,11 +530,11 @@ function resizeViewport() {
 			}
 
 			$('.magazine').turn('size', viewScale*boundWidth, viewScale*boundHeight);
-			//$('.magazine').turn('center', viewScale*boundWidth, viewScale*boundHeight);
-			$('.magazine').css({top: -viewScale*boundHeight/2, left: -viewScale*boundWidth/2});
+			$('#magazineContainer').css({height: 1.2*viewScale*boundHeight});
+			$('.magazine').css({top: 0.1*viewScale*boundHeight});
 
-			$('.next-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
-			$('.previous-button').css({height: viewScale*boundHeight, backgroundPosition: '-3.5vw'});
+			$('.next-button').css({backgroundPosition: '-3.5vw'});
+			$('.previous-button').css({backgroundPosition: '-3.5vw'});
 		}
 
 		if (currPage==1)
@@ -729,232 +550,187 @@ function resizeViewport() {
 
 	$('.magazine').addClass('animated');
 
-	loadMenu();
-}
-// decode URL Parameters
-
-function decodeParams(data) {
-
-	var parts = data.split('&'), d, obj = {};
-
-	for (var i =0; i<parts.length; i++) {
-		d = parts[i].split('=');
-		obj[decodeURIComponent(d[0])] = decodeURIComponent(d[1]);
-	}
-
-	return obj;
+	resizeViewport();
 }
 
-function toggleShareMenu() {
-	const sharePanel = document.getElementById("share-panel");
-	const shareButton = document.getElementById("shareButton");
-	var deviceWidth = $(window).width();
-	var responsiveViewTreshold = 768;
+function addThumb() {
+	var t = 1;
+	var appendReg = document.getElementById('container');
 	
-	if (deviceWidth > responsiveViewTreshold) {
-		if (thumbPanel.style.display === "none") {
-			//
-		} else {
-			//
+	var thumbReg = $('<div />', {'id': 'thumbnails-panel', 'class': 'thumbnails-panel'});
+	thumbReg.appendTo(appendReg);
+	
+	var thumbPanel = $('<div />', {'id': 'thumbnails-panel-list', 'class': 'thumbnails'});
+	thumbPanel.appendTo(thumbReg);
+
+	while (t <= magazineConsts.pages) {
+		if (t == 1 || t == magazineConsts.pages) {
+			var thumbnail = $('<li />', {'class': 'i'});
+			thumbnail.appendTo(thumbPanel);
+			var thumbnailImg = $('<img />', {'class': 'page-' + t});
+			thumbnailImg.css({
+				width: '76px',
+				height: '100px'
+			}).attr('src', '../resources/pages/'+t+'.png');
+			thumbnailImg.appendTo(thumbnail);
 		}
-	} else {
-		if (sharePanel.style.display === "none") {
-			sharePanel.style.display = "inline-flex";
-			shareButton.className = 'top-share fa fa-close';
-		} else {
-			sharePanel.style.display = "none";
-			shareButton.className = 'top-share fa fa-share';
+		else {
+			var thumbnail = $('<li />', {'class': 'd-inline'});
+			thumbnail.appendTo(thumbPanel);
+			var thumbnailImg = $('<img />', {'class': "page-" + t});
+			thumbnailImg.css({
+				width: '76px', height: '100px'
+			}).attr('src', '../resources/pages/' + t + '.png');
+			thumbnailImg.appendTo(thumbnail);
+			t++;
+			var thumbnailImg = $('<img />', {'class': "page-" + t});
+			thumbnailImg.css({
+				width: '76px', height: '100px'
+			}).attr('src', '../resources/pages/' + t + '.png');
+			thumbnailImg.appendTo(thumbnail);
 		}
+		t++;
 	}
 }
 
 function toggleThumbnailPanel() {
-	const thumbPanel = document.getElementById("thumbnails-panel");
-	const thumbnails = document.getElementById("thumbnails-panel-list");
-	const thumbButton = document.getElementById("thumbButton");
 	var deviceWidth = $(window).width(),
 	responsiveViewTreshold = 768;
-	
+
 	if (deviceWidth > responsiveViewTreshold) {
-		if (thumbPanel.style.display === "none") {
-			thumbPanel.style.display = "inline-block";
-			$('.magazine-viewport .container').css({
-				left: 'calc((100vw - var(--thumbnail-panel-width))/2 + var(--thumbnail-panel-width))'
+		if ($("#thumbnails-panel").css("display") === "none") {
+			$("#thumbnails-panel").css({
+				top: 'calc(1.5*var(--top-panel-height))',
+				display: "inline-flex",
+				width: 'var(--thumbnail-panel-width)',
+				height: $("#magazineContainer").css("height")
 			});
-			thumbPanel.style.width = 'var(--thumbnail-panel-width)';
-			thumbnails.style.left = 'calc(var(--thumbnail-panel-width)/2 - 76px)';
-			thumbPanel.style.height = '100%';
-			thumbButton.className = 'top-thumb fa fa-close';
+			$("#thumbnails-panel-list").css({
+				left: 'calc(var(--thumbnail-panel-width)/2 - 76px)'
+			});
+			$('.magazine').css({
+				marginLeft: parseInt($("#thumbnails-panel").css("width"))/2
+			});
+			$("#thumbBtn").attr("class", 'fa fa-close');
+			$("#magazineControls").css({paddingLeft: "var(--thumbnail-panel-width)"});
 		} else {
-			thumbPanel.style.display = "none";
-			$('.magazine-viewport .container').css({left: '50%'});
-			thumbButton.className = 'top-thumb fa fa-bars';
+			$("#thumbnails-panel").css({display: "none"});
+			$('.magazine').css({
+				marginLeft: 0
+			});
+			$("#thumbBtn").attr("class", 'fa fa-image');
+			$("#magazineControls").css({paddingLeft: "0.5em"});
 		}
 	} else {
-		if (thumbPanel.style.display === "none") {
-			$('.magazine-viewport .container').css({
-				display: 'none'
+		if ($("#thumbnails-panel").css("display") === "none") {
+			$("#thumbnails-panel-list").css({
+				left: 'calc(50% - 76px)'
 			});
-			thumbPanel.style.display = "inline-block";
-			thumbPanel.style.width = '100vw';
-			thumbnails.style.left = 'calc(50% - 76px)';
-			thumbPanel.style.height = 'auto';
-			thumbButton.className = 'top-thumb fa fa-close';
+			$("#thumbnails-panel").css({
+				width: '100vw',
+				top: 'var(--top-panel-height)',
+				display: "inline-flex",
+				height: $("#magazineContainer").css("height")
+			});
+			$("#thumbBtn").attr("class", 'fa fa-close');
 		} else {
-			thumbPanel.style.display = "none";
-			$('.magazine-viewport .container').css({
-				display: "block"
+			$("#thumbnails-panel").css({
+				display: "none"
 			});
-			thumbButton.className = 'top-thumb fa fa-bars';
+			$("#thumbBtn").attr("class", 'fa fa-image');
 		}
 	}
+}
+
+function loadMagazineMenu() {
+	var magazineControls = $("#magazineControls"),
+	magazineControlsSpan = $("#magazineControlsSpan"),
+	deviceWidth = $(window).width(),
+	responsiveViewTreshold = 768;
+	magazineControlsSpan.remove();
+
+	var spanControlsMenu = $('<span id="magazineControlsSpan" class="" style=""/>');
+
+	var controlsMenu = $(' \
+	<a title="Thumbnails" style="height:calc(0.5*var(--top-panel-height));display:inline-flex;align-items:center;" class="top-share" onClick="toggleThumbnailPanel()"> \
+	<i id="thumbBtn" style="display:inline-flex;align-items:center;" class="fa fa-image"/></a> \
+	<a title="Download" style="height:calc(0.5*var(--top-panel-height));display:inline-flex;align-items:center;" class="top-share" onClick="downloadPDF()"> \
+	<i id="downloadPDF" style="display:inline-flex;align-items:center;" class="fa fa-download"/></a> \
+	<a title="Mute" style="height:calc(0.5*var(--top-panel-height));display:inline-flex;align-items:center;" class="top-share" onClick="toggleMuteSound()"> \
+	<i id="muteButton" style="display:inline-flex;align-items:center;" class="fas fa-volume-up"/></a> \
+	');
+	controlsMenu.appendTo(spanControlsMenu);
+	spanControlsMenu.appendTo(magazineControls);
+	
+	if (deviceWidth <= responsiveViewTreshold) {
+		magazineControls.css({
+			top: 'calc(var(--top-panel-height) + 0.5em)'
+		})
+	}
+	addThumb();
 }
 
 function downloadPDF() {
 	window.open(magazineConsts.pdfURL)
 }
 
-function shareSM(platform) {
-	switch (platform) {
-		case 'Facebook':
-			window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhgyassin.github.io%2Fhimjrnl');
-			break;
-		case 'Twitter':
-			window.open('https://twitter.com/intent/tweet?text=https%3A%2F%2Fhgyassin.github.io%2Fhimjrnl');
-			break;
-		case 'LinkedIn':
-			window.open('http://www.linkedin.com/shareArticle?mini=true&url=https://hgyassin.github.io/himjrnl&source=https://hgyassin.github.io/himjrnl');
-			break;
-	}
-
-}
-
-function openArchive() {
-	const page = window.open("archive/archive.html", "_self", "");
-}
-
-function loadMenu() {
-	const element = document.getElementById("canvas");
-	var deviceWidth = $(window).width();
-	var responsiveViewTreshold = 768;
-
-	var topPanel = $('<div />', {id:"top-panel", class:"top-panel"});
-	const topPanelElement = document.getElementsByClassName('top-panel');
+function toggleMuteSound() {
+	var audioElement = document.getElementById("audio");
 	
-	if (deviceWidth <= responsiveViewTreshold) {
-		// remove the topPanel and its contents
-		for (let p = 0; p < topPanelElement.length; p++) {
-			topPanelElement[p].remove();
-		}
-		mobileMenu(topPanel);
-		topPanel.appendTo(element);
+	if (audioElement.muted === true) {
+		audioElement.muted = false;
+		$("#muteButton").attr("class", "fas fa-volume-up");
 	} else {
-		// remove the topPanel and its contents
-		for (let p = 0; p < topPanelElement.length; p++) {
-			topPanelElement[p].remove();
-		}
-		desktopMenu(topPanel);
-		topPanel.appendTo(element);
+		audioElement.muted = true;
+		$("#muteButton").attr("class", "fas fa-volume-mute");
 	}
 }
 
-function mobileMenu(topPanel) {
-	mobileThumbnail(topPanel);
-	
-	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
-	const spanLogoContent = $('<h1 style="color:#FFFFFF; font:35px Bebas Neue Cyrillic">THE</h1> \
-	<h1 style="color:#111F4A; font:35px Giaza Stencil">HiM</h1> \
-	<h1 style="color:#111F4A; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
-	spanLogoContent.appendTo(spanLogo);
-	spanLogo.appendTo(topPanel);
-	
-	var loginButton = $('<a id="" title="Login/SignUp" style="top-share" href="https://hgyassin.github.io?msopen=/member/account"> \
-	<i id="" class="top-share fa fa-user"></i></a>'); 
-	loginButton.appendTo(topPanel);
-
-	mobileShare(topPanel);
-}
-
-function desktopMenu(topPanel) {
-
-	desktopThumbnail(topPanel);
-	
-	var spanLogo = $('<span style="transform: translateY(-45%)"/>', {id:"", class:""});
-	const spanLogoContent = $('<h1 style="color:#FFFFFF; font:35px Bebas Neue Cyrillic">THE</h1> \
-	<h1 style="color:#111F4A; font:35px Giaza Stencil">HiM</h1> \
-	<h1 style="color:#111F4A; font:35px Bebas Neue Cyrillic">JOURNAL</h1>', {id:"", class:""});;
-	spanLogoContent.appendTo(spanLogo);
-	spanLogo.appendTo(topPanel);
-	
-	var loginButton = $('<a id="" title="Login/SignUp" style="top-download" href="https://hgyassin.github.io?msopen=/member/account"> \
-	<i id="" class="top-download fa fa-user"></i></a>'); 
-	loginButton.appendTo(topPanel);
-	
-	desktopShare(topPanel);
-}
-
-function mobileThumbnail(topPanel) {
-	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
-	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
-}
-
-function desktopThumbnail(topPanel) {
-	var topThumb = $('<i />', {id:"thumbButton", title:"Open Thumbnails", class:"top-thumb fa fa-bars"});
-	topThumb.attr('onClick','toggleThumbnailPanel()').appendTo(topPanel);
-}
-
-function mobileShare(topPanel) {
-	// create a new menu similar to #top-panel .top-thumb and code shall be similar to toggleThumbnailPanel()
-	// call mobileShare to attach to this menu
-	var topShare = $('<i />', {id:"shareButton", title:"Share To", class:"top-share fa fa-share"});
-	topShare.attr('onClick','toggleShareMenu()').appendTo(topPanel);
-}
-
-function desktopShare(topPanel) {
-	var topDownload = $('<i />', {id:"", title:"Download PDF", class:"top-download fa fa-download"}); //onClick="downloadPDF()"
-	var topSocialFB = $('<i />', {id:"", title:"Share to FB", class:"top-download fa fa-facebook"}); //onClick="shareSM('Facebook')"
-	var topSocialTR = $('<i />', {id:"", title:"Share to Twitter", class:"top-download fa fa-twitter"}); //onClick="shareSM('Twitter')"
-	var topSocialLI = $('<i />', {id:"", title:"Share to LinkedIn", class:"top-download fa fa-linkedin"}); //onClick="shareSM('LinkedIn')"
-	var topArchive = $('<i />', {id:"", title:"Go to Archive", class:"top-download fa fa-archive"}); //onClick="openArchive()"
-
-	topDownload.attr('onClick','downloadPDF()').appendTo(topPanel);
-	topSocialFB.attr('onClick','shareSM("Facebook")').appendTo(topPanel);
-	topSocialTR.attr('onClick','shareSM("Twitter")').appendTo(topPanel);
-	topSocialLI.attr('onClick','shareSM("LinkedIn")').appendTo(topPanel);
-	topArchive.attr('onClick','openArchive()').appendTo(topPanel);
-}
-
-function scroll() {
-	var footer = document.getElementsByTagName('footer');
-	var footerDiv = footer[0].getElementsByTagName('div');
-	var footerSpan = footerDiv[0].getElementsByTagName('span');
-	var scrollBottomEl = document.getElementById('scrollToBottom');
-	var scrollToTopElement = footerSpan[0].getElementsByTagName('i');
-	var scrollToTopIcon = footerSpan[0].getElementsByTagName('a');
-	var scrollToTop = $('<i title="Scroll to Top" style="float: right; padding: 1em 1em 1em 0.25em !important; margin: 1em 1em 1em 0.25em !important; color: #111F4A; cursor: pointer; align-items: center; transform: translateY(5%); font-size: min(max(12px, 2vw), 18px)" class="fa fa-angle-double-up" id="scrollTopIc" onClick="scrollToTop()"></i>');
-	
-	if (document.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-		for (let s = 0; s < scrollToTopElement.length; s++) {
-			scrollToTopElement[s].remove();
-			scrollToTopIcon[s].remove();
-		}
-		scrollToTop.appendTo(footerSpan[0]);
-		scrollBottomEl.style.display = "none";
-	} else {
-		for (let s = 0; s < scrollToTopElement.length; s++) {
-			scrollToTopElement[s].remove();
-			scrollToTopIcon[s].remove();
-		}
-		scrollBottomEl.style.display = "block";
-	}
-}
-
-function scrollToBottom() {
-	document.body.scrollTop = 100;
-  	document.documentElement.scrollTop = 100;
-}
-
-function scrollToTop() {
-	document.body.scrollTop = 0;
-  	document.documentElement.scrollTop = 0;
+function loadMagazineEditions() {
+	$.getJSON(domain + '/magazine/magazine.json', function (data) {
+		$.each(data, function(key, magazineIssues) {
+			$("#magazineGridContainerImage").attr("src", magazineIssues[(magazineIssues.length-1)]["src"]+"?rect=686,0,2724,3901&auto=format");
+			$(' \
+			<div id="" class="content-sc-masthead-magazineMastheadContent"> \
+				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+					<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
+						<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
+							<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["issue"]+' Issue</span> \
+						</a> \
+					</li> \
+				</cat-ul> \
+				<h1 size="5" class="magazineMastheadTitle" style="margin: 0;">TheHiMJournal: '+magazineIssues[(magazineIssues.length-1)]["title"]+'</h1> \
+				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+					<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
+						<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
+							<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["edition"]+'</span> \
+						</a> \
+					</li> \
+				</cat-ul> \
+				<h2 size="1" class="magazineMastheadExcerpt" style="margin: 2em 0;">To receive the most inspiring conversations of Mindsalike about luxurious fashion brands, unique accessories, expert health advice and great offers from The HiM Club every Friday.</h2> \
+			</div> \
+			<!-- style="font-family: Bebas Neue Cyrillic; font-size: 1.3em" --> \
+			<button size="3" class="masthead-sc-readNowButton" style="grid-column-start: 1; grid-column-end: span 1;width: 50%;" onclick="window.location.href=\'html5viewer.html\'" type="button">Read Now</button> \
+			').appendTo("#magazineGridContainerDescription");
+			
+			for (let issue = (magazineIssues.length - 1); issue >= 0; issue--) {
+				$('.magazineCarousel-container-section-content-fGszeN').slick('unslick');
+				$(' \
+				<div style="width: 399px;"> \
+					<div class="magazineCarousel-container-section-content-card-qwbsz"> \
+						<a size="3" class="Thumbnail-style__Thumbnail-sc-c7b97573-0 gFMdkt" href="'+magazineIssues[issue]["download"]+'"><img decoding="async" sizes="(max-width: 640px) 410px, 820px" src="'+magazineIssues[issue]["src"]+'" style="inset: 0px; height: 100%; object-fit: cover; position: absolute; width: 100%;"></a><div class="Meta-style__Meta-sc-a03d2c67-0 dLpoZD"><span class="Meta-style__Date-sc-a03d2c67-1 dGfbVg">'+magazineIssues[issue]["edition"]+'</span></div><h2 size="2" class="Heading-style__Heading-sc-f8030099-0 HaNMq">HiM Journal '+magazineIssues[issue]["issue"]+' Edition</h2><p size="1" class="Paragraph-style__Paragraph-sc-a88fe7e1-0 dBBxwU">'+magazineIssues[issue]["title"]+'</p><a size="1" weight="2" font="Cera" appearance="primary" class="Link-style__Link-sc-1ce34e85-0 jzcUGy" href="'+magazineIssues[issue]["download"]+'">Download Now <svg aria-hidden="true" focusable="false" data-prefix="fat" data-icon="angle-right" class="svg-inline--fa fa-angle-right fa-2x " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M269.7 250.3c3.1 3.1 3.1 8.2 0 11.3l-176 176c-3.1 3.1-8.2 3.1-11.3 0s-3.1-8.2 0-11.3L252.7 256 82.3 85.7c-3.1-3.1-3.1-8.2 0-11.3s8.2-3.1 11.3 0l176 176z"></path></svg></a> \
+					</div> \
+				</div> \
+				').appendTo("#magazineCarouselRow");
+				$('.magazineCarousel-container-section-content-fGszeN').slick({
+					centerMode: true,
+					centerPadding: '0px',
+					slidesToShow: 1,
+					variableWidth: true,
+					draggable: true,
+					infinite: true
+				});
+			}
+		});
+	});
 }

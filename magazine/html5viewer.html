@@ -1,0 +1,133 @@
+<!--
+/*!
+ *
+ * HiM is a men lifestyle journal, issued on monthly basis, to cover all subjects of interest of the
+ * modern-age rugged gentleman all over the world; from travel, business, entertainment, entrepreneurship,
+ * finance, fashion, skills, gadgets and a lot more
+ *
+ * EDITOR IN CHIEF. Hesham Yasein. heshamgyassin@gmail.com
+ *
+ * All rights reserved to HiM 2023 (C)
+ *
+ * License:
+ * This code is based on turnjs - http://turnjs.com
+ * Copyright (C) 2012 Emmanuel Garcia
+ * The turn.js project is released under the BSD license and it's available on GitHub.
+ * This license doesn't include features of the 4th release.
+ *
+ * wavesurfer.js 5.0.1 (2021-05-05)
+ * https://wavesurfer-js.org
+ * @license BSD-3-Clause
+ *
+ *
+ * Opinions expressed are solely those of the contributors.
+ * No part of this magazine may be reproduced or transmitted in any form or by any means without a written
+ * permission of the publisher.
+ *
+ */
+-->
+ 
+<!doctype html>
+    <!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+    <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+    <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+    <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+    <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+	<head>
+        <meta charSet="utf-8"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:locale" content="en_GB"/>
+        <meta property="og:site_name" content="TheHiMJournal"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1"/>
+        <meta http-equiv="x-ua-compatible" content="IE=edge; chrome=1"/>
+        <meta name="robots" content="index"/>
+        <meta property="og:image" content=""/>
+        <meta property="og:image:alt" content="TheHiMJournal: The Lifestyle Of Rugged Gentlemen"/>
+
+        <title>TheHiMJournal: The Lifestyle Of Rugged Gentlemen</title>
+
+        <link rel="icon" type="image/png" href="resources/pics/HiMIcon.png" />
+        
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script type="text/javascript" src="../extras/jquery.min.1.7.js"></script>
+        <script type="text/javascript" src="../extras/modernizr.2.5.3.min.js"></script>
+        <script type="text/javascript" src="../lib/hash.js"></script>
+        <script type="text/javascript" src="../lib/zoom.min.js"></script>
+        <script type="text/javascript" src="../lib/turn.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="../css/HiM.css">
+        <link rel="stylesheet" type="text/css" href="../css/magazine.css">
+        <script type="text/javascript" src="../js/HiM.js"></script>
+        <script type="text/javascript" src="../js/magazine.js"></script>
+
+        <!--<meta name="robots" content="noindex, nofollow"><style>#__memberspace_modal_protected_page { position:fixed; top:0; left:0; width:100vw; height:100vw; background:#fff; z-index:2147483646; }</style><div id="__memberspace_modal_protected_page"></div>-->
+        <script>
+            var MemberSpace = window.MemberSpace || {"subdomain":"himjrnl"};
+            
+            (function(d){
+                var s = d.createElement("script");
+                s.src = "https://cdn.memberspace.com/scripts/widgets.js";
+                var e = d.getElementsByTagName("script")[0];
+                e.parentNode.insertBefore(s,e);
+            }(document));
+        </script>
+
+        <!-- turnPage Audio -->
+	    <audio id="audio" src="../resources/audio/turnPage.mp3" style="display:none;" controls></audio>
+	</head>
+
+	<body onresize="magazineResizeViewport()">
+        <div id="canvas" class="canvas">
+            <!--<div class="zoom-icon zoom-icon-in"></div>-->
+            <div class="magazine-viewport" width="device-width" initial-scale="1" user-scalable="no" position="absolute">
+                <div id="container" class="container" style="width: 100vw;">
+                    <!-- Content -->
+                    <!------------------------------ Beginning of Top Panel ---------------------------->
+                    <div id="topPanel" class="top-panel">
+
+                    </div>
+                    <div id="topPanelMenu" class="top-panel-menu">
+
+                    </div>
+                    <!--------------------------------- End of Top Panel ------------------------------->
+                    <!---->
+                    <!------------------------------- Beginning of Magazine ---------------------------->
+                    <div id="magazineContainer" style="overflow:hidden;">
+                        <!-- Magazine Controls -->
+                        <div id="magazineControls" class="" style="z-index:1;left:0.5em;top:calc(1.5 * var(--top-panel-height) + 0.5em); border-radius:0.5em; background-color:#111F4A; position:absolute; width:fit-content;"></div>
+                        <div class="magazine">
+                            <!-- Next button -->
+						    <div ignore="1" class="next-button"><i class="fas fa-angle-right" style="height:auto;vertical-align:center;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+						    <!-- Previous button -->
+						    <div ignore="1" class="previous-button"><i class="fas fa-angle-left" style="height:auto;vertical-align:center;color:#FFC71F;font-size:30px;min-height:1vw;"></i></div>
+					    </div>
+                    </div>
+                    <!---------------------------------- End of Magazine ------------------------------->
+                    <!---->
+                    <!----------------------------- Beginning of Subscribe ----------------------------->
+                    <div id="newsletterjoqnTx" size="2" class="newsletter-sc-row-joqnTx">
+                        
+                    </div>
+                    <!-------------------------------- End of Subscribe -------------------------------->
+                    <!-- Content -->
+                    <!------------------------------- Beginning of Footer ------------------------------>
+                    <footer id="footerElement" class="wp-sc-footer">
+                        
+                    </footer>
+                    <!---------------------------------- End of Footer --------------------------------->
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">loadMagazine()</script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

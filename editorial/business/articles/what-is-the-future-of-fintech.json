@@ -1,0 +1,99 @@
+{
+    "category":"Business",
+    "_id":"wp-article-23040102",
+    "date":"2023-04-01",
+    "excerpt":"Did you know that Blockchain Technology has the potential to transform the traditional way we invest in physical assets?",
+    "membersOnly":"false",
+    "title":"What Is The Future Of FinTech",
+    "featuredContent":[{"class":"image","src":"https://cdn.sanity.io/images/vxy259ii/production/0bbed7aba571e559191a9be72fac4a4f70359831-2560x1707.jpg","caption":"","alt":""},{"class":"podcast","src":"../../../resources/audio/article/podcast-how-to-wear-all-white-and-look-like-steve-mcqueen.mp3","caption":"","alt":""}],
+    "summary":[
+        "Summary#1",
+        "Summary#2",
+        "Summary#3"
+    ],
+    "wp_content":[
+    {
+        "class":"paragraph",
+        "text":"Usually, when we discuss the ‘shades’ of Steve McQueen, we’re talking about his iconic Persol sunglasses. But there was more to the famed actor’s signature style than a pair of frames. From three-piece suits to denim jeans (or ‘Steve McQueens’, as they’re rightfcat-ully known as, in rhyming slang), the King of Cool blazed a trail for hard-wearing, no-frills fashion."
+    },
+    {
+        "class":"paragraph",
+        "text":"And, whether he was wearing swim shorts or racing suits, showing off the cuffs of his sweatshirts or the soles of his sneakers, he did so mostly in one simple shade: white. Why McQueen felt such an affinity for the light, bright tone, we’ll never know, especially as it’s a tricky look to pcat-ull off. But if you’re looking to change up your threads and evoke this one-tone ensemble, especially with sunnier days ahead, who better to school us than the man himself?"
+    },
+    {
+        "class":"image",
+        "src":"https://cdn.sanity.io/images/vxy259ii/production/b86cd4c9c159455703fce4af4ffab045b45b942c-2274x1517.jpg",
+        "alt":""
+    },
+    {
+        "class":"paragraph",
+        "text":"Few men can pcat-ull off bright white trousers. And yet McQueen — a man famously slathered in motor oil half the time — managed to maintain several pristine pairs. How? Easy. He had different white trousers for mcat-ultiple occasions."
+    },
+    {
+        "class":"paragraph",
+        "text":"First up were his jeans, something slim cut and durable, like Loro Piana’s hard-wearing, fresh-looking option. Next, his chinos, which you can try and evoke with Orlebar Brown. The British brand’s spin on the style, with its nickel-effect adjustable side fasteners and tailor-fit stretch, is the ideal off-duty item in which to skim through your own copy of Motor Racing at the weekend. And, finally, for a touch of formality (we’ve all got movie premieres to attend now and then), you won’t find a trimmer, slimmer pair than Mr Marvis’s Wimbledons."
+    },
+    {
+        "class":"image",
+        "src":"https://cdn.sanity.io/images/vxy259ii/production/2e06b0054bca4e57865866ab3dc6a287b7c0d5e4-2200x1467.jpg",
+        "alt":""
+    },
+    {
+        "class":"paragraph",
+        "text":"Like James Dean and Marlon Brando, McQueen mastered the insouciant cool of the plain white t-shirt. In fact, the actor went one step further, by managing to make logo tees, from motor manufacturers, look inexplicably elegant. You likely don’t race at Sebring during your downtime, so we’d suggest steering clear of shirts such as McQueen’s Triumph design, as seen above."
+    },
+    {
+        "class":"paragraph",
+        "text":"Instead, stick to the basics. Sunspel’s 100% Supima cotton option is lightweight and lustrous to the touch. Just as high quality is this other unembellished design, courtesy of Uniform Standard, whose slightly roomier fit is perfect for long, sunny afternoons with your arms outstretched to a pair of handlebars. And, from L’Estrange, The Tailored Tee features a back pleat and split sides for ease of movement."
+    },
+    {
+        "class":"image",
+        "src":"https://cdn.sanity.io/images/vxy259ii/production/51a48a42cc5198bc8940a0611a033a5384b0e192-1150x767.jpg",
+        "alt":"Black and white photo of Steve McQueen lying on grass, wearing a white sweatshirt and white sneakers"
+    },
+    {
+        "class":"paragraph",
+        "text":"McQueen’s choice of footwear continues to influence fashion to this day. His Sanders & Sanders chukka boots, in particular, have been ripped-off and replicated by myriad brands, many of whom attempt to lace up some of that signature leading-man charm. But it’s the actor’s sneakers, in all their pristine glory, we’re most taken by."
+    },
+    {
+        "class":"paragraph",
+        "text":"Simple, stripped back and with a practical low-top construction, McQueen’s kicks were no-nonsense sneakers. And, thanks to this restraint, they’ve become timeless. It’s an effective approach worked to similar success with Aurélien’s Cambridge sneakers. Uniform Standard has added a touch of texture with suede detailing, meanwhile Axel Arigato’s Clean 90 creations have a chunky sole, and gold lettering for a subtle hit of colour."
+    }],
+    "wp_product":[
+    {
+        "_id":"wp-product-234101",
+        "image":{
+            "src":"https://cdn.sanity.io/images/vxy259ii/production/3248e43cbbe50fe2836ce7c96f102d537a5d1fb1-1408x1407.jpg",
+            "alt":"Mr Marvis Wimbledons"
+        },
+        "data":{
+            "caption":"Mr Marvis Wimbledons",
+            "price":"109"
+        },
+        "link":"https://www.mrmarvis.co.uk/collections/longs/products/the-wimbledons-longs"
+    },
+    {
+        "_id":"wp-product-234102",
+        "image":{
+            "src":"https://cdn.sanity.io/images/vxy259ii/production/7aecb3262b42d538e6eba29ca853785e82f278f5-1408x1407.jpg",
+            "alt":"L’Estrange The Tailored Tee"
+        },
+        "data":{
+            "caption":"L’Estrange The Tailored Tee",
+            "price":"45"
+        },
+        "link":"https://lestrangelondon.com/collections/t-shirts/products/the-tailored-tee-white-organic-cotton"
+    },
+    {
+        "_id":"wp-product-234103",
+        "image":{
+            "src":"https://cdn.sanity.io/images/vxy259ii/production/10880327db10266ce6632cfc88008da7706cd065-1250x1250.png",
+            "alt":"Aubin Westport Aran Jumper"
+        },
+        "data":{
+            "caption":"Aubin Westport Aran Jumper",
+            "price":"149"
+        },
+        "link":"https://shop.thegentlemansjournal.com/products/westport-aran-jumper-cream"
+    }]
+}

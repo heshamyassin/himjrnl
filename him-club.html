@@ -1,0 +1,288 @@
+<!--
+/*!
+ *
+ * HiM is a men lifestyle journal, issued on monthly basis, to cover all subjects of interest of the
+ * modern-age rugged gentleman all over the world; from travel, business, entertainment, entrepreneurship,
+ * finance, fashion, skills, gadgets and a lot more
+ *
+ * EDITOR IN CHIEF. Hesham Yasein. heshamgyassin@gmail.com
+ *
+ * All rights reserved to HiM 2023 (C)
+ *
+ * License:
+ * This code is based on turnjs - http://turnjs.com
+ * Copyright (C) 2012 Emmanuel Garcia
+ * The turn.js project is released under the BSD license and it's available on GitHub.
+ * This license doesn't include features of the 4th release.
+ *
+ * wavesurfer.js 5.0.1 (2021-05-05)
+ * https://wavesurfer-js.org
+ * @license BSD-3-Clause
+ *
+ *
+ * Opinions expressed are solely those of the contributors.
+ * No part of this magazine may be reproduced or transmitted in any form or by any means without a written
+ * permission of the publisher.
+ *
+ */
+-->
+ 
+<!doctype html>
+    <!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+    <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+    <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+    <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+    <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+	<head>
+        <meta charSet="utf-8"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:locale" content="en_GB"/>
+        <meta property="og:site_name" content="TheHiMJournal"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1"/>
+        <meta http-equiv="x-ua-compatible" content="IE=edge; chrome=1"/>
+        <meta name="robots" content="index"/>
+        <meta property="og:image" content=""/>
+        <meta property="og:image:alt" content="TheHiMJournal: The Lifestyle Of Rugged Gentlemen"/>
+
+        <title>TheHiMJournal: The Lifestyle Of Rugged Gentlemen</title>
+
+        <link rel="icon" type="image/png" href="resources/pics/HiMIcon.png" />
+        
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
+        <script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
+        <script type="text/javascript" src="lib/hash.js"></script>
+        <script type="text/javascript" src="lib/zoom.min.js"></script>
+        <script type="text/javascript" src="lib/turn.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/HiM.css">
+        <link rel="stylesheet" type="text/css" href="css/editorial.css">
+        <link rel="stylesheet" type="text/css" href="css/magazine.css">
+        <script type="text/javascript" src="js/HiM.js"></script>
+
+	</head>
+
+	<body onresize="resizeViewport()">
+        <div id="canvas" class="canvas">
+            <!--<div class="zoom-icon zoom-icon-in"></div>-->
+            <div class="magazine-viewport" width="device-width" initial-scale="1" user-scalable="no" position="absolute">
+                <div id="container" class="container" style="width: 100vw;" onscroll="">
+                    <!-- Content -->
+                    <!------------------------------ Beginning of Top Panel ---------------------------->
+                    <div id="topPanel" class="top-panel">
+
+                    </div>
+                    <div id="topPanelMenu" class="top-panel-menu">
+
+                    </div>
+                    <!--------------------------------- End of Top Panel ------------------------------->
+                    <!---->
+                    <!------------------------------- Beginning of Magazine ---------------------------->
+                    <div style="font-size: 1em;
+                    font-weight: 400;
+                    text-transform: none;
+                    font-family: 'Tex Gyre Termes Bold';
+                    text-align: center;">
+                        <h1 size="5" class="magazineMastheadTitle" style="font-family:'Bebas Neue Cyrillic'">Become a HiM Journal Subscriber</h1>
+                    </div>
+                    <div style="aspect-ratio: 4 / 2.5;" class="magazine-grid-container">
+                        <img id="magazineGridContainerImage" alt="TheHiMJournal Latest Edition" decoding="async" sizes="(max-width: 768px) 1000px, 2000px">
+                        <div id="magazineGridContainerDescription" class="magazine-grid-container-description">
+                            
+                        </div>
+                    </div>
+                    <div style="aspect-ratio: 4 / 1;
+                    grid-template-columns: repeat(1, 1fr);
+                    justify-content: center;
+                    -webkit-align-content: center;
+                    margin: 0em auto;" class="magazine-grid-container">
+                        <div style="grid-column-start: 1;
+                        grid-column-end: span 1;
+                        margin: 0 auto !important;
+                        justify-content: center;
+                        -webkit-align-content: center;
+                        text-align: center;">
+							<h2 size="1" class="" style="margin: 0 auto !important; font: 3em Tex Gyre Termes Bold;">€37.99</h2>
+                            <h2 size="1" style="margin: 0 auto !important; font: 3em Tex Gyre Termes Bold;">/year</h2>
+						</div>
+                        <button size="3" class="masthead-sc-readNowButton" style="width: 50%;
+                        grid-column-start: 1; grid-column-end: span 1;
+                        margin: 2em auto !important;" onclick="" type="button">Subscribe Now</button> <!-- onclick="goToLogin()" -->
+                    </div>
+
+                    <section id="sectionMagazineEditions" style="margin: 0 !important; width: 100%; aspect-ratio: auto; column-gap: 0em;" class="magazine-grid-container">
+                        
+                    </section>
+                    
+                    <div size="2" style="background-color: #111F4A;" class="advertising-sc-row-joqnTx">
+                        <div size="2" style="min-height: 45vh;" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;
+                            width: 100%;
+                            justify-content: start;">
+                                <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="color: #F9F0E6; margin-block-start: 0; margin: 0 0 0 auto !important;">HiM Club Membership Benefits</h2>
+                            </div>
+                            <ul style="margin-block-start: 0;
+                            margin-block-end: 0;" class="advertising-sc-clubOverviewGrid-jYhbHp">
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>TheHiM Journal quarterly a year
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Your own TheHiM Club membership card
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Paywalled content: access to members-only curated content
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Exclusive brand offers
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Invites to private TheHiM Club events
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div size="2" class="advertising-sc-row-joqnTx">
+                        <div size="2" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;
+                            margin: 0 0 0 auto !important;">
+                                <div>
+                                    <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="margin-block-start: 0; margin: 0;">The Quarterly Magazine</h2>
+                                </div>
+                                <div class="newsletter-sc-portableText-kezreA advertising-sc-body-iLFnBJ">
+                                    <p>You will receive 4 copies of our Magazine a year each quarter. Each issue is jam-packed with exclusive features and interviews to keep you entertained in the months ahead.</p>
+                                </div>
+                            </div>
+                            <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 2 col-start;
+                            grid-column-end: span 1;">
+                                <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/f9736eb1ccfeb6e9a7b2f918311fb5297cc3d6c4-2000x1390.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div size="2" style="background-color: #111F4A;" class="advertising-sc-row-joqnTx">
+                        <div size="2" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;">
+                                <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/1185bd7ec6095fdd21aba9ccddd57fa3d72d1d8c-1707x2560.jpg">
+                            </div>
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 2 col-start;
+                            grid-column-end: span 1;
+                            margin: 0 auto 0 0 !important;">
+                                <div>
+                                    <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="color: #F9F0E6; margin-block-start: 0; margin: 0;">The HiM Card</h2>
+                                </div>
+                                <div style="color: #F9F0E6;" class="newsletter-sc-portableText-kezreA advertising-sc-body-iLFnBJ">
+                                    <p>When you join the Clubhouse you will receive your own membership card to redeem all the perks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div size="2" class="advertising-sc-row-joqnTx">
+                        <div size="2" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;
+                            margin: 0 0 0 auto !important;">
+                                <div>
+                                    <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="margin-block-start: 0; margin: 0;">Access To Exclusive Paywalled Content</h2>
+                                </div>
+                                <div class="newsletter-sc-portableText-kezreA advertising-sc-body-iLFnBJ">
+                                    <p>You will receive access to member-only online features, with password-protected content, all available through our online Clubhouse portal. Furthermore, each Sunday we release our Clubhouse Newsletter, with member-only features and offers.</p>
+                                </div>
+                            </div>
+                            <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 2 col-start;
+                            grid-column-end: span 1;">
+                                <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/42dba646b02cae0fb919f6f6b230876f5a096580-1440x992.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div size="2" style="background-color: #111F4A;" class="advertising-sc-row-joqnTx">
+                        <div size="2" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;">
+                                <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/be34d8ab53dafd1c6d6ff8c59a73d2c9cb070c9b-1334x2000.jpg">
+                            </div>
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 2 col-start;
+                            grid-column-end: span 1;
+                            margin: 0 auto 0 0 !important;">
+                                <div>
+                                    <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="color: #F9F0E6; margin-block-start: 0; margin: 0;">Exclusive Brand Offers</h2>
+                                </div>
+                                <div style="color: #F9F0E6;" class="newsletter-sc-portableText-kezreA advertising-sc-body-iLFnBJ">
+                                    <p>You will receive offers, benefits and access to exclusive clubs, restaurants, bars, gyms, hotels and other handpicked brands. New partners and perks added monthly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div size="2" class="advertising-sc-row-joqnTx">
+                        <div size="2" class="advertising-sc-content-jsxoGA">
+                            <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 1 col-start;
+                            grid-column-end: span 1;
+                            margin: 0 0 0 auto !important;">
+                                <div>
+                                    <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="margin-block-start: 0; margin: 0;">Private HiM Events</h2>
+                                </div>
+                                <div class="newsletter-sc-portableText-kezreA advertising-sc-body-iLFnBJ">
+                                    <p>Throughout the year, you will receive invites to a variety of events in some of the most exclusive locations. From after-work drinks to seasonal parties to business-focused panel talks to brand partner launches, our Clubhouse events are your chance to mingle with other members.</p>
+                                </div>
+                            </div>
+                            <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 2 col-start;
+                            grid-column-end: span 1;">
+                                <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/9956f65e4ece8fa9fd8f46ab2a5273058b570ba7-1296x864.jpg">
+                            </div>
+                        </div>
+                    </div>
+                    <!---------------------------------- End of Magazine ------------------------------->
+                    <!---->
+                    <!----------------------------- Beginning of Subscribe ----------------------------->
+                    <div id="newsletterjoqnTx" size="2" class="newsletter-sc-row-joqnTx">
+                        
+                    </div>
+                    <!-------------------------------- End of Subscribe -------------------------------->
+                    <!-- Content -->
+                    <!------------------------------- Beginning of Footer ------------------------------>
+                    <footer id="footerElement" class="wp-sc-footer">
+                        
+                    </footer>
+                    <!---------------------------------- End of Footer --------------------------------->
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">loadMainApp()</script>
+        <!-- Bootstrap Js -->
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

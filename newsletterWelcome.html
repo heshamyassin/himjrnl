@@ -1,0 +1,264 @@
+<!--
+/*!
+ *
+ * HiM is a men lifestyle journal, issued on monthly basis, to cover all subjects of interest of the
+ * modern-age rugged gentleman all over the world; from travel, business, entertainment, entrepreneurship,
+ * finance, fashion, skills, gadgets and a lot more
+ *
+ * EDITOR IN CHIEF. Hesham Yasein. heshamgyassin@gmail.com
+ *
+ * All rights reserved to HiM 2023 (C)
+ *
+ * License:
+ * This code is based on turnjs - http://turnjs.com
+ * Copyright (C) 2012 Emmanuel Garcia
+ * The turn.js project is released under the BSD license and it's available on GitHub.
+ * This license doesn't include features of the 4th release.
+ *
+ * wavesurfer.js 5.0.1 (2021-05-05)
+ * https://wavesurfer-js.org
+ * @license BSD-3-Clause
+ *
+ *
+ * Opinions expressed are solely those of the contributors.
+ * No part of this magazine may be reproduced or transmitted in any form or by any means without a written
+ * permission of the publisher.
+ *
+ */
+-->
+ 
+<!doctype html>
+    <!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
+    <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
+    <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+    <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+    <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+
+	<head>
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1"/>
+        <meta http-equiv="x-ua-compatible" content="IE=edge; chrome=1"/>
+        <meta name="robots" content="index"/>
+
+        <title>TheHiM: Express Your Individuality</title>
+        
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
+        <script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
+        <script type="text/javascript" src="lib/hash.js"></script>
+        <script type="text/javascript" src="lib/zoom.min.js"></script>
+        <script type="text/javascript" src="lib/turn.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/HiM.css">
+        <link rel="stylesheet" type="text/css" href="css/editorial.css">
+        <link rel="stylesheet" type="text/css" href="css/magazine.css">
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script type="text/javascript" src="js/HiM.js"></script>
+
+        <style type="text/css" rel="stylesheet" media="all">
+
+        </style>
+	</head>
+
+	<body>
+    <div id="canvas" class="canvas">
+        <!--<div class="zoom-icon zoom-icon-in"></div>-->
+        <div class="magazine-viewport" width="device-width" initial-scale="1" user-scalable="no" position="absolute">
+            <div id="container" class="container" style="width: 100vw;">
+                <!-- Content -->
+                <!------------------------------ Beginning of Top Panel ---------------------------->
+                <div id="topPanel" class="top-panel">
+                    <span class="top-date">
+                        <p id="topDate" style="color:#F9F0E6; font:1em Bebas Neue Cyrillic; margin-block-start: 2em; margin-block-end:2em;">
+                            <!-- Date -->
+                        </p>
+                    </span>
+                    <span class="spanLogo" style="cursor:pointer; justify-content:center;" onclick="">
+	                    <!-- Logo -->
+                        {{ logo }}
+                    </span>
+                    <span class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;">
+                        <!-- Share & Newsletter -->
+                    </span>
+                </div>
+                <!--------------------------------- End of Top Panel ------------------------------->
+                <!---->
+                <!------------------------------- Beginning of Magazine ---------------------------->
+                <div id="journalHomeFeaturedContentBackground" class="journalHome-grid-container-background">
+                    {{ featuredContentBackground }}
+                    <div class="journalHome-grid-container-dRRLWv"></div>
+                    <div class="journalHome-grid-container-background-overlay-jdydAT"></div>
+                    <div class="journalHome-grid-container-feature">
+                        <div id="journalHome-grid-container-featureContent" class="journalHome-grid-container-featureContent">
+                            {{ featuredContent }}
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------- End of Magazine --------------------------------->
+                <!---->
+                <!----------------------------- Beginning of Latest Row ----------------------------->
+                <div id="latest-furtherReadings-row"class="content-sc-furtherReading-row">
+                    <div class="content-sc-furtherReadingTitle">
+                        <h1 style="font-weight: 400;
+                        text-transform: none;
+                        font-family: 'Chronicle Display Semibold';" size="1">The Latest</h1>
+                        <ul class="content-sc-furtherReadingTitle-ul">
+                            <a id="latest-content-sc-furtherReadingTitle-viewAll" appearance="secondary" class="content-sc-furtherReadingTitle-viewAll" style="">View All</a>
+                        </ul>
+                    </div>
+                    <div id="latest-readings-row" class="content-sc-furtherReading-postGrid-cVDKJX">
+                        {{ latestArticles }}
+                    </div>
+                </div>
+                <!-------------------------------- End of Latest Row -------------------------------->
+                <!---->
+                <!------------------------------- Beginning of HiMClub ------------------------------>
+                <div size="2" style="background-color: #111F4A;" class="advertising-sc-row-joqnTx">
+                    <div size="2" class="advertising-sc-content-jsxoGA">
+                        <div class="advertising-sc-bgImage-gXZMSp" style="grid-column-start: 1 col-start;
+                        grid-column-end: span 1;">
+                            <img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="https://cdn.sanity.io/images/vxy259ii/production/1185bd7ec6095fdd21aba9ccddd57fa3d72d1d8c-1707x2560.jpg">
+                        </div>
+                        <div class="advertising-sc-content-col-kDJFWl" style="grid-column-start: 2 col-start;
+                        grid-column-end: span 1;
+                        margin: 0 auto 0 0 !important;
+                        width: 100% !important;">
+                            <h2 size="3" class="advertising-sc-content-col-titleHeading-dZQaLi" style="color: #F9F0E6; margin-block-start: 0; margin-bottom: 0 !important;">HiM Club Membership Benefits</h2>
+                            <ul style="margin-block-start: 0;
+                            margin-block-end: 0;
+                            row-gap: 16px;" class="advertising-sc-clubOverviewGrid-jYhbHp">
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>The quarterly magazine
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Your own HiM membership card
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Paywalled content: access to members password protected online features
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Exclusive brand offers
+                                </li>
+                                <li class="advertising-sc-clubOverviewGrid-iRxVOF">
+                                    <div class="advertising-sc-clubOverviewGrid-cVwzaR">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fasr" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor" d="M429.8 273l17-17-17-17L276.2 85.4l-17-17-33.9 33.9 17 17L354.9 232 24 232 0 232l0 48 24 0 330.8 0L242.2 392.6l-17 17 33.9 33.9 17-17L429.8 273z"></path>
+                                        </svg>
+                                    </div>Invites to private HiM Club events
+                                </li>
+                            </ul>
+                            <button size="3" class="masthead-sc-readNowButton" style="width: 50%;
+                            grid-column-start: 1; grid-column-end: span 1;
+                            background-color: #F9F0E6;
+                            color: #111F4A;" onclick="" type="button">Subscribe Now</button> <!-- onclick="goToLogin()" -->
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------------- End of HiMClub --------------------------------->
+                <!---->
+                <!------------------------------ Beginning of Magazine ----------------------------->
+                <div id="latest-furtherReadings-row" class="content-sc-furtherReading-row" style="margin-bottom: 0;">
+                    <div class="content-sc-furtherReadingTitle">
+                        <h1 style="font-weight: 400;
+                        text-transform: none;
+                        font-family: 'Tex Gyre Termes Bold';" size="1">The Magazine</h1>
+                    </div>
+                    <div style="aspect-ratio: auto !important; padding-bottom: 2em; width: 100%;" class="magazine-grid-container">
+                        <img id="magazineGridContainerImage" src="{{ magazineGridContainerImageSrc }}" alt="TheHiMJournal Latest Edition" decoding="async" sizes="(max-width: 768px) 1000px, 2000px">
+                        <div id="magazineGridContainerDescription" class="magazine-grid-container-description" style="-webkit-box-align: start; align-items: flex-start;">
+                            {{ latestMagazine }}
+                        </div>
+                    </div>
+                </div>
+                <section id="sectionMagazineEditions" style="margin: 0 !important; width: 100%; aspect-ratio: auto; column-gap: 0em;" class="magazine-grid-container">
+                    {{ magazineEditions }}
+                </section>
+                <!-------------------------------- End of Magazine --------------------------------->
+                <!-- Content -->
+                <!------------------------------- Beginning of Footer ------------------------------>
+                <footer id="footerElement" class="wp-sc-footer" style="display: flex; flex-direction: column;">
+                    <!-- {{ newsletterFooter }} -->
+                    <span id="" style="flex-direction: row; margin: 0 auto !important;">
+                        <i id="" title="Facebook" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-facebook" onClick="window.open('https://www.facebook.com/himjrnl')"></i>
+                        <i id="" title="Instagram" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-instagram" onClick="window.open('https://www.instagram.com/himjrnl')"></i>
+                        <i id="" title="X" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-twitter" onClick=""></i>
+	                    <i id="" title="LinkedIn" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-linkedin" onClick=""></i>
+                        <i id="" title="Pinterest" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-pinterest" onClick="window.open('https://www.pinterest.de/himjrnl')"></i>
+                        <i id="" title="YouTube" style="padding: 1em; border-block-end: 0; border-block-start: 0;" class="shareItems fa fa-youtube-play" onClick="window.open('https://www.youtube.com/@himjrnl')"></i>
+                    </span>
+                    <span style="display: flex !important;
+                    width: 100vw;
+                    align-items: center;
+                    flex-direction: row;
+                    margin: 0 auto !important;">
+                        <p style="display: flex !important;
+                        margin-block-start: auto;
+                        margin-block-end: auto;
+                        margin-inline-start: auto;
+                        margin-inline-end: auto;
+                        color: #F9F0E6;
+                        font: min(max(10px, 1vw), 18px) Cera Pro Regular;">You received this message because you are a registered member of TheHiMJournal.</p>
+                    </span>
+                    <span style="display: flex !important;
+                    width: 100vw;
+                    align-items: center;
+                    flex-direction: row;
+                    margin: 0 auto !important;">
+                        <a id="unsubscribe" style="display: flex !important;
+                        margin-block-start: auto;
+                        margin-block-end: 0.2em;
+                        margin-inline-start: auto;
+                        margin-inline-end: 0.2em;
+                        color: #F9F0E6;
+                        font: min(max(10px, 1vw), 18px) Cera Pro Regular;" href="{{ unsubscribeLink }}">Unsubscribe</a>
+                        <p style="display: flex !important;
+                        margin-block-start: 0.2em;
+                        margin-block-end: auto;
+                        margin-inline-start: 0.2em;
+                        margin-inline-end: auto;
+                        color: #F9F0E6;
+                        font: min(max(10px, 1vw), 18px) Cera Pro Regular;">if you wish to no longer receive email updates and latest news.</p>
+                    </span>
+                    <span style="display: flex !important;
+                    width: 100vw;
+                    align-items: center;
+                    flex-direction: row;
+                    margin: 0 auto !important;">
+                        <p style="display: flex !important;
+                        margin-block-start: auto;
+                        margin-block-end: auto;
+                        margin-inline-start: auto;
+                        margin-inline-end: auto;
+                        color: #F9F0E6;
+                        font: min(max(10px, 1vw), 18px) Cera Pro Regular;">Copyright © 2023-2024 The HiM Journal. All rights reserved</p>
+                    </span>
+                </footer>
+                <!---------------------------------- End of Footer --------------------------------->
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
