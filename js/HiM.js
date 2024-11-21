@@ -876,7 +876,7 @@ async function getNewsletter(newsletter) {
 	$.ajax({
         url: GITHUB_NEWSLETTER_URL,
         beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer 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", "Accept", "application/vnd.github+json, text/plain, *\/*")
+            xhr.setRequestHeader("Authorization", "Bearer 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", "Accept", "application/vnd.github+json, text/plain, */*")
         }, success: function(response){
             newsletter(response);
         }
