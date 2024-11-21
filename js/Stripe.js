@@ -12,6 +12,10 @@
     body: JSON.stringify(data), // body data type must match "Content-Type" header
 }); */
 
+// const stripe_api_id = 'pk_live_51NCo6BHGlagF10MOmT0OjtMjbKsxCZ9rN2v8jiXDoOKn1rUe5T2i9TcUq7zSmNQtaIzhgSxGAwrd40hv3EpPYwIC00k8fN2AyI';
+const stripe_api_id = 'pk_test_51NCo6BHGlagF10MOPV496O8YatZekF5K1NFZfV6hVLZAprnu7aHdNQ6kP84kCo61sB7jIRiFiUV7Za23fTUZzMqb00CPBxlDN9';
+// const stripe_secret_key = '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';
+const stripe_secret_key = 'sk_test_51NCo6BHGlagF10MO2OLEeUglmNeUuRlHWEpnB5GfWcztAZK4I2UQH69mPHzvRmR4wCvNikelpGuaw5e8NxJe0N4O00Y8u7trY3';
 const stripe = Stripe(stripe_api_id, {
     stripeAccount: 'acct_1NCo6BHGlagF10MO'
 });
