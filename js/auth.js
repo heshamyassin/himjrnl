@@ -25,8 +25,6 @@
  *
  */
 
-// const clientId = '324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com';
-// const clientSecret = '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';
 const scopes = 'openid profile email';
 const responseType = 'code';
 const redirectURI = new URL(decodeURIComponent(domain + '/auth/login.html'));
