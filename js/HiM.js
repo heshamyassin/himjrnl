@@ -98,7 +98,7 @@ const API_KEY = 'AIzaSyDvSrsyOsI9ehXM4cqDsv9AqQwIioJsCI8';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
 const GITHUB_NEWSLETTER_URL = 'https://api.github.com/repos/hgyassin/himjrnl/contents/newsletter.json?ref=master';
 const SCOPES = 'https://mail.google.com/'; // 'https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.send'; // const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly' 'https://mail.google.com/' 'https://www.googleapis.com/auth/gmail.modify' 'https://www.googleapis.com/auth/gmail.compose' 'https://www.googleapis.com/auth/gmail.send';
-var GITHUB_NEWSLETTER_TOKEN;
+const GITHUB_NEWSLETTER_TOKEN = 'Z2hwXzBqeDJXaFR5RmRqWFE2ekhITDBVd09nNzZhS2VYODRmQkNueQ==';
 
 var tokenClient;
 var gapiInitialized = false;
@@ -877,7 +877,7 @@ async function getNewsletter(newsletter) {
 	$.ajax({
         url: GITHUB_NEWSLETTER_URL,
         beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer "+GITHUB_NEWSLETTER_TOKEN, "Accept", "application/vnd.github+json, text/plain, */*")
+            xhr.setRequestHeader("Authorization", "Bearer "+window.atob(GITHUB_NEWSLETTER_TOKEN), "Accept", "application/vnd.github+json, text/plain, */*")
         }, success: function(response){
             newsletter(response);
         }
@@ -942,7 +942,7 @@ async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 				cache: "no-cache",
 				mode: "cors",
 				headers: {
-					'Authorization': 'Bearer '+GITHUB_NEWSLETTER_TOKEN,
+					'Authorization': 'Bearer '+window.atob(GITHUB_NEWSLETTER_TOKEN),
 					'Accept': 'application/vnd.github+json, */*',
 					'Content-Type': 'application/json'
 				},
@@ -1211,7 +1211,7 @@ async function newsletterUnsubscribe(unsubscribeEmail) {
 				cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 				mode: "cors", // no-cors, *cors, same-origin
 				headers: {
-					'Authorization': 'Bearer '+GITHUB_NEWSLETTER_TOKEN,
+					'Authorization': 'Bearer '+window.atob(GITHUB_NEWSLETTER_TOKEN),
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
