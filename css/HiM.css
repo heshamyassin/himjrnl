@@ -25,89 +25,89 @@
  *
  */
 
- @font-face{
+@font-face{
 	font-family: 'Giaza Stencil';
-	src: url('../resources/fonts/Giaza\ Stencil.ttf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Giaza-Stencil.ttf');
 }
 
 @font-face{
 	font-family: 'Bebas Neue Cyrillic';
-	src: url('../resources/fonts/Bebas\ Neue\ Cyrillic.ttf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Bebas-Neue-Cyrillic.ttf');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes Bold';
-	src: url('../resources/fonts/texgyretermes-bold.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-bold.otf');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes';
-	src: url('../resources/fonts/texgyretermes-regular.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-regular.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Black';
-	src: url('../resources/fonts/cera-pro-black.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-black.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Bold';
-	src: url('../resources/fonts/cera-pro-bold.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-bold.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Light';
-	src: url('../resources/fonts/cera-pro-light.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-light.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Medium';
-	src: url('../resources/fonts/cera-pro-medium.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-medium.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Regular';
-	src: url('../resources/fonts/cera-pro-regular.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-regular.otf');
 }
 
 @font-face{
 	font-family: 'Cera Pro Thin';
-	src: url('../resources/fonts/cera-pro-thin.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-thin.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Black';
-	src: url('../resources/fonts/Chronicle Display Black.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Black.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Light Italic';
-	src: url('../resources/fonts/Chronicle Display Light Italic.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Light%20Italic.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Roman';
-	src: url('../resources/fonts/Chronicle Display Roman.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Roman.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Semibold';
-	src: url('../resources/fonts/Chronicle Display Semibold.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Semibold.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Text';
-	src: url('../resources/fonts/Chronicle Display Text.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Text.otf');
 }
 
 @font-face{
 	font-family: 'PP Editorial New Ultralight';
-	src: url('../resources/fonts/PP Editorial New Ultralight.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/PP-Editorial-New-Ultralight.otf');
 }
 
 @font-face{
 	font-family: 'Brittany';
-	src: url('../resources/fonts/Brittany.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Brittany.otf');
 }
 
 html {

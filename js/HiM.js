@@ -96,7 +96,7 @@ const domain = window.location.protocol +'//' + window.location.href.split('/')[
 const CLIENT_ID = '324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyDvSrsyOsI9ehXM4cqDsv9AqQwIioJsCI8';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
-const GITHUB_NEWSLETTER_URL = 'https://api.github.com/repos/hgyassin/himjrnl/contents/newsletter.json'; //?ref=master
+const GITHUB_NEWSLETTER_URL = 'https://api.github.com/repos/hgyassin/himjrnl/contents/newsletter.json?ref=master';
 const SCOPES = 'https://mail.google.com/'; // 'https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.send'; // const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly' 'https://mail.google.com/' 'https://www.googleapis.com/auth/gmail.modify' 'https://www.googleapis.com/auth/gmail.compose' 'https://www.googleapis.com/auth/gmail.send';
 
 var tokenClient;
@@ -919,7 +919,9 @@ async function sendNewsletterConfirmationMail(TL, FN, LN, EM, content) {
 
 async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 	await getNewsletter(async function(newsletter) {
+		console.log(newsletter)
 		let newsletterContent = JSON.parse(window.atob(newsletter.content));
+		console.log(newsletterContent)
 		let registeredAlert = false;
 		for (let element = 0; element < newsletterContent['subscribers'].length; element++) {
 			if (newsletterContent['subscribers'][element]['email'] != EM) {
@@ -939,7 +941,7 @@ async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 				cache: "no-cache",
 				mode: "cors",
 				headers: {
-					'Authorization': 'Bearer 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',
+					'Authorization': 'Bearer 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',
 					'Accept': 'application/vnd.github+json, */*',
 					'Content-Type': 'application/json'
 				},
@@ -1093,12 +1095,89 @@ async function readFile(TL,FN,LN,EM) {
 							.replace(/{{ latestMagazine }}/i, latestMagazine)
 							.replace(/{{ magazineEditions }}/i, magazineEditions)
 							.replace(/{{ magazineGridContainerImageSrc }}/i, magazineIssues[(magazineIssues.length-1)]["src"].replace("../",domain+"/")+"?rect=686,0,2724,3901&auto=format")
-							.replace(/{{ unsubscribeLink }}/i, unsubscribeLink)
+							.replace(/{{ unsubscribeLink }}/i, unsubscribeLink).toString();
 
+							const message = ' \
+							<!doctype html> \
+							<html lang="en"> \
+								<head> \
+									<title>TheHiM: Express Your Individuality</title> \
+									<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css"> \
+									<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> \
+									<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> \
+									<style type="text/css"> \
+									@font-face{font-family:\'Giaza Stencil\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Giaza-Stencil.ttf\')}@font-face{font-family:\'Bebas Neue Cyrillic\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Bebas-Neue-Cyrillic.ttf\')}@font-face{font-family:\'Tex Gyre Termes Bold\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-bold.otf\')}@font-face{font-family:\'Tex Gyre Termes\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-regular.otf\')}@font-face{font-family:\'Cera Pro Black\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-black.otf\')}@font-face{font-family:\'Cera Pro Bold\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-bold.otf\')}@font-face{font-family:\'Cera Pro Light\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-light.otf\')}@font-face{font-family:\'Cera Pro Medium\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-medium.otf\')}@font-face{font-family:\'Cera Pro Regular\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-regular.otf\')}@font-face{font-family:\'Cera Pro Thin\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-thin.otf\')}@font-face{font-family:\'Chronicle Display Black\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Black.otf\')}@font-face{font-family:\'Chronicle Display Light Italic\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Light%20Italic.otf\')}@font-face{font-family:\'Chronicle Display Roman\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Roman.otf\')}@font-face{font-family:\'Chronicle Display Semibold\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Semibold.otf\')}@font-face{font-family:\'Chronicle Display Text\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Text.otf\')}@font-face{font-family:\'PP Editorial New Ultralight\';src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/PP-Editorial-New-Ultralight.otf\')}@font-face{font-family:Brittany;src:url(\'https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Brittany.otf\')}html{overflow-y:scroll;scroll-behavior:smooth}.canvas,body{overflow:hidden;background-color:#fff;padding:0;margin:auto}:root{--primary-color:rgb(24, 24, 24);--primary-background-color:rgb(221, 221, 221);--secondary-color:rgb(75, 75, 75);--secondary-background-color:rgb(255, 255, 255);--highlight-color:#111F4A;--box-shadow-color:rgb(201, 201, 201);--disabled-button-color:rgb(175, 175, 175);--border-radius:1rem;--top-panel-height:5em;--thumbnail-width:4.75em;--footer-height:5em;--share-panel-width:17em;--thumbnail-panel-width:17em;--journalHomeFeaturedContentBackground:none;--editorspickFeaturedContentBackground:none;--styleFeaturedContentBackground:none;--businessFeaturedContentBackground:none;--healthFeaturedContentBackground:none;--gearFeaturedContentBackground:none;--travelFeaturedContentBackground:none;--categoryFeaturedContentBackground:none}.canvas{min-height:100vh}.magazine-viewport .container{overflow:scroll;position:absolute;top:0;width:100vw;height:100vh;margin:auto}.wp-sc-footer{position:relative;bottom:0;width:100vw;margin:0 auto;border-top:1px solid #f9f0e6!important;height:auto;background:#111f4a;z-index:1}.spanSideMenuItem:hover,.spanTopMenuItem:hover,.top-download:hover,.top-share:hover{background-color:#f9f0e6;color:#111f4a}.footerElementMenuPanel{display:grid;grid-template-columns:repeat(9,[col-start] 1fr);width:100%;margin:0 1em}*{box-sizing:border-box}.advertising-sc-clubOverviewGrid-jYhbHp{display:grid;grid-template-columns:repeat(1,1fr);width:90%;padding-top:2em;margin-right:auto;padding-bottom:2em}.advertising-sc-clubOverviewGrid-iRxVOF{display:flex;-webkit-box-align:center;align-items:center;padding-right:0;column-gap:1.5em;color:#f9f0e6;font-family:"Chronicle Display Roman";font-style:normal;font-size:1em;font-weight:200}.advertising-sc-clubOverviewGrid-cVwzaR{display:flex;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;text-align:center;font-size:1.5rem;width:1.5em;border-width:.125em;border-style:solid;border-top:.125em solid #f9f0e6;border-right:.125em solid #f9f0e6;border-bottom:.125em solid #f9f0e6;border-color:#f9f0e6;border-radius:50%;aspect-ratio:1/1;flex-shrink:0;font-family:"Tex Gyre Termes"}.advertising-sc-row-joqnTx,.newsletter-sc-row-joqnTx{background-color:#f9f0e6;position:relative;z-index:1;color:#fff;display:flex;-webkit-box-align:center;align-items:center;height:auto;bottom:0;width:100%;border-top:1px solid #111f4a!important}.advertising-sc-content-jsxoGA,.newsletter-sc-content-jsxoGA{max-width:100vw;margin:auto!important;display:grid;z-index:1;width:100%;position:relative}.newsletter-sc-content-jsxoGA{height:auto;background-image:url("");background-position-x:left;background-position-y:center;background-repeat:no-repeat;background-size:50% auto;grid-template-columns:repeat(12,[col-start] 1fr);grid-column-gap:2em}.advertising-sc-content-jsxoGA{height:100%;min-height:60vh;grid-template-columns:repeat(2,[col-start] 1fr)}.newsletter-sc-form-gGmXcq{display:flex;row-gap:1em;column-gap:1em;flex-direction:column;position:relative;padding:3em 0;grid-column-start:2;grid-column-end:span 4}.newsletter-sc-form-title-kDJFWl{border-bottom:1px solid #111f4a;display:flex;align-items:flex-end;-webkit-box-pack:justify;justify-content:space-between;padding-bottom:1em;row-gap:2em;column-gap:2em;width:100%}.advertising-sc-content-col-kDJFWl{display:flex;align-items:flex-start;-webkit-box-pack:justify;justify-content:center;padding:2em;width:50%;flex-direction:column}.newsletter-sc-form-titleHeading-dZQaLi{color:#111f4a;font-size:2em;font-weight:400;text-transform:none;font-family:"Tex Gyre Termes Bold"}.advertising-sc-content-col-titleHeading-dZQaLi:last-child,.newsletter-sc-form-titleHeading-dZQaLi:last-child{margin-bottom:0}.advertising-sc-content-col-titleHeading-dZQaLi{color:#111f4a;font-size:2em;font-weight:400;text-transform:none;font-family:"Chronicle Display Semibold"}.newsletter-sc-fieldWrapper-textField-ejZZtx,.newsletter-sc-selectField-styled_select{appearance:none;padding:.5em 2em .5em 1em;font-family:"Tex Gyre Termes";transition:.4s;background-color:#fff}.advertising-sc-body-iLFnBJ,.newsletter-sc-body-iLFnBJ{margin-bottom:1rem;font-size:.9rem;color:#111f4a}.newsletter-sc-fieldWrapper-hGNanE{display:block;position:relative}.newsletter-sc-fieldWrapper-nameField-TOpbS{display:grid;grid-template-columns:repeat(3,1fr);row-gap:1em;column-gap:1em;width:100%}.newsletter-sc-fieldWrapper-nameField-selectWrapper-cLrEFD{position:relative}.newsletter-sc-selectField-styled_select{border-width:1px;border-style:solid;border-top:1px solid #111f4a;border-right:1px solid #111f4a;border-bottom:1px solid #111f4a;border-color:#111f4a;-webkit-box-flex:1;flex-grow:1;font-size:1em;width:100%}.newsletter-sc-selectField-styled_select-bPmekQ{position:absolute;top:50%;transform:translateY(-50%);right:16px;pointer-events:none;width:12px;display:flex;-webkit-box-align:center;align-items:center}.newsletter-sc-selectField-styled_select-bPmekQ svg{width:100%;color:#707070}.svg-inline--fa{display:var(--fa-display,inline-block);height:1em;overflow:visible;vertical-align:-.125em}.newsletter-sc-fieldWrapper-textField-ejZZtx{border-width:1px;border-style:solid;border-top:1px solid #111f4a;border-right:1px solid #111f4a;border-bottom:1px solid #111f4a;border-color:#111f4a;font-size:1em;flex-grow:1;-webkit-box-flex:1;width:100%;color:#222;border-radius:5px}.newsletter-sc-form-submitButton-jsUped{background-color:#111f4a;border-style:none;color:#eaeaea;cursor:pointer;padding:1em 3em;width:100%;border-radius:5px;font-family:Chronicle Display Roman;text-decoration-line:none;display:inline-block;text-align:center;font-size:1em;font-weight:600;line-height:1;transition:color .2s ease-in-out,background .2s ease-in-out;text-transform:capitalize}.spanTopMenu,.spanTopMenuItem{color:#f9f0e6;text-decoration:none}#share-panel,#sidemenu-panel{display:none;position:absolute;border:1px solid #f9f0e6!important}.newsletter-sc-bgImage-gXZMSp{position:absolute;top:0;left:0;width:100%;height:100%;grid-column-start:6 col-start;grid-column-end:span 7}.advertising-sc-bgImage-gXZMSp::after,.newsletter-sc-bgImage-gXZMSp::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:100%}.newsletter-sc-bgImage-gXZMSp>img{inset:0px;height:100%;object-fit:fill;position:absolute;width:100%}.advertising-sc-bgImage-gXZMSp{position:absolute;top:0;left:0;width:100%;height:100%}.top-panel,.top-panel-menu{display:grid;row-gap:1em;column-gap:1em;border-bottom:1px solid #f9f0e6!important;position:sticky;background-color:#111f4a;-webkit-transition:background-color 1s linear;-ms-transition:background-color 1s linear;overflow-x:none;box-sizing:border-box;width:100%}.advertising-sc-bgImage-gXZMSp>img{inset:0px;height:100%;object-fit:cover;position:absolute;width:100%}.top-panel{grid-template-columns:1fr 2fr 1fr;height:var(--top-panel-height);top:0;bottom:0;padding:0 .5em;align-items:center;z-index:100}#sidemenu-panel,.top-panel-menu{top:var(--top-panel-height);bottom:0}.spanTopMenu,.top-panel-menu{align-items:center;height:calc(var(--top-panel-height)/2)}.top-panel-menu{grid-template-columns:1fr;z-index:99}.spanTopMenu{position:relative;font-size:1em;display:inline-flex}.spanLogo,.spanTopMenuItem{align-items:center;position:relative;cursor:pointer;display:inline-flex}.spanTopMenuItem{padding:0 1em;height:calc(var(--top-panel-height)/2);font-style:normal;font-weight:400;font-size:.8em;font-family:Cera Pro Regular}.shareItems,.top-date,.top-download,.top-share,.top-thumb{font-size:1em;height:calc(var(--top-panel-height))}.spanLogo{overflow-x:none;box-sizing:border-box;justify-content:center;height:calc(var(--top-panel-height))}.top-date{position:relative;color:#111f4a;cursor:pointer;padding-right:1em;padding-left:1em;text-decoration:none;align-items:center;justify-content:left}.footerMenuItem,.spanSideMenuItem,.top-download,.top-share{color:#f9f0e6;cursor:pointer;padding:0 1em;text-decoration:none;position:relative}.top-thumb{position:relative;cursor:pointer;color:#f9f0e6;text-decoration:none;display:inline-flex;justify-content:left;align-items:center}.top-download{float:right;right:calc(var(--thumbnail-panel-width)/ 2 - var(--thumbnail-width))}.shareItems{position:relative;align-items:center;color:#f9f0e6;cursor:pointer;display:inline-flex;right:0;text-decoration:none;border-block-end:1px solid #F9F0E6;border-block-start:1px solid #F9F0E6}#share-panel{left:calc(100vw - var(--share-panel-width));width:var(--share-panel-width);height:5em;top:calc(var(--top-panel-height));bottom:0;background:#111f4a;padding:.5em;box-sizing:border-box;align-items:center;z-index:99}#sidemenu-panel,#sidemenu-panel>span{background:#111f4a;padding:.5em 0;box-sizing:border-box;left:0}#sidemenu-panel{width:var(--thumbnail-panel-width);overflow-y:auto;align-items:center;z-index:1}#sidemenu-panel>span{position:relative;width:100vw;display:flex;align-items:flex-start;flex-direction:column}.spanSideMenuItem{align-items:center;display:inline-flex;height:calc(var(--top-panel-height)/2);font:1em Bebas Neue Cyrillic;align-self:stretch}.footerMenuItem{align-items:center;display:inline-flex;height:calc(var(--top-panel-height)/3);font-weight:400;font-family:Cera Pro Thin;font-size:.8em;font-style:normal;align-self:stretch}.journalHome-grid-container{position:relative;height:calc(100vh - 1.5*var(--top-panel-height));width:100%;pointer-events:none}.journalHome-grid-container-dRRLWv{position:absolute;height:100%;width:100%;opacity:1}.categoryHome-grid-container-background,.journalHome-grid-container-background{height:100vh;top:calc(1.5*var(--top-panel-height));left:0;width:100%;margin-top:0;margin-right:auto;content:\'\';inset:0;position:sticky;align-items:flex-end;justify-content:center;overflow:hidden}.journalHome-grid-container-background-overlay-jdydAT{content:"";position:absolute;top:calc(-1.5*var(--top-panel-height));left:0;z-index:1;width:100%;height:calc(100vh + 1.5*var(--top-panel-height));background-image:linear-gradient(rgba(0,0,0,0) 0,rgba(0,0,0,.4) 100%)}.journalHome-grid-container-feature{height:100vh;padding:calc(1.5*var(--top-panel-height));margin:0 auto;display:grid;grid-template-columns:repeat(12,[col-start] 1fr);grid-column-start:1;grid-column-end:span 12;width:100%;opacity:1}.journalHome-grid-container-featureContent{position:relative;opacity:1;will-change:opacity,transform 0.1s ease-out;transform:none;grid-column-start:1;grid-column-end:span 5;padding:2em 0;text-align:left;z-index:1}.rounded-circle{border-radius:50%!important}.avatar{font-size:1rem;display:inline-flex;width:48px;height:48px;color:#fff;border-radius:50%;background-color:#adb5bd;align-items:center;justify-content:center}.avatar img{width:100%;border-radius:50%}.avatar-sm{font-size:.875rem;width:36px;height:36px}@media (max-width:768px){.advertising-sc-row-joqnTx,.newsletter-sc-row-joqnTx{flex-flow:column-reverse}.advertising-sc-content-col-titleHeading-dZQaLi,.newsletter-sc-form-titleHeading-dZQaLi{font-size:1.5em;font-family:"Tex Gyre Termes Bold"}.newsletter-sc-form-gGmXcq{padding:1em 0}.advertising-sc-content-jsxoGA,.newsletter-sc-content-jsxoGA{grid-template-columns:repeat(1,[col-start] 1fr)}.newsletter-sc-fieldWrapper-textField-ejZZtx,.newsletter-sc-selectField-styled_select{font-size:.8em}.advertising-sc-bgImage-gXZMSp>img,.newsletter-sc-bgImage-gXZMSp>img{object-fit:fill;position:relative}.advertising-sc-bgImage-gXZMSp,.newsletter-sc-bgImage-gXZMSp{position:relative}.advertising-sc-bgImage-gXZMSp::after,.newsletter-sc-bgImage-gXZMSp::after{position:absolute}}.content-posts-table{width:100%;border-spacing:20px}.content-posts-table img{width:100%;height:auto;object-fit:cover}.post-title{font-size:1.2em;font-weight:500}.post-meta{color:gray;font-size:.9em} \ \
+									</style> \
+								</head> \
+								<body> \
+									<div id="canvas" class="canvas"> \
+										<table width="100%"> \
+											<tr class="top-panel"> \
+												<td class="spanLogo" onclick="window.open(\'/index.html\')"><h1>TheHiM</h1></td> \
+											</tr> \
+										</table> \
+										<div id="latest-furtherReadings-row" class="content-section"> \
+											<div class="content-title"> \
+												<h1>The Latest</h1> \
+												<ul> \
+													<li><a id="latest-content-sc-furtherReadingTitle-viewAll" class="viewAll">View All</a></li> \
+												</ul> \
+											</div> \
+											<table class="content-posts-table"> \
+												<tr> \
+													<td> \
+														<a class="content-sc-furtherReading-postGrid-postExcerpt-kuccfR" href=""> \
+															<div type="rectangle" size="4" class="content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK"> \
+																<img decoding="async" sizes="(max-width: 640px) 410px, 820px" src="https://cdn.sanity.io/images/vxy259ii/production/0bbed7aba571e559191a9be72fac4a4f70359831-2560x1707.jpg" style="inset: 0px; height: 100%; object-fit: cover; position: absolute; width: 100%;"> \
+															</div> \
+															<div class="content-sc-furtherReading-postGrid-postExcerpt-body-gTXfgv"> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-category-dLpoZD">Skills<span class="content-sc-furtherReading-postGrid-postExcerpt-date-dGfbVg"> — 2 years ago</span></div> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-title-kITLCM"> \
+																	<h2 size="1" class="content-sc-furtherReading-postGrid-postExcerpt-titleHeading-bhRlhf">A Gentleman\'s Guide On How To Navigate Hookups</h2> \
+																</div> \
+															</div> \
+														</a> \
+													</td> \
+													<td> \
+														<a class="content-sc-furtherReading-postGrid-postExcerpt-kuccfR" href=""> \
+															<div type="rectangle" size="4" class="content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK"> \
+																<img decoding="async" sizes="(max-width: 640px) 410px, 820px" src="https://cdn.sanity.io/images/vxy259ii/production/0bbed7aba571e559191a9be72fac4a4f70359831-2560x1707.jpg" style="inset: 0px; height: 100%; object-fit: cover; position: absolute; width: 100%;"> \
+															</div> \
+															<div class="content-sc-furtherReading-postGrid-postExcerpt-body-gTXfgv"> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-category-dLpoZD">Skills<span class="content-sc-furtherReading-postGrid-postExcerpt-date-dGfbVg"> — 2 years ago</span></div> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-title-kITLCM"> \
+																	<h2 size="1" class="content-sc-furtherReading-postGrid-postExcerpt-titleHeading-bhRlhf">A Gentleman\'s Guide On How To Navigate Hookups</h2> \
+																</div> \
+															</div> \
+														</a> \
+													</td> \
+													<td> \
+														<a class="content-sc-furtherReading-postGrid-postExcerpt-kuccfR" href=""> \
+															<div type="rectangle" size="4" class="content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK"> \
+																<img decoding="async" sizes="(max-width: 640px) 410px, 820px" src="https://cdn.sanity.io/images/vxy259ii/production/0bbed7aba571e559191a9be72fac4a4f70359831-2560x1707.jpg" style="inset: 0px; height: 100%; object-fit: cover; position: absolute; width: 100%;"> \
+															</div> \
+															<div class="content-sc-furtherReading-postGrid-postExcerpt-body-gTXfgv"> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-category-dLpoZD">Skills<span class="content-sc-furtherReading-postGrid-postExcerpt-date-dGfbVg"> — 2 years ago</span></div> \
+																<div class="content-sc-furtherReading-postGrid-postExcerpt-title-kITLCM"> \
+																	<h2 size="1" class="content-sc-furtherReading-postGrid-postExcerpt-titleHeading-bhRlhf">A Gentleman\'s Guide On How To Navigate Hookups</h2> \
+																</div> \
+															</div> \
+														</a> \
+													</td> \
+												</tr> \
+											</table> \
+										</div> \
+									</div> \
+									<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> \
+									<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> \
+								</body> \
+							</html> \
+							';
 							/* const newWindow = window.open('', '_blank');
             				newWindow.document.write(newsletterContent);
             				newWindow.document.close(); */
-							sendNewsletterConfirmationMail(TL,FN,LN,EM,newsletterContent);
+							
+							sendNewsletterConfirmationMail(TL,FN,LN,EM,message);
 						});
 					});
 				});
@@ -1131,7 +1210,7 @@ async function newsletterUnsubscribe(unsubscribeEmail) {
 				cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 				mode: "cors", // no-cors, *cors, same-origin
 				headers: {
-					'Authorization': 'Bearer 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',
+					'Authorization': 'Bearer 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',
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
