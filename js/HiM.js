@@ -98,7 +98,7 @@ const API_KEY = 'AIzaSyDvSrsyOsI9ehXM4cqDsv9AqQwIioJsCI8';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
 const GITHUB_NEWSLETTER_URL = 'https://api.github.com/repos/hgyassin/himjrnl/contents/newsletter.json?ref=master';
 const SCOPES = 'https://mail.google.com/'; // 'https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.send'; // const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly' 'https://mail.google.com/' 'https://www.googleapis.com/auth/gmail.modify' 'https://www.googleapis.com/auth/gmail.compose' 'https://www.googleapis.com/auth/gmail.send';
-const GITHUB_NEWSLETTER_TOKEN = 'Z2hwX3JDU2xPRmJ0Y0hrR2lzeGVkaElTWjJsMm9lOFhFRTQ1a3JJbw==';
+const GITHUB_NEWSLETTER_TOKEN = 'Z2hwX3RMR20wM0Z5a0F2MGFmYmx1cnlVYThmcEJBNWswYTBSbjdnVA';
 
 var tokenClient;
 var gapiInitialized = false;
