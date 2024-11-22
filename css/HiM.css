@@ -77,22 +77,22 @@
 
 @font-face{
 	font-family: 'Chronicle Display Black';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Black.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Black.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Light Italic';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Light%20Italic.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Light-Italic.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Roman';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Roman.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Roman.otf');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Semibold';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle%20Display%20Semibold.otf');
+	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Semibold.otf');
 }
 
 @font-face{
