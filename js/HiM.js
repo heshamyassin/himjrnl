@@ -876,7 +876,7 @@ async function getNewsletter(newsletter) {
 	$.ajax({
         url: GITHUB_NEWSLETTER_URL,
         beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer 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", "Accept", "application/vnd.github+json, text/plain, */*")
+            xhr.setRequestHeader("Authorization", "Bearer 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", "Accept", "application/vnd.github+json, text/plain, */*")
         }, success: function(response){
             newsletter(response);
         }
@@ -941,7 +941,7 @@ async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 				cache: "no-cache",
 				mode: "cors",
 				headers: {
-					'Authorization': 'Bearer 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',
+					'Authorization': 'Bearer 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',
 					'Accept': 'application/vnd.github+json, */*',
 					'Content-Type': 'application/json'
 				},
@@ -1210,7 +1210,7 @@ async function newsletterUnsubscribe(unsubscribeEmail) {
 				cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 				mode: "cors", // no-cors, *cors, same-origin
 				headers: {
-					'Authorization': 'Bearer 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',
+					'Authorization': 'Bearer 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',
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
