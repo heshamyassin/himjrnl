@@ -27,87 +27,87 @@
 
 @font-face{
 	font-family: 'Giaza Stencil';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Giaza-Stencil.ttf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Giaza-Stencil.ttf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Bebas Neue Cyrillic';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Bebas-Neue-Cyrillic.ttf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Bebas-Neue-Cyrillic.ttf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes Bold';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-bold.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-bold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/texgyretermes-regular.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-regular.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Black';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-black.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-black.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Bold';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-bold.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-bold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Light';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-light.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-light.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Medium';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-medium.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-medium.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Regular';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-regular.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-regular.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Thin';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/cera-pro-thin.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-thin.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Black';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Black.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Black.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Light Italic';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Light-Italic.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Light-Italic.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Roman';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Roman.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Roman.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Semibold';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Semibold.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Semibold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Text';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Chronicle-Display-Text.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Text.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'PP Editorial New Ultralight';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/PP-Editorial-New-Ultralight.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/PP-Editorial-New-Ultralight.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Brittany';
-	src: url('https://github.com/hgyassin/himjrnl/raw/refs/heads/master/resources/fonts/Brittany.otf');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Brittany.otf') format('opentype');
 }
 
 html {
@@ -169,7 +169,7 @@ body{
 	bottom: 0;
 	width: 100vw;
 	margin: 0 auto;
-	border-top: 1px solid #F9F0E6 !important;
+	/* border-top: 1px solid #F9F0E6 !important; */
 	height: auto;
 	background:#111F4A;
 	z-index: 1;
@@ -245,10 +245,10 @@ body{
 }
 
 .newsletter-sc-row-joqnTx {
-	background-color: #F9F0E6;
+	background-color: #111F4A; /* #F9F0E6; */
 	position: relative;
 	z-index: 1;
-	color: rgb(255, 255, 255);
+	color: #F9F0E6; /* rgb(255, 255, 255); */
 	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
@@ -322,9 +322,9 @@ body{
 }
 
 .newsletter-sc-form-title-kDJFWl {
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: #111F4A;
+	/* border-bottom-width: 1px; */
+	/* border-bottom-style: solid; */
+	/* border-bottom-color: #111F4A; */
 	display: flex;
 	align-items: flex-end;
 	-webkit-box-pack: justify;
@@ -350,7 +350,7 @@ body{
 }
 
 .newsletter-sc-form-titleHeading-dZQaLi {
-	color: #111F4A;
+	/* color: #111F4A; */
 	font-size: 2em;
 	font-weight: 400;
 	text-transform: none;
@@ -373,14 +373,10 @@ body{
 	margin-bottom: 0px;
 }
 
-.newsletter-sc-portableText-kezreA {
-
-}
-
 .newsletter-sc-body-iLFnBJ {
 	margin-bottom: 1rem;
 	font-size: 0.9rem;
-	color: #111F4A;
+	/* color: #111F4A; */
 }
 
 .advertising-sc-body-iLFnBJ {
@@ -532,8 +528,8 @@ body{
 	left: 0px;
 	width: 100%;
 	height: 100%;
-	grid-column-start: 6 col-start;
-	grid-column-end: span 7;
+	grid-column-start: 1 col-start;
+	grid-column-end: span col-end;
 }
 
 .newsletter-sc-bgImage-gXZMSp::after {
@@ -550,11 +546,12 @@ body{
 .newsletter-sc-bgImage-gXZMSp > img {
 	inset: 0px;
 	height: 100%;
-	object-fit: fill;
+	/* object-fit: fill; */
 	/* object-fit: contain; */
-	/* object-fit: cover; */
+	object-fit: cover;
 	position: absolute;
 	width: 100%;
+	object-position: center 90%;
 }
 
 .advertising-sc-bgImage-gXZMSp {
@@ -716,7 +713,7 @@ body{
 }
 
 .top-download{
-	position: relative;
+	/* position: relative; */
 	float: right;
 	color:#F9F0E6;
 	cursor: pointer;

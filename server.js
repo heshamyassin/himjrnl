@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
     res.sendfile(path.join(__dirname, 'index.html'));
 });
 
-app.post('/send-email', async (req, res) => {
+app.post('/sendNewsletterConfirmationMail', async (req, res) => {
     const { to, subject, html } = req.body;
 
     const mailOptions = {
@@ -32,5 +32,5 @@ app.post('/send-email', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}/`)
+    console.log(`Server is running at http://localhost:${port}/index.html`)
 })

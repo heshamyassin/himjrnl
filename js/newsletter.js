@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const juice = require('nodemailer-juice');
+const nodemailerJuice = require('nodemailer-juice');
 
 async function sendNewsletterConfirmation(mailOptions) {
     const transporter = nodemailer.createTransport({
@@ -12,12 +12,14 @@ async function sendNewsletterConfirmation(mailOptions) {
             pass: 'odka jbmr mtcz exvl'
         }
     });
+    
+    transporter.use('compile', nodemailerJuice());
 
-    transporter.use('compile', juice({
-        inlineExternal: true
-    }));
-
-    return transporter.sendMail(mailOptions);
+    try {
+        return await transporter.sendMail(mailOptions);
+    } catch (error) {
+        console.error("Error sending email: ", error);
+    }
 }
 
 module.exports = { sendNewsletterConfirmation };

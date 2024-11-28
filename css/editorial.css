@@ -119,10 +119,6 @@
 	align-items: center;
 }
 
-.content-sc-shop {
-
-}
-
 .content-sc-textblock {
 	grid-column-start: 3 col-start;
 	grid-column-end: span 7;
@@ -414,16 +410,17 @@ hr {
 .volume-slider {
 	margin: 0 1rem;
 	cursor: pointer;
-
 	width: 100%;
 	outline: none;
 	-webkit-appearance: none;
+	appearance: none;
 	background: transparent;
 }
 
 /* Custom volume slider */
 .volume-slider::-webkit-slider-thumb {
 	-webkit-appearance: none;
+	appearance: none;
 	height: 1.5rem;
 	width: 1.5rem;
 	border: none;
@@ -435,6 +432,7 @@ hr {
 
 .volume-slider::-moz-range-thumb {
 	-webkit-appearance: none;
+	appearance: none;
 	height: 1.5rem;
 	width: 1.5rem;
 	border: none;
@@ -444,6 +442,7 @@ hr {
 
 .volume-slider::-ms-thumb {
 	-webkit-appearance: none;
+	appearance: none;
 	height: 1.5rem;
 	width: 1.5rem;
 	border: none;
@@ -772,7 +771,8 @@ hr {
 	margin-left: 41%;
 	margin-bottom: 2em;
 	border-radius: 5px;
-	font-family: "Tex Gyre Termes Bold";
+	/* font-family: "Cera Pro Regular"; */
+	font-family: "Chronicle Display Roman";
 	text-decoration-line: none;
 	display: none;
 	text-align: center;
@@ -782,8 +782,147 @@ hr {
 	transition-timing-function: ease-in-out, ease-in-out;
 	transition-delay: 0s, 0s;
 	transition-property: color, background;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 }
+
+.show-subscribe-row-joqnTx {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	height: auto;
+	bottom: 0;
+	width: 100%;
+	padding: var(--top-panel-height) 2em !important;
+	/* margin-top: var(--top-panel-height); */
+}
+
+.show-subscribe-row-content-jsxoGA {
+	height: 100%;
+	min-height: 60vh;
+	width: 100%;
+	max-width: 100vw;
+	margin: auto !important;
+	display: block;
+	align-content: center;
+	justify-content: center;
+	position: relative;
+	z-index: 1;
+}
+
+.show-subscribe-row-content-col-kDJFWl {
+	display: flex;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: center;
+	padding: 2em;
+	flex-direction: column;
+	margin: auto !important;
+	width: 70% !important;
+}
+
+.show-subscribe-row-content-benefits-jYhbHp {
+	display: grid;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: center;
+	padding: 2em;
+	row-gap: 0.5em;
+	width: 50%;
+}
+
+.show-subscribe-row-content-benefits-items-iRxVOF {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	padding-right: 0px;
+	column-gap: 1.5em;
+	color: #111F4A; /* #F9F0E6; */
+	font-family: "Chronicle Display Roman";
+	font-style: normal;
+	font-size: 1em;
+	font-weight: 200;
+}
+
+.show-subscribe-row-content-benefits-items-points-cVwzaR {
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 1.5rem;
+	width: 1.5em;
+	border-top-width: 0.125em;
+	border-right-width: 0.125em;
+	border-bottom-width: 0.125em;
+	border-left-width: 0.125em;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #111F4A; /* #F9F0E6; */
+	border-right-color: #111F4A; /* #F9F0E6; */
+	border-bottom-color: #111F4A; /* #F9F0E6; */
+	border-left-color: #111F4A; /* #F9F0E6; */
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+	aspect-ratio: 1 / 1;
+	flex-shrink: 0;
+	font-family: "Tex Gyre Termes";
+}
+
+.show-subscribe-row-titleHeading-dZQaLi {
+	color: #111F4A;
+	font-size: 2em;
+	font-weight: 400;
+	text-transform: none;
+	font-family: "Chronicle Display Semibold";
+	padding: 0 3em;
+	text-align: center;
+}
+
+.show-subscribe-row-subscribe-button {
+	background-color: #111F4A;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	cursor: pointer;
+	padding: 1em 3em 1em 3em;
+	width: 50%;
+	grid-column-start: 1;
+	grid-column-end: span 1;
+	color: #F9F0E6;
+	border-radius: 5px;
+	font-family: "Chronicle Display Roman";
+	font-weight: 400;
+	/* text-transform: capitalize; */
+	text-decoration-line: none;
+	display: inline-block;
+	text-align: center;
+	font-size: 1em;
+	line-height: 1;
+	transition-duration: 0.2s, 0.2s;
+	transition-timing-function: ease-in-out, ease-in-out;
+	transition-delay: 0s, 0s;
+	transition-property: color, background;
+}
+
+/* HYASSIN: Should I remove it? */
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+}
+/*******************************/
 
 @media (max-width: 768px) {
 	.mastheadTitle {

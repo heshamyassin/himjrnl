@@ -154,7 +154,7 @@
 	-moz-transition: -moz-box-shadow 0.5s;
 	-o-transition: -webkit-box-shadow 0.5s;
 	-ms-transition: -ms-box-shadow 0.5s;
-
+	transition: -webkit-box-shadow 0.5s;
 	-webkit-box-shadow:0px 10px 10px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow:0px 10px 10px 0px rgba(0,0,0,0.75);
 	-ms-box-shadow:0px 10px 10px 0px rgba(0,0,0,0.75);
@@ -440,8 +440,8 @@ div.slick-slider.slick-initialized {
 	transition-timing-function: ease;
 	transition-delay: 0s;
 	transition-property: all;
-	transform-origin-x: center;
-	transform-origin-y: center;
+	-o-transform-origin: center;
+	transform-origin: center;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -513,9 +513,6 @@ div.slick-slider.slick-initialized {
 	flex-shrink: 0;
 }
 
-.jzcUGy:last-child {
-}
-
 .jzcUGy svg {
 	width: 12px;
 	transition-duration: 0.4s;
@@ -541,9 +538,6 @@ div.slick-slider.slick-initialized {
 	font-weight: 400;
 	text-transform: none;
 	font-family: 'Chronicle Display Semibold';
-}
-
-.dZQaLi:last-child {
 }
 
 .content-sc-contentContainer {
@@ -666,8 +660,8 @@ cat-ul {
 	width: 100%;
 	border-radius: 5px;
 	font-family: "Chronicle Display Roman";
-	font-weight: 600;
-	text-transform: capitalize;
+	font-weight: 400;
+	/* text-transform: capitalize; */
 	text-decoration-line: none;
 	display: inline-block;
 	text-align: center;

@@ -22,9 +22,7 @@ body {
 
 @font-face {
   font-family: 'Nucleo Outline';
-  src: url("../resources/fonts/nucleo-outline.eot");
-  src: url("../resources/fonts/nucleo-outline.eot") format("embedded-opentype");
-  src: url("../resources/fonts/nucleo-outline.woff2");
+  src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/nucleo-outline.eot") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -462,6 +460,7 @@ input {
   width: 100%;
   margin-bottom: 30px;
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   /* background-color: #F9F0E6; */
 }
 
