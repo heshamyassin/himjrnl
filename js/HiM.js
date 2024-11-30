@@ -456,7 +456,7 @@ function prepareFeaturedContent(jsonARTICLE, featureContent) {
 	referenceARTICLE = domain + '/' + jsonARTICLE[0]['docref'].replace(".json", ".html");
 	
 	$(' \
-		<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+		<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 				<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="'+referenceCATEGORY+'"> \
 					<span id="journalHomeFeatureCategory" itemprop="name">'+jsonARTICLE[0]['category']+'</span> \
@@ -465,7 +465,7 @@ function prepareFeaturedContent(jsonARTICLE, featureContent) {
 		</cat-ul> \
 		<h1 size="5" id="journalHomeFeatureTitle" class="magazineMastheadTitle" style="margin: 0; color: white;">'+jsonARTICLE[0]['title']+'</h1> \
 		<h2 size="1" id="journalHomeFeatureExcerpt" class="magazineMastheadExcerpt" style="margin: 2em 0; color: white; margin-block-start: 0.3em; margin-block-end: 0.3em;">'+jsonARTICLE[0]['excerpt']+'</h2> \
-		<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+		<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 				<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="'+referenceARTICLE+'"> \
 					<span itemprop="name">READ MORE</span> \
@@ -713,7 +713,7 @@ function loadHiMClub(insertButton) {
 			$("#magazineGridContainerImage").attr("src", magazineIssues[(magazineIssues.length-1)]["src"].replace("../",domain+"/")+"?rect=686,0,2724,3901&auto=format");
 			$(' \
 			<div id="" class="content-sc-masthead-magazineMastheadContent"> \
-				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 					<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 						<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
 							<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["issue"]+' Issue</span> \
@@ -721,7 +721,7 @@ function loadHiMClub(insertButton) {
 					</li> \
 				</cat-ul> \
 				<h1 size="5" class="magazineMastheadTitle" style="margin: 0;">'+magazineIssues[(magazineIssues.length-1)]["title"]+'</h1> \
-				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+				<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 					<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 						<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
 							<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["edition"]+'</span> \
@@ -1012,7 +1012,7 @@ async function readFile(TL,FN,LN,EM) {
 							var articlesARRAY = [];
 							
 							/* const featuredContent = ' \
-								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 									<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 										<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="'+referenceCATEGORY+'"> \
 											<span id="journalHomeFeatureCategory" itemprop="name">'+jsonARTICLE[0]['category']+'</span> \
@@ -1021,7 +1021,7 @@ async function readFile(TL,FN,LN,EM) {
 								</cat-ul> \
 								<h1 size="5" id="journalHomeFeatureTitle" class="magazineMastheadTitle" style="margin: 0; color: white;">'+jsonARTICLE[0]['title']+'</h1> \
 								<h2 size="1" id="journalHomeFeatureExcerpt" class="magazineMastheadExcerpt" style="margin: 2em 0; color: white; margin-block-start: 0.3em; margin-block-end: 0.3em;">'+jsonARTICLE[0]['excerpt']+'</h2> \
-								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory"> \
+								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="magazineMasterCategory"> \
 									<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
 										<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="'+referenceARTICLE+'"> \
 											<span itemprop="name">READ MORE</span> \
@@ -1043,12 +1043,9 @@ async function readFile(TL,FN,LN,EM) {
 							'; */
 							
 							const latestArticlesHeader = ' \
-							<th colspan="3"> \
+							<th colspan="1"> \
 								<div class="content-sc-furtherReadingTitle" style="justify-content: space-between !important;"> \
 									<h1 style="font-weight: 400; text-transform: none; font-family: \'Chronicle Display Semibold\';" size="1">The Latest</h1> \
-									<ul class="content-sc-furtherReadingTitle-ul"> \
-										<a href="'+domain+'/editorial/latest/latest.html" appearance="secondary" class="content-sc-furtherReadingTitle-viewAll">View All</a> \
-									</ul> \
 								</div> \
 							</th>';
 							
@@ -1060,7 +1057,12 @@ async function readFile(TL,FN,LN,EM) {
 									articleDATE = checkArticleDATE(sortedARRAY[key]);
 									
 									articlesARRAY.push(' \
-										<td class="stack-column" width="33%" style="padding: 1em;"> \
+										<td class="stack-column" width="33%" style="vertical-align: top;"> \
+										<!--[if mso]> \
+											<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:33%;height:180px;"> \
+												<v:fill type="frame" alt="'+sortedARRAY[key]["featuredContent"][0]["alt"]+'" decoding="async" sizes="(max-width: 640px) 410px, 820px" src="'+sortedARRAY[key]["featuredContent"][0]["src"]+'" color="#333" /> \
+												<v:textbox inset="0,0,0,0" style="mso-fit-shape-to-text:true;"> \
+											<![endif]--> \
 											<a class="content-sc-furtherReading-postGrid-postExcerpt-kuccfR" href="'+domain+'/'+reference+'"> \
 												<div type="rectangle" size="4" class="content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK"> \
 													<img alt="'+sortedARRAY[key]["featuredContent"][0]["alt"]+'" decoding="async" sizes="(max-width: 640px) 410px, 820px" src="'+sortedARRAY[key]["featuredContent"][0]["src"]+'" style="inset: 0px; height: 100%; object-fit: cover; position: absolute; width: 100%;"> \
@@ -1072,6 +1074,10 @@ async function readFile(TL,FN,LN,EM) {
 													</div> \
 												</div> \
 											</a> \
+											<!--[if mso]> \
+												</v:textbox> \
+											</v:rect> \
+											<![endif]--> \
 										</td> \
 									');
 								}
@@ -1079,21 +1085,21 @@ async function readFile(TL,FN,LN,EM) {
 										
 							const latestMagazine = ' \
 							<div id="" class="content-sc-masthead-magazineMastheadContent"> \
-								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory" style="margin-inline-start: 0 !important; margin-inline-end: 0 !important; padding-inline-start: 0 !important;"> \
-									<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
+								<ul class="magazineMasterCategory" style="padding: 0 !important; margin: 0 !important; list-style-type: none; text-align: left !important; padding-inline-start: 0 !important;"> \
+									<li class="magazineMasterCategoryList" style="margin-left: 0 !important;"> \
 										<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
 											<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["issue"]+' Issue</span> \
 										</a> \
 									</li> \
-								</cat-ul> \
+								</ul> \
 								<h1 size="5" class="magazineMastheadTitle" style="margin: 0;">'+magazineIssues[(magazineIssues.length-1)]["title"]+'</h1> \
-								<cat-ul itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Breadcrumbs-style__Breadcrumbs-sc-c18595ac-0 magazineMasterCategory" style="margin-inline-start: 0 !important; margin-inline-end: 0 !important; padding-inline-start: 0 !important;"> \
-									<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="magazineMasterCategoryList"> \
+								<ul class="magazineMasterCategory" style="padding: 0 !important; margin: 0 !important; list-style-type: none; text-align: left !important; padding-inline-start: 0 !important;"> \
+									<li class="magazineMasterCategoryList" style="margin-left: 0 !important;"> \
 										<a size="3" weight="2" font-family="Tex Gyre Termes" appearance="primary" itemprop="item" class="Link-style__Link-sc-1ce34e85-0 magazineMasterCategoryItem" href="#"> \
 											<span itemprop="name">'+magazineIssues[(magazineIssues.length-1)]["edition"]+'</span> \
 										</a> \
 									</li> \
-								</cat-ul> \
+								</ul> \
 								<button size="3" class="masthead-sc-readNowButton" style="width: 100%; \
 								background-color: #111F4A; \
 								color: #F9F0E6;" onclick="window.location.href=\''+domain+'/magazine/magazine.html\'" type="button">Read Now</button> <!-- onclick="goToLogin()" --> \
@@ -1101,11 +1107,22 @@ async function readFile(TL,FN,LN,EM) {
 							';
 							
 							const magazineEditions = ' \
-							<img width="25%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-2)]["src"].replace("../", domain+"/")+'?w=987&amp;h=1296&amp;q=80" style="min-height: auto; max-width: 100%;"> \
-							<img width="25%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-3)]["src"].replace("../", domain+"/")+'?w=987&amp;h=1296&amp;q=80" style="min-height: auto; max-width: 100%;"> \
-							<img width="25%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-4)]["src"].replace("../", domain+"/")+'?w=987&amp;h=1296&amp;q=80" style="min-height: auto; max-width: 100%;"> \
-							<img width="25%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-5)]["src"].replace("../", domain+"/")+'?w=987&amp;h=1296&amp;q=80" style="min-height: auto; max-width: 100%;"> \
-							';
+							<table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse;"> \
+								<tr> \
+									<td align="center" width="25%"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-2)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+									</td> \
+									<td align="center" width="25%"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-3)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+									</td> \
+									<td align="center" width="25%"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-4)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+									</td> \
+									<td align="center" width="25%"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-5)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+									</td> \
+								</tr> \
+							</table>';
 
 							const unsubscribeLink = domain + '/index.html?q='+window.btoa('newsletterUnsubscribe')+'&e='+window.btoa(EM)+'&auth=BEabCiECrci9cE8ciYW3doBcn6BoOmEeqGcDE7';
 
@@ -1116,13 +1133,13 @@ async function readFile(TL,FN,LN,EM) {
 							.replace(/{{ latestArticles }}/i, articlesARRAY.toString().replace(/,/g,''))
 							.replace(/{{ latestMagazine }}/i, latestMagazine)
 							.replace(/{{ magazineEditions }}/i, magazineEditions)
-							.replace(/{{ magazineGridContainerImageSrc }}/i, magazineIssues[(magazineIssues.length-1)]["src"].replace("../",domain+"/")+"?rect=686,0,2724,3901&auto=format")
+							.replace(/{{ magazineGridContainerImageSrc }}/i, magazineIssues[(magazineIssues.length-1)]["src"].replace("../","https://raw.githubusercontent.com/hgyassin/himjrnl/master/"))
 							.replace(/{{ unsubscribeLink }}/i, unsubscribeLink)
 							.toString();
 	
-							const newWindow = window.open('', '_blank');
+							/* const newWindow = window.open('', '_blank');
             				newWindow.document.write(newsletterContent);
-            				newWindow.document.close();
+            				newWindow.document.close(); */
 
 							sendNewsletterConfirmationMail(TL,FN,LN,EM,newsletterContent);
 						});

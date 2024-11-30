@@ -16,587 +16,7 @@
         <title>TheHiM: Express Your Individuality</title>
 
         <style>
-            .spanLogo,
-            .top-panel {
-                overflow-x: none;
-                box-sizing: border-box;
-            }
-            p {
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-            }
-            cat-ul,
-            h1,
-            h2 {
-                margin-inline-start: 0 !important;
-                margin-inline-end: 0 !important;
-            }
-            body {
-                margin: 0 !important;
-                padding: 0 !important;
-                background-color: #f4f4f4;
-            }
-            table {
-                border-collapse: collapse;
-            }
-            body, table, td, a, .now-ui-icons {
-                -webkit-text-size-adjust: 100%;
-                -ms-text-size-adjust: 100%;
-                -moz-osx-font-smoothing: grayscale;
-                font-family: Arial, sans-serif;
-            }
-            .container {
-                background-color: #ffffff;
-                width: 100%;
-                max-width: 600px;
-            }
-            u + .body .container {
-                width: 100% !important;
-            }
-            @font-face {
-                font-family: "Giaza Stencil";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Giaza-Stencil.ttf") format("truetype");
-            }
-            @font-face {
-                font-family: "Bebas Neue Cyrillic";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Bebas-Neue-Cyrillic.ttf") format("truetype");
-            }
-            @font-face {
-                font-family: "Tex Gyre Termes Bold";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-bold.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Tex Gyre Termes";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-regular.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Black";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-black.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Bold";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-bold.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Light";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-light.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Medium";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-medium.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Regular";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-regular.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Cera Pro Thin";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-thin.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Chronicle Display Black";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Black.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Chronicle Display Light Italic";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Light-Italic.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Chronicle Display Roman";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Roman.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Chronicle Display Semibold";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Semibold.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "Chronicle Display Text";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Text.otf") format("opentype");
-            }
-            @font-face {
-                font-family: "PP Editorial New Ultralight";
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/PP-Editorial-New-Ultralight.otf") format("opentype");
-            }
-            @font-face {
-                font-family: Brittany;
-                src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Brittany.otf") format("opentype");
-            }
-            html {
-                overflow-y: scroll;
-                scroll-behavior: smooth;
-            }
-            :root {
-                --primary-color: rgb(24, 24, 24);
-                --primary-background-color: rgb(221, 221, 221);
-                --secondary-color: rgb(75, 75, 75);
-                --secondary-background-color: rgb(255, 255, 255);
-                --highlight-color: #111f4a;
-                --box-shadow-color: rgb(201, 201, 201);
-                --disabled-button-color: rgb(175, 175, 175);
-                --border-radius: 1rem;
-                --top-panel-height: 5em;
-                --thumbnail-width: 4.75em;
-                --footer-height: 5em;
-                --share-panel-width: 17em;
-                --thumbnail-panel-width: 17em;
-                --journalHomeFeaturedContentBackground: none;
-                --editorspickFeaturedContentBackground: none;
-                --styleFeaturedContentBackground: none;
-                --businessFeaturedContentBackground: none;
-                --healthFeaturedContentBackground: none;
-                --gearFeaturedContentBackground: none;
-                --travelFeaturedContentBackground: none;
-                --categoryFeaturedContentBackground: none;
-            }
-            .section {
-                position: relative;
-                background: #fff;
-            }
-            .section-signup {
-                padding-top: 0;
-            }
-            .top-panel {
-                display: grid;
-                width: 100%;
-                height: var(--top-panel-height);
-                top: 0;
-                bottom: 0;
-                padding: 0 0.5em;
-                border-bottom: 1px solid #f9f0e6 !important;
-                align-items: center;
-                z-index: 100;
-                background-color: #111f4a;
-                -webkit-transition: background-color 1s linear;
-                -ms-transition: background-color 1s linear;
-                transition: background-color 1s linear;
-            }
-            .spanLogo {
-                position: relative;
-                align-items: center;
-                justify-content: center;
-                display: inline-flex;
-                height: calc(var(--top-panel-height));
-                cursor: pointer;
-            }
-            .active {
-                display: inline-block;
-            }
-            .card {
-                background-color: #fff;
-                position: relative;
-                border: 0;
-                border-radius: 0.1875rem;
-                width: 100%;
-                margin-bottom: 2em;
-                box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.2);
-            }
-            .card-signup {
-                width: 75vw;
-                max-width: 350px;
-                margin: 5vh auto;
-            }
-            .card-signup .card-header {
-                margin: 0 1.2em;
-                padding: 2em 0;
-            }
-            .card-signup .card-title {
-                font-family: 'Chronicle Display Roman', 'Arial', sans-serif;
-                margin-top: 1em;
-                margin-bottom: 1em;
-            }
-            .card-signup .card-body {
-                margin-left: 1em !important;
-                margin-right: 1em !important;
-                text-align: justify;
-                min-height: auto;
-            }
-            .content-sc-furtherReading-row {
-                background-color: #FFFFFF;
-                position: relative;
-            }
-            .content-sc-furtherReadingTitle {
-                display: flex;
-                align-items: flex-end;
-                justify-content: space-between !important;
-                align-items: center;
-            }
-            .content-sc-furtherReadingTitle-ul {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                -webkit-box-pack: end;
-                justify-content: flex-end;
-                row-gap: 16px;
-                column-gap: 16px;
-                flex-shrink: 0;
-            }
-            .content-sc-furtherReadingTitle-viewAll {
-                text-decoration-line: none;
-                font-size: 0.7em;
-                text-transform: none;
-                position: relative;
-                cursor: pointer;
-                transition: 0.2s;
-                overflow-x: visible;
-                overflow-y: visible;
-                color: #000;
-                font-weight: 700;
-                font-family: Cera Pro Light;
-            }
-            .content-sc-furtherReading-postGrid-cVDKJX {
-                margin-bottom: 4em;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-kuccfR {
-                color: #222;
-                text-decoration-line: none;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK {
-                background-color: #f8f8f8;
-                position: relative;
-                aspect-ratio: 3/2;
-                width: 100%;
-                overflow-x: hidden;
-                overflow-y: hidden;
-                display: block;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK::after {
-                transition: 0.4s;
-                content: "";
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 1;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: 1s;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK:hover img {
-                transform: scale(1.1);
-                background-color: rgba(0, 0, 0, 0.3);
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-body-gTXfgv {
-                width: 100%;
-                margin-top: 0;
-                margin-right: auto;
-                padding-right: 0;
-                padding-left: 0;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-category-dLpoZD {
-                font-size: 0.75em;
-                font-family: Arial;
-                text-transform: uppercase;
-                padding-top: 1em;
-                padding-right: 0;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-date-dGfbVg {
-                color: #707070;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-title-kITLCM {
-                display: flex;
-                align-items: flex-start;
-                row-gap: 2em;
-                column-gap: 2em;
-            }
-            .content-sc-furtherReading-postGrid-postExcerpt-titleHeading-bhRlhf {
-                font-size: 1em;
-                font-weight: 200;
-                text-transform: none;
-                margin-bottom: 2em;
-                font-family: "Chronicle Display Roman";
-                font-style: normal;
-            }
-            .advertising-sc-row-joqnTx {
-                padding: 1em;
-                background-color: #111F4A;
-                position: relative;
-                z-index: 1;
-                color: rgb(255, 255, 255);
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                height: auto;
-                bottom: 0;
-                width: 100%;
-                border-top: 1px solid #111F4A !important;
-            }
-            .advertising-sc-content-jsxoGA {
-                height: 100%;
-                min-height: 60vh;
-                width: 100%;
-                max-width: 100vw;
-                margin: auto !important;
-                display: grid;
-                grid-template-columns: repeat(2, [col-start] 1fr);
-                position: relative;
-                z-index: 1;
-            }
-            .advertising-sc-bgImage-gXZMSp {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-            }
-            .advertising-sc-bgImage-gXZMSp::after {
-                content: "";
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-            }
-            .advertising-sc-bgImage-gXZMSp > img {
-                inset: 0px;
-                height: 100%;
-                object-fit: cover;
-                position: absolute;
-                width: 100%;
-            }
-            .advertising-sc-content-col-kDJFWl {
-                display: flex;
-                align-items: flex-start;
-                -webkit-box-pack: justify;
-                justify-content: center;
-                padding: 2em;
-                width: 50%;
-                flex-direction: column;
-            }                                    
-            .advertising-sc-content-col-titleHeading-dZQaLi {
-                color: #111F4A;
-                font-size: 2em;
-                font-weight: 400;
-                text-transform: none;
-                font-family: "Chronicle Display Semibold";
-            }
-            .advertising-sc-clubOverviewGrid-jYhbHp {
-                width: 90%;
-                padding-top: 2em;
-                margin-right: auto;
-                padding-bottom: 2em;
-            }
-            .advertising-sc-clubOverviewGrid-iRxVOF {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                padding-right: 0px;
-                column-gap: 1.5em;
-                color: #F9F0E6;
-                font-family: "Chronicle Display Roman";
-                font-style: normal;
-                font-size: 1em;
-                font-weight: 200;
-            }
-            .advertising-sc-clubOverviewGrid-cVwzaR {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                -webkit-box-pack: center;
-                justify-content: center;
-                text-align: center;
-                font-size: 1.5rem;
-                width: 1.5em;
-                border-top-width: 0.125em;
-                border-right-width: 0.125em;
-                border-bottom-width: 0.125em;
-                border-left-width: 0.125em;
-                border-top-style: solid;
-                border-right-style: solid;
-                border-bottom-style: solid;
-                border-left-style: solid;
-                border-top-color: #F9F0E6;
-                border-right-color: #F9F0E6;
-                border-bottom-color: #F9F0E6;
-                border-left-color: #F9F0E6;
-                border-top-left-radius: 50%;
-                border-top-right-radius: 50%;
-                border-bottom-right-radius: 50%;
-                border-bottom-left-radius: 50%;
-                aspect-ratio: 1 / 1;
-                flex-shrink: 0;
-                font-family: "Tex Gyre Termes";
-            }
-            .masthead-sc-readNowButton {
-                background-color: #F9F0E6;
-                color: #111F4A;
-                padding: 0.8em 0 !important;
-                text-decoration: none;
-                border-top-style: none;
-                border-right-style: none;
-                border-bottom-style: none;
-                border-left-style: none;
-                cursor: pointer;
-                width: 100%;
-                border-radius: 5px;
-                font-family: "Chronicle Display Roman";
-                font-weight: 400;
-                text-decoration-line: none;
-                display: inline-block;
-                text-align: center;
-                font-size: 1em;
-                line-height: 1;
-                transition-duration: 0.2s, 0.2s;
-                transition-timing-function: ease-in-out, ease-in-out;
-                transition-delay: 0s, 0s;
-                transition-property: color, background;
-            }
-            .wp-sc-footer {
-                display: flex;
-                flex-direction: column;
-                position: relative;
-                bottom: 0;
-                width: 100%;
-                margin: 0 auto;
-                height: auto;
-                background-color:#111F4A;
-            }
-            .magazine-grid-container-description {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                flex-direction: column;
-                padding: 3em 0 3em 0;
-                justify-content: center;
-            }
-            .content-sc-masthead-magazineMastheadContent {
-                padding: 0 2em;
-                text-align: left;
-            }
-            .magazineMasterCategory {
-                display: flex;
-                flex-wrap: wrap;
-                -webkit-box-align: center;
-                align-items: center;
-                row-gap: 8px;
-                column-gap: 8px;
-                font-size: 12px;
-                color: red;
-                width: 90%;
-                margin-top: 0px;
-                margin-right: 0px;
-                margin-bottom: 16px;
-            }
-            .magazineMasterCategory .Link-style__Link-sc-1ce34e85-0 {
-                color: red;
-                font-family: "Arial";
-                font-size: 1em;
-                margin-bottom: 0px;
-                text-transform: uppercase;
-            }
-            .magazineMasterCategoryItem {
-                text-decoration-line: none;
-                color: rgb(34, 34, 34);
-                font-size: 20px;
-                margin-bottom: 16px;
-                text-transform: none;
-                display: inline-flex;
-                -webkit-box-align: center;
-                align-items: center;
-                -webkit-box-pack: start;
-                justify-content: flex-start;
-                row-gap: 8px;
-                column-gap: 8px;
-                position: relative;
-                cursor: pointer;
-                transition-duration: 0.2s;
-                transition-timing-function: ease;
-                transition-delay: 0s;
-                transition-property: all;
-                overflow-x: visible;
-                overflow-y: visible;
-                font-weight: 600;
-            }
-            .magazineMasterCategory svg {
-                width: 8px;
-            }
-            .magazineMasterCategoryList {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                row-gap: 8px;
-                column-gap: 8px;
-            }
-            .magazineMastheadTitle {
-                font-size: 2em;
-                font-weight: 400;
-                text-transform: none;
-                font-family: "Chronicle Display Roman";
-            }
-            .magazineMastheadExcerpt {
-                font-size: 1em;
-                font-weight: 200;
-                text-transform: none;
-                margin-bottom: 2em;
-                font-family: "Chronicle Display Roman";
-                font-style: normal;
-            }
-            .magazine-grid-container {
-                background-color: rgb(255, 255, 255);
-                width: 100%;
-                position: relative;
-                z-index: 20;
-                display: flex;
-                margin: 0em auto;
-                overflow: hidden;
-            }
-            .magazine-grid-container > img {
-                background-position-x: center;
-                background-position-y: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                height: auto;
-                padding-top: 0px;
-                grid-column-start: 1;
-                grid-column-end: span 4;
-                margin: auto 0 !important;
-            }
-            @media screen and (max-width: 600px) {
-                .content-sc-furtherReading-postGrid-cVDKJX {
-                    grid-template-columns: repeat(1, 1fr);
-                }
-                .stack-column {
-                    display: block;
-                    width: 100% !important;
-                }
-                .container {
-                    width: 100% !important;
-                }
-                .advertising-sc-row-joqnTx {
-                    flex-flow: column-reverse;
-                }
-                .advertising-sc-content-jsxoGA {
-                    grid-template-columns: repeat(1, [col-start] 1fr);
-                }
-                .advertising-sc-bgImage-gXZMSp > img {
-                    object-fit: fill;
-                    position: relative;
-                }
-                .advertising-sc-bgImage-gXZMSp {
-                    position: relative;
-                }
-                .advertising-sc-bgImage-gXZMSp::after {
-                    position: absolute;
-                }
-                .advertising-sc-content-col-titleHeading-dZQaLi {
-                    font-size: 1.5em;
-                    font-family: "Tex Gyre Termes Bold";
-                }
-                .masthead-sc-readNowButton {
-                    font-size: 1em;
-                }
-                .magazine-grid-container {
-                    grid-template-columns: repeat(1, [col-start] 1fr);
-                    column-gap: 0;
-                    aspect-ratio: 0;
-                    display: flex;
-                    flex-direction: column-reverse;
-                }
-            }
+            .spanLogo,.top-panel{overflow-x:none;box-sizing:border-box}p{margin-block-start:1em;margin-block-end:1em}h1,h2,ul{margin-inline-start:0!important;margin-inline-end:0!important}body{margin:0!important;padding:0!important;background-color:#f4f4f4}table{border-collapse:collapse}.now-ui-icons,a,body,table,td{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-moz-osx-font-smoothing:grayscale;font-family:Arial,sans-serif}.container{background-color:#fff;width:100%;max-width:600px}.gmail-body{width:100%;padding:20px}u+.body .container{width:100%!important}@font-face{font-family:"Giaza Stencil";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Giaza-Stencil.ttf") format("truetype")}@font-face{font-family:"Bebas Neue Cyrillic";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Bebas-Neue-Cyrillic.ttf") format("truetype")}@font-face{font-family:"Tex Gyre Termes Bold";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-bold.otf") format("opentype")}@font-face{font-family:"Tex Gyre Termes";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-regular.otf") format("opentype")}@font-face{font-family:"Cera Pro Black";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-black.otf") format("opentype")}@font-face{font-family:"Cera Pro Bold";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-bold.otf") format("opentype")}@font-face{font-family:"Cera Pro Light";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-light.otf") format("opentype")}@font-face{font-family:"Cera Pro Medium";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-medium.otf") format("opentype")}@font-face{font-family:"Cera Pro Regular";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-regular.otf") format("opentype")}@font-face{font-family:"Cera Pro Thin";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-thin.otf") format("opentype")}@font-face{font-family:"Chronicle Display Black";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Black.otf") format("opentype")}@font-face{font-family:"Chronicle Display Light Italic";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Light-Italic.otf") format("opentype")}@font-face{font-family:"Chronicle Display Roman";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Roman.otf") format("opentype")}@font-face{font-family:"Chronicle Display Semibold";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Semibold.otf") format("opentype")}@font-face{font-family:"Chronicle Display Text";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Text.otf") format("opentype")}@font-face{font-family:"PP Editorial New Ultralight";src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/PP-Editorial-New-Ultralight.otf") format("opentype")}@font-face{font-family:Brittany;src:url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Brittany.otf") format("opentype")}html{overflow-y:scroll;scroll-behavior:smooth}:root{--primary-color:rgb(24, 24, 24);--primary-background-color:rgb(221, 221, 221);--secondary-color:rgb(75, 75, 75);--secondary-background-color:rgb(255, 255, 255);--highlight-color:#111f4a;--box-shadow-color:rgb(201, 201, 201);--disabled-button-color:rgb(175, 175, 175);--border-radius:1rem;--top-panel-height:5em;--thumbnail-width:4.75em;--footer-height:5em;--share-panel-width:17em;--thumbnail-panel-width:17em;--journalHomeFeaturedContentBackground:none;--editorspickFeaturedContentBackground:none;--styleFeaturedContentBackground:none;--businessFeaturedContentBackground:none;--healthFeaturedContentBackground:none;--gearFeaturedContentBackground:none;--travelFeaturedContentBackground:none;--categoryFeaturedContentBackground:none}.section{position:relative;background:#fff}.section-signup{padding-top:0}.top-panel{display:grid;width:100%;height:var(--top-panel-height);top:0;bottom:0;padding:0 .5em;border-bottom:1px solid #f9f0e6!important;align-items:center;z-index:100;background-color:#111f4a;-webkit-transition:background-color 1s linear;-ms-transition:background-color 1s linear;transition:background-color 1s linear}.card,.content-sc-furtherReading-row{background-color:#fff;position:relative}.spanLogo{position:relative;align-items:center;justify-content:center;display:inline-flex;height:calc(var(--top-panel-height));cursor:pointer}.active{display:inline-block}.card{border:0;border-radius:.1875rem;width:100%;margin-bottom:2em;box-shadow:0 5px 25px 0 rgba(0,0,0,.2)}.card-signup{max-width:350px;margin:5vh auto}.card-signup .card-header{margin:0 1.2em;padding:2em 0}.card-signup .card-title{font-family:'Chronicle Display Roman',Arial,sans-serif;margin-top:1em;margin-bottom:1em}.card-signup .card-body{margin-left:1em!important;margin-right:1em!important;text-align:justify;min-height:auto}.stack-column{width:33%!important;padding:0 1em!important}.content-sc-furtherReadingTitle{display:flex;align-items:flex-end;justify-content:space-between!important;align-items:center}.content-sc-furtherReadingTitle-viewAll{text-decoration-line:none;font-size:.7em;text-transform:none;position:relative;cursor:pointer;transition:.2s;overflow-x:visible;overflow-y:visible;color:#000;font-weight:700;font-family:Cera Pro Light}.content-sc-furtherReading-postGrid-postExcerpt-kuccfR{color:#222;text-decoration-line:none}.content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK{background-color:#f8f8f8;position:relative;aspect-ratio:3/2;width:100%;overflow-x:hidden;overflow-y:hidden;display:block}.content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK::after{transition:.4s;content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:1}.content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK img{width:100%;height:100%;object-fit:cover;transition:1s}.content-sc-furtherReading-postGrid-postExcerpt-thumbnail-NrRzK:hover img{transform:scale(1.1);background-color:rgba(0,0,0,.3)}.content-sc-furtherReading-postGrid-postExcerpt-body-gTXfgv{width:100%;margin-top:0;margin-right:auto;padding-right:0;padding-left:0}.content-sc-furtherReading-postGrid-postExcerpt-category-dLpoZD{font-size:.75em;font-family:Arial;text-transform:uppercase;padding-top:1em;padding-right:0}.content-sc-furtherReading-postGrid-postExcerpt-date-dGfbVg{color:#707070}.content-sc-furtherReading-postGrid-postExcerpt-title-kITLCM{display:flex;align-items:flex-start;row-gap:2em;column-gap:2em}.content-sc-furtherReading-postGrid-postExcerpt-titleHeading-bhRlhf,.magazineMastheadExcerpt{font-size:1em;font-weight:200;text-transform:none;margin-bottom:2em;font-family:"Chronicle Display Roman";font-style:normal}.advertising-sc-row-joqnTx{padding:1em;background-color:#111f4a;position:relative;z-index:1;color:#fff;display:flex;-webkit-box-align:center;align-items:center;height:auto;bottom:0;width:100%;border-top:1px solid #111f4a!important}.advertising-sc-content-jsxoGA{height:100%;min-height:60vh;width:100%;max-width:100vw;margin:auto!important;display:grid;grid-template-columns:repeat(2,[col-start] 1fr);position:relative;z-index:1}.advertising-sc-bgImage-gXZMSp{position:absolute;top:0;left:0;width:100%;height:100%}.advertising-sc-bgImage-gXZMSp::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:100%}.advertising-sc-bgImage-gXZMSp>img{inset:0px;height:100%;object-fit:cover;position:absolute;width:100%}.advertising-sc-content-col-kDJFWl{display:flex;align-items:flex-start;-webkit-box-pack:justify;justify-content:center;padding:2em;width:50%;flex-direction:column}.advertising-sc-content-col-titleHeading-dZQaLi{color:#111f4a;font-size:2em;font-weight:400;text-transform:none;font-family:"Chronicle Display Semibold"}.advertising-sc-clubOverviewGrid-jYhbHp{width:90%;padding-top:2em;margin-right:auto;padding-bottom:2em}.advertising-sc-clubOverviewGrid-iRxVOF{display:flex;-webkit-box-align:center;align-items:center;padding-right:0;column-gap:1.5em;color:#f9f0e6;font-family:"Chronicle Display Roman";font-style:normal;font-size:1em;font-weight:200}.advertising-sc-clubOverviewGrid-cVwzaR{display:flex;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;text-align:center;font-size:1.5rem;width:1.5em;border-width:.125em;border-style:solid;border-top:.125em solid #f9f0e6;border-right:.125em solid #f9f0e6;border-bottom:.125em solid #f9f0e6;border-color:#f9f0e6;border-radius:50%;aspect-ratio:1/1;flex-shrink:0;font-family:"Tex Gyre Termes"}.masthead-sc-readNowButton{background-color:#f9f0e6;color:#111f4a;padding:.8em 0!important;text-decoration:none;border-style:none;cursor:pointer;width:100%;border-radius:5px;font-family:"Chronicle Display Roman";font-weight:400;text-decoration-line:none;display:inline-block;text-align:center;font-size:1em;line-height:1;transition:color .2s ease-in-out,background .2s ease-in-out}.wp-sc-footer{display:flex;flex-direction:column;position:relative;bottom:0;width:100%;margin:0 auto;height:auto;background-color:#111f4a}.magazine-grid-container-description{display:flex;-webkit-box-align:center;align-items:center;flex-direction:column;padding:3em 0;justify-content:center}.content-sc-masthead-magazineMastheadContent{padding:0 2em;text-align:left}.magazineMasterCategory{display:flex;flex-wrap:wrap;-webkit-box-align:center;align-items:center;row-gap:8px;column-gap:8px;font-size:12px;color:red;width:90%;margin-top:0;margin-right:0;margin-bottom:16px}.magazineMasterCategory .Link-style__Link-sc-1ce34e85-0{color:red;font-family:Arial;font-size:1em;margin-bottom:0;text-transform:uppercase}.magazineMasterCategoryItem{text-decoration-line:none;color:#222;font-size:20px;margin-bottom:16px;text-transform:none;display:inline-flex;-webkit-box-align:center;align-items:center;-webkit-box-pack:start;justify-content:flex-start;row-gap:8px;column-gap:8px;position:relative;cursor:pointer;transition:.2s;overflow-x:visible;overflow-y:visible;font-weight:600}.magazineMasterCategory svg{width:8px}.magazineMasterCategoryList{display:flex;-webkit-box-align:center;align-items:center;row-gap:8px;column-gap:8px}.magazineMastheadTitle{font-size:2em;font-weight:400;text-transform:none;font-family:"Chronicle Display Roman"}.magazine-grid-container{background-color:#fff;width:100%;position:relative;z-index:20;display:flex;margin:0 auto;overflow:hidden}.magazine-grid-container>img{background-position-x:center;background-position-y:center;background-repeat:no-repeat;background-size:contain;height:auto;padding-top:0;grid-column-start:1;grid-column-end:span 4;margin:auto 0!important}@media screen and (max-width:600px){.advertising-sc-content-jsxoGA,.magazine-grid-container{grid-template-columns:repeat(1,[col-start] 1fr)}.card-signup{margin:2vh auto}.stack-column{width:33%!important;padding:0 .5em!important}.container{width:100%!important}.gmail-body,.outlook-body{padding:10px!important}.advertising-sc-row-joqnTx{flex-flow:column-reverse}.advertising-sc-bgImage-gXZMSp>img{object-fit:fill;position:relative}.advertising-sc-bgImage-gXZMSp{position:relative}.advertising-sc-bgImage-gXZMSp::after{position:absolute}.advertising-sc-content-col-titleHeading-dZQaLi{font-size:1.5em;font-family:"Tex Gyre Termes Bold"}.masthead-sc-readNowButton{font-size:1em}.magazine-grid-container{column-gap:0;aspect-ratio:0;display:flex;flex-direction:column-reverse}}
         </style>
 	</head>
 
@@ -626,14 +46,14 @@
                         <!---->
                         <!----------------------------- Beginning of Welcome Note -------------------------->
                         <tr>
-                            <td style="height: auto;width: 100%;align-content: center;margin-right: auto;margin-left: auto;background-image:url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/newsletter.jpg');background-size: cover;background-repeat: no-repeat;background-position: 20% 90%;">
+                            <td class="gmail-body outlook-body" style="height: auto;width: 100%;align-content: center;margin-right: auto;margin-left: auto;background-image:url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/newsletter.jpg');background-size: cover;background-repeat: no-repeat;background-position: 20% 90%;">
                                 <!--[if mso]>
-                                    <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:300px;">
-                                        <v:fill type="tile" src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/newsletter.jpg" color="#333"/>
-                                    <v:textbox inset="0,0,0,0">
+                                <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:600px;height:300px;">
+                                    <v:fill type="frame" src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/newsletter.jpg" color="#333" />
+                                    <v:textbox inset="0,0,0,0" style="mso-fit-shape-to-text:true;">
                                 <![endif]-->
-                                <div style="display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;">
-                                    <div id="cardCustomerSignup" class="active card card-signup">
+                                <div style="justify-content: center;display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;">
+                                    <div class="active card card-signup">
                                         <div class="card-header" style="text-align: center!important;">
                                             <h1 class="card-title">A Note of Welcome</h1>
                                             <p class="card-body">Welcome to TheHiM Newsletter! Hi, my name is Hesham, founder of TheHiM.
@@ -645,7 +65,7 @@
                                 </div>
                                 <!--[if mso]>
                                     </v:textbox>
-                                    </v:rect>
+                                </v:rect>
                                 <![endif]-->
                             </td>
                         </tr>
@@ -658,7 +78,7 @@
                                     <tr>
                                         {{ latestArticlesHeader }}
                                     </tr>
-                                    <tr class="content-sc-furtherReading-postGrid-cVDKJX">
+                                    <tr style="vertical-align: top;">
                                         {{ latestArticles }}
                                     </tr>
                                 </table>
@@ -680,7 +100,7 @@
                                             text-transform: none;
                                             margin-bottom: 1em;
                                             font-family: 'Chronicle Display Roman', 'Arial', sans-serif;
-                                            font-style: bold;">TheHiM Club Membership Benefits</h2>
+                                            font-style: bold;">TheHiM Club</h2>
                                             <ul style="padding: 0; margin: 0; list-style: none; font-size: 1em;">
                                                 <li style="font-family: Arial, sans-serif; margin-bottom: 10px; display: flex; align-items: center;">
                                                     <!--
@@ -688,29 +108,19 @@
                                                         <img src="https://cdn-icons-png.flaticon.com/512/130/130882.png" alt="Arrow" width="16" height="16" style="margin-right: 8px;"> The quarterly magazine
                                                     </li>    
                                                     -->
-                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                                        <path d="M10 18l6-6-6-6v12z"></path>
-                                                    </svg> The quarterly magazine
+                                                    - The quarterly magazine
                                                 </li>
                                                 <li style="font-family: Arial, sans-serif; margin-bottom: 10px; display: flex; align-items: center;">
-                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                                        <path d="M10 18l6-6-6-6v12z"></path>
-                                                    </svg> Your own HiM membership card
+                                                    - Your own HiM membership card
                                                 </li>
                                                 <li style="font-family: Arial, sans-serif; margin-bottom: 10px; display: flex; align-items: center;">
-                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                                        <path d="M10 18l6-6-6-6v12z"></path>
-                                                    </svg> Access to paywalled content
+                                                    - Access to paywalled content
                                                 </li>
                                                 <li style="font-family: Arial, sans-serif; margin-bottom: 10px; display: flex; align-items: center;">
-                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                                        <path d="M10 18l6-6-6-6v12z"></path>
-                                                    </svg> Exclusive brand offers
+                                                    - Exclusive brand offers
                                                 </li>
                                                 <li style="font-family: Arial, sans-serif; margin-bottom: 10px; display: flex; align-items: center;">
-                                                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" viewBox="0 0 24 24" style="margin-right: 8px;">
-                                                        <path d="M10 18l6-6-6-6v12z"></path>
-                                                    </svg> Invites to private HiM Club events
+                                                    - Invites to private HiM Club events
                                                 </li>
                                             </ul>
                                             <div align="center" style="margin-top: 1em;">
@@ -771,32 +181,46 @@
                             <td align="center" class="wp-sc-footer">
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px;">
                                     <tr>
-                                        <td align="center" style="flex-direction: row; margin: 0 auto !important; padding: 1em 1.5em 0.5em 1.5em; font-size: 14px; line-height: 1; color: #F9F0E6;">
-                                            <a href="https://www.facebook.com/himjrnl" target="_blank">
-                                                <img src="resources/pics/facebook.png" alt="Facebook" style="padding: 1em; border-block-end: 0; border-block-start: 0; width: 24px; height: 24px;">
-                                            </a>
-                                            <a href="https://www.instagram.com/himjrnl" target="_blank">
-                                                <img src="resources/pics/instagram.png" alt="Instagram" style="padding: 1em; border-block-end: 0; border-block-start: 0; width: 24px; height: 24px;">
-                                            </a>
-                                            <a href="https://www.meetup.com/himjrnl" target="_blank">
-                                                <img src="resources/pics/meetup.png" alt="Meetup" style="padding: 1em; border-block-end: 0; border-block-start: 0; width: 24px; height: 24px;">
-                                            </a>
-                                            <a href="https://www.pinterest.com/himjrnl" target="_blank">
-                                                <img src="resources/pics/pinterest.png" alt="Pinterest" style="padding: 1em; border-block-end: 0; border-block-start: 0; width: 24px; height: 24px;">
-                                            </a>
-                                            <a href="https://www.youtube.com/@himjrnl" target="_blank">
-                                                <img src="resources/pics/youtube.png" alt="YouTube" style="padding: 1em; border-block-end: 0; border-block-start: 0; width: 24px; height: 24px;">
-                                            </a>
+                                        <td align="center" style="padding: 1em; font-size: 14px; line-height: 1; color: #F9F0E6;">
+                                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                                                <tr>
+                                                    <td align="center" style="padding: 0 8px;">
+                                                        <a href="https://www.facebook.com/himjrnl" target="_blank">
+                                                            <img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;" />
+                                                        </a>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 8px;">
+                                                        <a href="https://www.instagram.com/himjrnl" target="_blank">
+                                                            <img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;" />
+                                                        </a>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 8px;">
+                                                        <a href="https://www.meetup.com/thehim" target="_blank">
+                                                            <img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;" />
+                                                        </a>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 8px;">
+                                                        <a href="https://www.pinterest.com/himjrnl" target="_blank">
+                                                            <img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;" />
+                                                        </a>
+                                                    </td>
+                                                    <td align="center" style="padding: 0 8px;">
+                                                        <a href="https://www.youtube.com/@himjrnl" target="_blank">
+                                                            <img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;" />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
-                                    </tr>
+                                    </tr>                                    
                                     <tr>
-                                        <td align="center" style="padding: 0.5em 1.5em 0.5em 1.5em; font-size: 14px; line-height: 1; color: #F9F0E6;">
+                                        <td align="center" style="padding: 0.5em 1.5em 0.5em 1.5em; font-size: 10px; line-height: 1; color: #F9F0E6;">
                                             You received this newsletter because you're a registered member of The HiM.
                                             <a href="{{ unsubscribeLink }}" style="color: #F9F0E6; text-decoration: underline;">Unsubscribe</a> if you no longer wish to receive email updates.
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" style="padding: 0.5em 1.5em 1em 1.5em; font-size: 14px; line-height: 1; color: #F9F0E6;">
+                                        <td align="center" style="padding: 0.5em 1.5em 1em 1.5em; font-size: 10px; line-height: 1; color: #F9F0E6;">
                                             Copyright © 2023-2024 The HiM Journal. All rights reserved.
                                         </td>
                                     </tr>
