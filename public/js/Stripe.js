@@ -12,12 +12,10 @@
     body: JSON.stringify(data), // body data type must match "Content-Type" header
 }); */
 
-// const stripe_api_id = 'pk_live_51NCo6BHGlagF10MOmT0OjtMjbKsxCZ9rN2v8jiXDoOKn1rUe5T2i9TcUq7zSmNQtaIzhgSxGAwrd40hv3EpPYwIC00k8fN2AyI';
-const stripe_api_id = 'pk_test_51NCo6BHGlagF10MOPV496O8YatZekF5K1NFZfV6hVLZAprnu7aHdNQ6kP84kCo61sB7jIRiFiUV7Za23fTUZzMqb00CPBxlDN9';
-// const stripe_secret_key = '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';
-const stripe_secret_key = 'sk_test_51NCo6BHGlagF10MO2OLEeUglmNeUuRlHWEpnB5GfWcztAZK4I2UQH69mPHzvRmR4wCvNikelpGuaw5e8NxJe0N4O00Y8u7trY3';
-const stripe = Stripe(stripe_api_id, {
-    stripeAccount: 'acct_1NCo6BHGlagF10MO'
+// const stripe_api_id = 'cGtfbGl2ZV81MU5DbzZCSEdsYWdGMTBNT21UME9qdE1qYktzeENaOXJOMnY4amlYRG9PS24xclVlNVQyaTlUY1VxN3pTbU5RdGFJemhnU3hHQXdyZDQwaHYzRXBQWXdJQzAwazhmTjJBeUk'; /* 'pk_live_51NCo6BHGlagF10MOmT0OjtMjbKsxCZ9rN2v8jiXDoOKn1rUe5T2i9TcUq7zSmNQtaIzhgSxGAwrd40hv3EpPYwIC00k8fN2AyI'; */
+// const stripe_secret_key = 'c2tfbGl2ZV81MU5DbzZCSEdsYWdGMTBNT0xQanl3bGJmWmtOVDE2N1BSWTVEbWNIRmZqa2xQZGY4c2I2aU1ZZmhJcHZ4TmkyUWdZcHpVU2hER0poUmQyZFNvVjVEcWRzdzAwd0U1ZExDTzU'; /* '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'; */
+const stripe = Stripe(window.atob(await getConfig('STRIPE_API_ID')), {
+    stripeAccount: window.atob(await getConfig('STRIPE_ACCOUNT'))
 });
 
 const appearance = {
@@ -95,7 +93,7 @@ async function listCustomers() {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json, */*',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -125,7 +123,7 @@ async function createCustomer(customer) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -143,7 +141,7 @@ async function retrieveCustomer(queryEmail) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -166,7 +164,7 @@ async function retrieveCustomerSession(sessionId) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -186,7 +184,7 @@ async function getCustomer(custId) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -227,7 +225,7 @@ async function updateCustomer(customerId, updateData) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -248,7 +246,7 @@ async function createPortalSession(customerId, redirectURL) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -268,7 +266,7 @@ async function listProducts() {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json, */*',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -290,7 +288,7 @@ async function listPrices() {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json, *\/*',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -324,7 +322,7 @@ async function createCustomerSession(customerSessionData) { // quantity,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: 'follow', // manual, *follow, error
         referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -342,7 +340,7 @@ async function retrieveSubscriptionStatus(subscriptionId) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json, *\/*',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -368,7 +366,7 @@ async function retrieveActiveSubscription(customerId) {
         credentials: "include", // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json, *\/*',
-            'Authorization': 'Bearer '+stripe_secret_key
+            'Authorization': 'Bearer '+window.atob(await getConfig('STRIPE_SECRET_KEY'))
         },
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer" // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url

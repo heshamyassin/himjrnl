@@ -274,7 +274,7 @@ async function customerLogin(source, data, mode) {
                     "metadata": { \
                         "password": "elletez", \
                         "newsletterSubscription": "true", \
-                        "profilePicture": "'+domain+"/resources/pics/HiMIcon.png"+'" \
+                        "profilePicture": "'+domain+"/public/resources/pics/HiMIcon.png"+'" \
                     } \
                 }');
                 prepareCheckoutForm(customerData);
@@ -290,7 +290,7 @@ async function customerLogin(source, data, mode) {
                             "metadata": { \
                                 "password": "'+data['password']+'", \
                                 "newsletterSubscription": "'+data['newsletter']+'", \
-                                "profilePicture": "'+domain+"/resources/pics/HiMIcon.png"+'" \
+                                "profilePicture": "'+domain+"/public/resources/pics/HiMIcon.png"+'" \
                             } \
                         }');
                         // Create Customer with name, e-mail, default profile picture and password

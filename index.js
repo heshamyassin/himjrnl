@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
-const { sendNewsletterConfirmation } = require('./js/newsletter');
+const { sendNewsletterConfirmation } = require('./public/js/newsletter');
 const port = process.env.PORT || 3000;
 
 require('dotenv').config({
@@ -12,10 +12,18 @@ require('dotenv').config({
 });
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname)));
 
-app.get('/', function(req, res) {
-    res.sendfile(path.join(__dirname, 'index.html'));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Redirect root URL to index.html automatically
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Handle other routes (optional)
+app.get('*', (req, res) => {
+  res.redirect('/');
 });
 
 app.post('/sendNewsletterConfirmationMail', async (req, res) => {

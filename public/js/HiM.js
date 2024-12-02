@@ -748,7 +748,7 @@ function loadNewsletterRow() {
 	$(' \
 	<div size="2" class="newsletter-sc-content-jsxoGA"> \
 		<div class="newsletter-sc-bgImage-gXZMSp"> \
-			<img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="'+domain+'/resources/pics/newsletter.jpg"> \
+			<img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="'+domain+'/public/resources/pics/newsletter.jpg"> \
 		</div> \
 		<form name="newsletterSubmitForm" action="javascript:void(0);" class="newsletter-sc-form-gGmXcq"> \
 			<div class="newsletter-sc-form-title-kDJFWl" style="padding: 0;"> \
@@ -992,7 +992,7 @@ async function minifyCSS(cssFile) {
 }
 
 async function readFile(TL,FN,LN,EM) {
-	await fetch(domain + "/newsletterWelcome.html")
+	await fetch(domain + "/newsletter/newsletterWelcome.html")
 	.then((response) => response.text()
 		.then((content) => {	
 			$.getJSON(domain + '/magazine/magazine.json', function (data) {

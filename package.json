@@ -3,7 +3,9 @@
     "version": "1.0",
     "main": "index.js",
     "scripts": {
-        "start": "node index.js"
+        "build:css": "sass public/scss:public/css --no-source-map",
+        "build": "npm run build:css",
+        "start": "npm run build & node index.js"
     },
     "dependencies": {
         "express": "^4.17.1",
@@ -11,5 +13,8 @@
         "nodemailer": "^6.9.4",
         "nodemailer-juice": "^1.0.1",
         "dotenv": "^16.3.1"
+    },
+    "devDependencies": {
+        "sass": "^1.81.0"
     }
 }
