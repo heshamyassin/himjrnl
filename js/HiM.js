@@ -93,15 +93,9 @@
 
 // const domain = window.location.protocol +'//' + window.location.href.split('/')[2] + '/' + window.location.href.split('/')[3] + '/' + window.location.href.split('/')[4] + '/' + window.location.href.split('/')[5] + '/' + window.location.href.split('/')[6] + '/' + window.location.href.split('/')[7] + '/' + window.location.href.split('/')[8];
 const domain = window.location.protocol +'//' + window.location.href.split('/')[2];
-const CLIENT_ID = '324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyDvSrsyOsI9ehXM4cqDsv9AqQwIioJsCI8';
-const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
-const GITHUB_NEWSLETTER_URL = 'https://api.github.com/repos/hgyassin/himjrnl/contents/newsletter.json?ref=master';
-const SCOPES = 'https://mail.google.com/'; // 'https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/gmail.send'; // const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly' 'https://mail.google.com/' 'https://www.googleapis.com/auth/gmail.modify' 'https://www.googleapis.com/auth/gmail.compose' 'https://www.googleapis.com/auth/gmail.send';
-const GITHUB_NEWSLETTER_TOKEN = 'Z2hwX3RMR20wM0Z5a0F2MGFmYmx1cnlVYThmcEJBNWswYTBSbjdnVA';
 var membersOnlyActivated = false;
 
-function loadMainApp() {
+async function loadMainApp() {
 	var documentPath = window.location.pathname,
 	documentName = documentPath.substring(documentPath.lastIndexOf('/')+1);
 	
@@ -901,9 +895,9 @@ async function submitNewsletter(TL, FN, LN, EM) {
 
 async function getNewsletter(newsletter) {
 	$.ajax({
-        url: GITHUB_NEWSLETTER_URL,
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", "Bearer "+window.atob(GITHUB_NEWSLETTER_TOKEN), "Accept", "application/vnd.github+json, text/plain, */*")
+        url: await getConfig('GITHUB_NEWSLETTER_URL'),
+        beforeSend: async function(xhr) {
+            xhr.setRequestHeader("Authorization", "Bearer "+window.atob(await getConfig('GITHUB_NEWSLETTER_TOKEN')), "Accept", "application/vnd.github+json, text/plain, */*")
         }, success: function(response){
             newsletter(response);
         }
@@ -945,7 +939,7 @@ async function sendNewsletterConfirmationMail(TL, FN, LN, EM, htmlContent) {
 }
 
 async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
-	/* await getNewsletter(async function(newsletter) {
+	await getNewsletter(async function(newsletter) {
 		let newsletterContent = JSON.parse(window.atob(newsletter.content));
 		
 		let registeredAlert = false;
@@ -962,12 +956,12 @@ async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 			newsletterContent['subscribers'].push(newsletterSubscription);
 			let encodedNewsletterSubscription = window.btoa(JSON.stringify(newsletterContent)); // encodeURIComponent
 			const JSONData = '{"message":"'+EM+' Subscribed to Newsletter","committer":{"name":"HiM","email":"himjrnl@gmail.com"},"content":"'+encodedNewsletterSubscription+'","sha":"'+newsletter.sha+'"}';
-			let response = await fetch(GITHUB_NEWSLETTER_URL, {
+			let response = await fetch(await getConfig('GITHUB_NEWSLETTER_URL'), {
 				method: "PUT",
 				cache: "no-cache",
 				mode: "cors",
 				headers: {
-					'Authorization': 'Bearer '+window.atob(GITHUB_NEWSLETTER_TOKEN),
+					'Authorization': 'Bearer '+window.atob(await getConfig('GITHUB_NEWSLETTER_TOKEN')),
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
@@ -985,8 +979,7 @@ async function registerToNewsletter(newsletterSubscription,TL,FN,LN,EM) {
 			setTimeout("$('#newsletterAlreadyRegistered').css({display: 'block'})", 1);
 			setTimeout("$('#newsletterAlreadyRegistered').css({display: 'none'})", 5000);
 		}
-	}); */
-	readFile(TL,FN,LN,EM);
+	});
 }
 
 async function minifyCSS(cssFile) {
@@ -1169,12 +1162,12 @@ async function newsletterUnsubscribe(unsubscribeEmail) {
 			let encodedNewsletterSubscription = window.btoa(JSON.stringify(newsletterContent)); // encodeURIComponent
 			const JSONData = '{"message":"'+unsubscribeEmail+' Unsubscribed from Newsletter","committer":{"name":"HiM","email":"himjrnl@gmail.com"},"content":"'+encodedNewsletterSubscription+'","sha":"'+newsletter.sha+'"}';
 			
-			let response = await fetch(GITHUB_NEWSLETTER_URL, {
+			let response = await fetch(await getConfig('GITHUB_NEWSLETTER_URL'), {
 				method: "PUT", // *GET, POST, PUT, DELETE, etc.
 				cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
 				mode: "cors", // no-cors, *cors, same-origin
 				headers: {
-					'Authorization': 'Bearer '+window.atob(GITHUB_NEWSLETTER_TOKEN),
+					'Authorization': 'Bearer '+window.atob(await getConfig('GITHUB_NEWSLETTER_TOKEN')),
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
@@ -1205,5 +1198,29 @@ function parseUrl() {
 		}
 	} else {
 
+	}
+}
+
+async function getConfig(key) {
+	try {
+		const response = await fetch("/getConfig", {
+			method: "GET",
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		if (response.ok) {
+			const data = await response.json();
+			if (data.hasOwnProperty(key)) {
+				return data[key];
+			} else {
+				alert('Couldn\'t find element:', key);
+			}
+		} else {
+			alert('Unexpected error occurred.');
+		}
+	} catch (error) {
+		alert(`Error getting Config: ${error.message}`);
 	}
 }

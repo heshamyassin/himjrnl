@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 const { sendNewsletterConfirmation } = require('./js/newsletter');
 const port = process.env.PORT || 3000;
 
+require('dotenv').config({
+    path: './.env',
+    encoding: 'utf8',
+    debug: true
+});
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
@@ -29,6 +34,10 @@ app.post('/sendNewsletterConfirmationMail', async (req, res) => {
     } catch (error) {
         res.status(500).send('Failure');
     }
+});
+
+app.get('/getConfig', (req, res) => {
+    res.json(process.env);
 });
 
 app.listen(port, () => {

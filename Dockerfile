@@ -79,6 +79,6 @@ COPY --chown=docker ./ ./
 
 RUN npm install
 
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]
 
 # docker run -p 3000:3000 express

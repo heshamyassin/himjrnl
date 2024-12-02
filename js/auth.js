@@ -25,8 +25,6 @@
  *
  */
 
-const clientId = '324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com';
-const clientSecret = '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';
 const scopes = 'openid profile email';
 const responseType = 'code';
 const redirectURI = new URL(decodeURIComponent(domain + '/auth/login.html'));
@@ -135,10 +133,10 @@ function secureRandom(size) {
     ).map(b => String.fromCharCode(b)).join(''));
 }
 
-function googleLogin(mode) {
+async function googleLogin(mode) {
     sessionStorage.setItem("securityToken", "security_token="+secureRandom(32));
     sessionStorage.setItem("loginMode", mode);
-    window.open("https://accounts.google.com/o/oauth2/v2/auth?response_type="+encodeURIComponent(responseType)+"&client_id="+clientId+"&scope="+encodeURIComponent(scopes)+"&nonce="+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"&prompt=consent&display=popup&redirect_uri="+redirectURI.href.toString()+"&state="+encodeURIComponent(sessionStorage.getItem("securityToken")), "_self");
+    window.open("https://accounts.google.com/o/oauth2/v2/auth?response_type="+encodeURIComponent(responseType)+"&client_id="+await getConfig('GOOGLE_AUTH_CLIENT_ID')+"&scope="+encodeURIComponent(scopes)+"&nonce="+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"&prompt=consent&display=popup&redirect_uri="+redirectURI.href.toString()+"&state="+encodeURIComponent(sessionStorage.getItem("securityToken")), "_self");
 }
 
 function formLogin(mode) {
@@ -187,7 +185,7 @@ function parseLoginAuth() {
 
 // curl -X POST 'https://oauth2.googleapis.com/token?code=4/0AeaYSHBblOaRVIXcXv0inTQBPtjrM7b-MlJal67bRg5v3T03lCuMLI9khr0d-4j2VnvT3w&client_id=324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com&client_secret=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&redirect_uri=http://127.0.0.1:54218/preview/B6D4FB05-FC9D-4EE6-94D1-CEC978DA4CBF-96889-000009762F886613/Users/hyasein/Downloads/himjrnl/auth/login.html&grant_type=authorization_code' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'
 async function getGoogleInfo(code) {
-    await fetch("https://oauth2.googleapis.com/token?code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectURI.href.toString()+"&grant_type=authorization_code", {
+    await fetch("https://oauth2.googleapis.com/token?code="+code+"&client_id="+await getConfig('GOOGLE_AUTH_CLIENT_ID')+"&client_secret="+await getConfig('GOOGLE_AUTH_CLIENT_SECRET')+"&redirect_uri="+redirectURI.href.toString()+"&grant_type=authorization_code", {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
