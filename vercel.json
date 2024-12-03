@@ -12,7 +12,7 @@
       "dest": "/index.html"
     },
     {
-      "src": "/(.*)",
+      "src": "/public/(.*)",
       "dest": "/$1"
     }
   ]
