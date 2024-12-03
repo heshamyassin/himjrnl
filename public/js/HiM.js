@@ -89,15 +89,22 @@
  * / 36. activate members-only features, subscribeRow.show()
  * / 37. profile picture, profile styling
  * / 38. editorial article link to editorial category
+ * 39. readFile > reference needs to replace public with ''
  */
 
 // const domain = window.location.protocol +'//' + window.location.href.split('/')[2] + '/' + window.location.href.split('/')[3] + '/' + window.location.href.split('/')[4] + '/' + window.location.href.split('/')[5] + '/' + window.location.href.split('/')[6] + '/' + window.location.href.split('/')[7] + '/' + window.location.href.split('/')[8];
-const domain = window.location.protocol +'//' + window.location.href.split('/')[2];
+// const domain = window.location.protocol +'//' + window.location.href.split('/')[2];
+const domain = window.location.protocol + '//' + window.location.host;
 var membersOnlyActivated = false;
 
 async function loadMainApp() {
-	var documentPath = window.location.pathname,
-	documentName = documentPath.substring(documentPath.lastIndexOf('/')+1);
+	let documentPath = window.location.href;
+	
+	if (window.location.pathname === '/' || window.location.pathname === '') {
+		documentPath = domain + '/index.html';
+	} else {
+		documentPath = domain + window.location.pathname;
+	}
 	
 	initializeMagazine();
 
@@ -113,9 +120,11 @@ async function loadMainApp() {
 	}).bind('orientationchange', function() {
 		resizeViewport();
 	});
-
-	if (documentName == 'index.html') {
+  
+	if (documentPath == domain || documentPath.substring(documentPath.lastIndexOf('/')+1) == 'index.html') {
 		prepareEditorialCategories();
+	} else {
+		/* Do nothing */
 	}
 
 	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
@@ -138,10 +147,16 @@ function initializeMagazine() {
 function loadMenu() {
 	var topPanel = document.getElementById('topPanel'),
 	topPanelMenu = document.getElementById('topPanelMenu'),
-	documentPath = window.location.pathname,
-	documentName = documentPath.substring(documentPath.lastIndexOf('/')+1),
 	deviceWidth = $(window).width(),
 	responsiveViewTreshold = 768;
+
+	let documentPath = window.location.href;
+	
+	if (window.location.pathname === '/' || window.location.pathname === '') {
+		documentPath = domain + '/index.html';
+	} else {
+		documentPath = domain + window.location.pathname;
+	}
 	
 	if (deviceWidth <= responsiveViewTreshold) {
 		// remove the topPanel and its contents
@@ -153,7 +168,7 @@ function loadMenu() {
 		desktopMenu(topPanel, topPanelMenu);
 	}
 
-	if (documentName == 'index.html') {
+	if (documentPath == domain || documentPath.substring(documentPath.lastIndexOf('/')+1) == 'index.html') {
 		topPanel.style.backgroundColor = "transparent";
 		topPanelMenu.style.backgroundColor = "transparent";
 	} else {
@@ -281,7 +296,7 @@ function desktopMenu(topPanel, topPanelMenu) {
 }
 
 function logoGoToHome() {
-	window.open(domain + '/index.html',"_self");
+	window.open(domain,"_self");
 }
 
 function gotoClub() {
@@ -700,9 +715,15 @@ function loadFooter() {
 function loadHiMClub(insertButton) {
 	$.getJSON(domain + '/magazine/magazine.json', function (data) {
 		$.each(data, function(key, magazineIssues) {
-			var magazineEditionStep = 1,
-			documentPath = window.location.pathname,
-			documentName = documentPath.substring(documentPath.lastIndexOf('/')+1);
+			var magazineEditionStep = 1;
+			
+			let documentPath = window.location.href;
+	
+			if (window.location.pathname === '/' || window.location.pathname === '') {
+				documentPath = domain + '/index.html';
+			} else {
+				documentPath = domain + window.location.pathname;
+			}
 			
 			$("#magazineGridContainerImage").attr("src", magazineIssues[(magazineIssues.length-1)]["src"].replace("../",domain+"/")+"?rect=686,0,2724,3901&auto=format");
 			$(' \
@@ -725,7 +746,7 @@ function loadHiMClub(insertButton) {
 			</div> \
 			').appendTo("#magazineGridContainerDescription");
 			
-			if (documentName == "index.html" || insertButton) {
+			if (documentPath == domain || documentPath.substring(documentPath.lastIndexOf('/')+1) == "index.html" || insertButton) {
 				$(' \
 				<button size="3" class="masthead-sc-readNowButton" style="width: 50%; background-color: #111F4A; color: #F9F0E6;" onclick="gotoMagazine()" type="button">Read Now</button> \
 				').appendTo("#magazineGridContainerDescription");
@@ -748,7 +769,7 @@ function loadNewsletterRow() {
 	$(' \
 	<div size="2" class="newsletter-sc-content-jsxoGA"> \
 		<div class="newsletter-sc-bgImage-gXZMSp"> \
-			<img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="'+domain+'/public/resources/pics/newsletter.jpg"> \
+			<img alt="Sign up to our newsletter" decoding="async" sizes="(max-width: 768px) 1000px, 2000px" src="'+domain+'/resources/pics/newsletter.jpg"> \
 		</div> \
 		<form name="newsletterSubmitForm" action="javascript:void(0);" class="newsletter-sc-form-gGmXcq"> \
 			<div class="newsletter-sc-form-title-kDJFWl" style="padding: 0;"> \

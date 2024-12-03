@@ -27,87 +27,87 @@
 
 @font-face{
 	font-family: 'Giaza Stencil';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Giaza-Stencil.ttf') format('truetype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Giaza-Stencil.ttf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Bebas Neue Cyrillic';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Bebas-Neue-Cyrillic.ttf') format('truetype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Bebas-Neue-Cyrillic.ttf') format('truetype');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes Bold';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-bold.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/texgyretermes-bold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Tex Gyre Termes';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/texgyretermes-regular.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/texgyretermes-regular.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Black';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-black.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-black.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Bold';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-bold.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-bold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Light';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-light.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-light.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Medium';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-medium.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-medium.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Regular';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-regular.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-regular.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Cera Pro Thin';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/cera-pro-thin.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/cera-pro-thin.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Black';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Black.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Chronicle-Display-Black.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Light Italic';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Light-Italic.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Chronicle-Display-Light-Italic.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Roman';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Roman.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Chronicle-Display-Roman.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Semibold';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Semibold.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Chronicle-Display-Semibold.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Chronicle Display Text';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Chronicle-Display-Text.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Chronicle-Display-Text.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'PP Editorial New Ultralight';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/PP-Editorial-New-Ultralight.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/PP-Editorial-New-Ultralight.otf') format('opentype');
 }
 
 @font-face{
 	font-family: 'Brittany';
-	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/Brittany.otf') format('opentype');
+	src: url('https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/Brittany.otf') format('opentype');
 }
 
 html {

@@ -21,11 +21,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Handle other routes (optional)
-app.get('*', (req, res) => {
-  res.redirect('/');
-});
-
 app.post('/sendNewsletterConfirmationMail', async (req, res) => {
     const { to, subject, html } = req.body;
 
