@@ -1138,7 +1138,7 @@ async function readFile(TL,FN,LN,EM) {
 								</tr> \
 							</table>';
 
-							const unsubscribeLink = domain + '/index.html?q='+window.btoa('newsletterUnsubscribe')+'&e='+window.btoa(EM)+'&auth=BEabCiECrci9cE8ciYW3doBcn6BoOmEeqGcDE7';
+							const unsubscribeLink = domain + '?q='+window.btoa('newsletterUnsubscribe')+'&e='+window.btoa(EM)+'&auth=BEabCiECrci9cE8ciYW3doBcn6BoOmEeqGcDE7';
 
 							const newsletterContent = content
 							/* .replace(/{{ featuredContent }}/i, featuredContent)
