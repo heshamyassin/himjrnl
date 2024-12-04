@@ -244,16 +244,17 @@ function desktopMenu(topPanel, topPanelMenu) {
 	
 	var spanShare = $('<span id="spanShare" class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;"/>', {id:"", class:""});
 	$(' \
-	<a title="Facebook" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Facebook\')"> \
+	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
 	<i id:"" class="fa fa-facebook"></i></a> \
-	<a title="Instagram" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Instagram\')"> \
+	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
 	<i id:"" class="fa fa-instagram"></i></a> \
-	<a title="X" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Meetup\')"> \
+	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
 	<i id:"" class="fa fa-meetup"></i></a> \
-	<a title="Pinterest" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Pinterest\')"> \
+	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
 	<i id:"" class="fa fa-pinterest"></i></a> \
-	<a title="YouTube" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'YouTube\')"> \
-	<i id:"" class="fa fa-youtube-play"></i></a>', {id:"", class:""}).appendTo(spanShare);
+	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
+	<i id:"" class="fa fa-youtube-play"></i></a> \
+	', {id:"", class:""}).appendTo(spanShare);
 	
 	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
 		$(' \
@@ -313,15 +314,15 @@ function addShare(shareReg) {
 	var shareSpan = $('<span id="" style="flex-direction: row;"></span>');
 	shareSpan.appendTo(shareReg);
 	
-	$('<a title="Facebook" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Facebook\')"> \
+	$('<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
 	<i id:"" class="fa fa-facebook"></i></a> \
-	<a title="Instagram" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Instagram\')"> \
+	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
 	<i id:"" class="fa fa-instagram"></i></a> \
-	<a title="X" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Meetup\')"> \
+	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
 	<i id:"" class="fa fa-meetup"></i></a> \
-	<a title="Pinterest" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'Pinterest\')"> \
+	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
 	<i id:"" class="fa fa-pinterest"></i></a> \
-	<a title="YouTube" style="right: 0 !important; display: inline-flex; align-items: center; color: #F9F0E6; padding: 0 1em 0 1em; text-decoration: none; cursor: pointer;" onClick="shareSM(\'YouTube\')"> \
+	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
 	<i id:"" class="fa fa-youtube-play"></i></a>').appendTo(shareSpan);
 	var topLogin = $('<a title="Login/SignUp" style="padding:1em;display:inline-flex;align-items:center;border-left: 1px solid #F9F0E6 !important;" class="shareItems top-download" href="javascript:goToLogin()"> \
 	<i id="" class="fa fa-user"></i></a>', {id:"", class:""});
