@@ -245,15 +245,15 @@ function desktopMenu(topPanel, topPanelMenu) {
 	var spanShare = $('<span id="spanShare" class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;"/>', {id:"", class:""});
 	$(' \
 	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \
 	', {id:"", class:""}).appendTo(spanShare);
 	
 	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
@@ -315,15 +315,15 @@ function addShare(shareReg) {
 	shareSpan.appendTo(shareReg);
 	
 	/* <a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \ */
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \ */
 	
 	var topSocialFB = $('<i />', {id:"", title:"FB", style:"padding:1em", class:"shareItems fa fa-facebook"}); //onClick="shareSM('Facebook')"
 	var topSocialIG = $('<i />', {id:"", title:"Instagram", style:"padding:1em", class:"shareItems fa fa-instagram"}); //onClick="shareSM('Instagram')"
@@ -1135,16 +1135,16 @@ async function readFile(TL,FN,LN,EM) {
 							<table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse;"> \
 								<tr> \
 									<td align="center" width="25%"> \
-										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-2)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-2)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
 									</td> \
 									<td align="center" width="25%"> \
-										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-3)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-3)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
 									</td> \
 									<td align="center" width="25%"> \
-										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-4)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-4)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
 									</td> \
 									<td align="center" width="25%"> \
-										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-5)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
+										<img width="100%" alt="" decoding="async" src="'+magazineIssues[(magazineIssues.length-5)]["src"].replace("../", "https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/")+'" width="150" style="display: block; border: 0; outline: none; text-decoration: none; max-width: 100%; height: auto;"> \
 									</td> \
 								</tr> \
 							</table>';
@@ -1158,7 +1158,7 @@ async function readFile(TL,FN,LN,EM) {
 							.replace(/{{ latestArticles }}/i, articlesARRAY.toString().replace(/,/g,''))
 							.replace(/{{ latestMagazine }}/i, latestMagazine)
 							.replace(/{{ magazineEditions }}/i, magazineEditions)
-							.replace(/{{ magazineGridContainerImageSrc }}/i, magazineIssues[(magazineIssues.length-1)]["src"].replace("../","https://raw.githubusercontent.com/hgyassin/himjrnl/master/"))
+							.replace(/{{ magazineGridContainerImageSrc }}/i, magazineIssues[(magazineIssues.length-1)]["src"].replace("../","https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/"))
 							.replace(/{{ unsubscribeLink }}/i, unsubscribeLink)
 							.toString();
 	

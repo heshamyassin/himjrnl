@@ -22,7 +22,7 @@ body {
 
 @font-face {
   font-family: 'Nucleo Outline';
-  src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/fonts/nucleo-outline.eot") format("embedded-opentype");
+  src: url("https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/fonts/nucleo-outline.eot") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
