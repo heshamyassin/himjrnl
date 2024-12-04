@@ -1,19 +1,24 @@
-const express = require('express');
-const path = require('path');
-const app = express();
-const bodyParser = require('body-parser');
-const { sendNewsletterConfirmation } = require('./public/js/newsletter');
-const port = process.env.PORT || 3000;
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import { sendNewsletterConfirmation } from './api/newsletter.js';
 
-require('dotenv').config({
+// Simulate __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ 
     path: './.env',
     encoding: 'utf8',
     debug: true
 });
 
-app.use(bodyParser.json());
+const app = express();
+const port = process.env.PORT || 3000;
 
-// Serve static files from the public directory
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/sendNewsletterConfirmationMail', async (req, res) => {
