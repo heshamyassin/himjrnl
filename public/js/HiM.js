@@ -245,15 +245,15 @@ function desktopMenu(topPanel, topPanelMenu) {
 	var spanShare = $('<span id="spanShare" class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;"/>', {id:"", class:""});
 	$(' \
 	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
-	<i id:"" class="fa fa-facebook"></i></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
-	<i id:"" class="fa fa-instagram"></i></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
-	<i id:"" class="fa fa-meetup"></i></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
-	<i id:"" class="fa fa-pinterest"></i></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
-	<i id:"" class="fa fa-youtube-play"></i></a> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \
 	', {id:"", class:""}).appendTo(spanShare);
 	
 	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
@@ -313,6 +313,17 @@ function openCategory(category) {
 function addShare(shareReg) {
 	var shareSpan = $('<span id="" style="flex-direction: row;"></span>');
 	shareSpan.appendTo(shareReg);
+	
+	/* <a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
+	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
+	<a title="Meetup" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Meetup\')"> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/meetup.png" alt="Meetup" style="width: 24px; height: 24px; display: block;"></a> \
+	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
+	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \ */
 	
 	var topSocialFB = $('<i />', {id:"", title:"FB", style:"padding:1em", class:"shareItems fa fa-facebook"}); //onClick="shareSM('Facebook')"
 	var topSocialIG = $('<i />', {id:"", title:"Instagram", style:"padding:1em", class:"shareItems fa fa-instagram"}); //onClick="shareSM('Instagram')"
