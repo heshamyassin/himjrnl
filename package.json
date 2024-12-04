@@ -1,11 +1,11 @@
 {
     "name": "TheHiM",
     "version": "1.0",
-    "main": "index.js",
+    "main": "index.ts",
     "scripts": {
         "build:css": "sass public/scss:public/css --no-source-map",
         "build": "npm run build:css",
-        "start": "npm run build & node index.js"
+        "start": "npm run build & node index.ts"
     },
     "dependencies": {
         "express": "^4.17.1",

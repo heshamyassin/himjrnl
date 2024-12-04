@@ -4,16 +4,6 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const { sendNewsletterConfirmation } = require('./api/newsletter');
 
-/* import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import { sendNewsletterConfirmation } from './api/newsletter.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename); */
-
 dotenv.config({ 
     path: './.env',
     encoding: 'utf8',
@@ -50,7 +40,7 @@ app.get('/getConfig', (req, res) => {
 
 // Redirect root URL to index.html automatically
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
   
 app.listen(port, () => {
