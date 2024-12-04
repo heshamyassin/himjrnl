@@ -244,9 +244,6 @@ function desktopMenu(topPanel, topPanelMenu) {
 	
 	var spanShare = $('<span id="spanShare" class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;"/>', {id:"", class:""});
 	$(' \
-	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')" href="https://www.facebook.com/himjrnl" target="_blank"> \
-		<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;" /> \
-	</a> \
 	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
 	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
@@ -317,7 +314,7 @@ function addShare(shareReg) {
 	var shareSpan = $('<span id="" style="flex-direction: row;"></span>');
 	shareSpan.appendTo(shareReg);
 	
-	/* <a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
+	$('<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
 	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
 	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/instagram.png" alt="Instagram" style="width: 24px; height: 24px; display: block;"></a> \
@@ -326,13 +323,7 @@ function addShare(shareReg) {
 	<a title="Pinterest" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Pinterest\')"> \
 	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/pinterest.png" alt="Pinterest" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="YouTube" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'YouTube\')"> \
-	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a> \ */
-	
-	var topSocialFB = $('<i />', {id:"", title:"FB", style:"padding:1em", class:"shareItems fa fa-facebook"}); //onClick="shareSM('Facebook')"
-	var topSocialIG = $('<i />', {id:"", title:"Instagram", style:"padding:1em", class:"shareItems fa fa-instagram"}); //onClick="shareSM('Instagram')"
-	var topSocialTR = $('<i />', {id:"", title:"X", style:"padding:1em", class:"shareItems fa fa-meetup"}); //onClick="shareSM('Meetup')"
-	var topSocialPT = $('<i />', {id:"", title:"Pinterest", style:"padding:1em", class:"shareItems fa fa-pinterest"}); //onClick="shareSM('Pinterest')"
-	var topSocialYT = $('<i />', {id:"", title:"YouTube", style:"padding:1em", class:"shareItems fa fa-youtube-play"}); //onClick="shareSM('YouTube')"
+	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/youtube.png" alt="YouTube" style="width: 24px; height: 24px; display: block;"></a>').appendTo(shareSpan);
 	var topLogin = $('<a title="Login/SignUp" style="padding:1em;display:inline-flex;align-items:center;border-left: 1px solid #F9F0E6 !important;" class="shareItems top-download" href="javascript:goToLogin()"> \
 	<i id="" class="fa fa-user"></i></a>', {id:"", class:""});
 	var spanNewsletterContent = $(' \
@@ -340,11 +331,6 @@ function addShare(shareReg) {
 	<i id="newsletterBtn" style="width:1em;" class="fa fa-envelope"></i></a> \
 	', {id:"", class:""});
 	
-	topSocialFB.attr('onClick','shareSM("Facebook")').appendTo(shareSpan);
-	topSocialIG.attr('onClick','shareSM("Instagram")').appendTo(shareSpan);
-	topSocialTR.attr('onClick','shareSM("Meetup")').appendTo(shareSpan);
-	topSocialPT.attr('onClick','shareSM("Pinterest")').appendTo(shareSpan);
-	topSocialYT.attr('onClick','shareSM("YouTube")').appendTo(shareSpan);
 	topLogin.appendTo(shareSpan);
 	spanNewsletterContent.appendTo(shareSpan);
 }
