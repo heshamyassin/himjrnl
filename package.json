@@ -1,7 +1,7 @@
 {
     "name": "TheHiM",
     "version": "1.0",
-    "main": "index.ts",
+    "main": "index.js",
     "scripts": {
         "build:css": "sass public/scss:public/css --no-source-map",
         "build": "npm run build:css",
