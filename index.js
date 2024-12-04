@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/sendNewsletterConfirmationMail', async (req, res) => {
     const { to, subject, html } = req.body;
@@ -38,13 +38,14 @@ app.get('/getConfig', (req, res) => {
     res.json(process.env);
 });
 
-// Redirect root URL to index.html automatically
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
   
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`)
 })
 
-module.exports = app;
+module.exports = (req, res) => {
+    app(req, res);
+};
