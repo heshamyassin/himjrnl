@@ -1,7 +1,7 @@
-import nodemailer from 'nodemailer';
-import nodemailerJuice from 'nodemailer-juice';
+const nodemailer = require('nodemailer');
+const nodemailerJuice = require('nodemailer-juice');
 
-export async function sendNewsletterConfirmation(mailOptions) {
+async function sendNewsletterConfirmation(mailOptions) {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         host: "smtp.gmail.com",
@@ -21,3 +21,5 @@ export async function sendNewsletterConfirmation(mailOptions) {
         console.error("Error sending email: ", error);
     }
 }
+
+module.exports = { sendNewsletterConfirmation };
