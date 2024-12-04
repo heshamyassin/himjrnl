@@ -244,6 +244,9 @@ function desktopMenu(topPanel, topPanelMenu) {
 	
 	var spanShare = $('<span id="spanShare" class="shareItems" style="justify-content:right;border-block-end:0;border-block-start:0;"/>', {id:"", class:""});
 	$(' \
+	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')" href="https://www.facebook.com/himjrnl" target="_blank"> \
+		<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;" /> \
+	</a> \
 	<a title="Facebook" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Facebook\')"> \
 	<img src="https://raw.githubusercontent.com/hgyassin/himjrnl/master/public/resources/pics/facebook.png" alt="Facebook" style="width: 24px; height: 24px; display: block;"></a> \
 	<a title="Instagram" style="display:inline-flex;align-items:center;" class="top-download" onClick="shareSM(\'Instagram\')"> \
