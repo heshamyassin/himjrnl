@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const { fileURLToPath } = require('url');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const { sendNewsletterConfirmation } = require('./api/newsletter');
