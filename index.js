@@ -16,11 +16,6 @@ app.use(bodyParser.json());
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Redirect root URL to index.html automatically
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 app.post('/sendNewsletterConfirmationMail', async (req, res) => {
     const { to, subject, html } = req.body;
 
@@ -43,6 +38,11 @@ app.get('/getConfig', (req, res) => {
     res.json(process.env);
 });
 
+// Redirect root URL to index.html automatically
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+  
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}/index.html`)
+    console.log(`Server is running at http://localhost:${port}`)
 })
