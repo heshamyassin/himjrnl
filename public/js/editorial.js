@@ -310,7 +310,7 @@ function showSubscribeRow() {
 						</div>Invites to private TheHiM Club events \
 					</li> \
 				</ul> \
-				<button size="3" class="show-subscribe-row-subscribe-button" onclick="" type="button">Subscribe Now</button> <!-- onclick="goToLogin()" --> \
+				<button size="3" class="show-subscribe-row-subscribe-button" onclick="goToLogin()" type="button">Subscribe Now</button> \
 			</div> \
 		</div> \
 	</div>';

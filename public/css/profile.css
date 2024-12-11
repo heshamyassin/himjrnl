@@ -1199,16 +1199,19 @@
     position: absolute;
     left: 50%;
     max-width: 180px;
+    max-height: 180px;
     transition: all .15s ease;
     transform: translate(-50%, -30%);
     color: rgba(0, 0, 0, 0.8);
     border-radius: .375rem;
+    cursor: pointer;
   }
 
   .card-profile-image .overlay {
     position: absolute;
     left: 50%;
     max-width: 180px;
+    max-height: 180px;
     transition: all .15s ease;
     transform: translate(-50%, 50%);
     border-radius: .375rem;
@@ -1217,12 +1220,14 @@
     align-items: center;
     justify-content: center;
     opacity: 1;
+    cursor: pointer;
   }
 
   .card-profile-image .overlay i {
     color: white;
     font-size: 2rem;
     opacity: 0.8;
+    cursor: pointer;
   }
 
   .card-profile-stats {

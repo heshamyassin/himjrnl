@@ -791,6 +791,33 @@ body{
 	flex-direction: column;
 }
 
+#sidemenu-profile {
+	display: none;
+	position: absolute;
+	right: 0;
+	width: 20vw;
+	top: calc(1.5 * var(--top-panel-height));
+	overflow-y: auto;
+	background: #111F4A;
+	padding: 0.5em 0 0.5em 0;
+	box-sizing: border-box;
+	align-items: center;
+	border: 1px solid #F9F0E6 !important;
+	z-index: 1;
+}
+
+#sidemenu-profile > span {
+	position: relative;
+	right: 0;
+	width: 20vw;
+	background: #111F4A;
+	padding: 0.5em 0 0.5em 0;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
 .spanSideMenuItem {
 	position: relative;
 	align-items: center;

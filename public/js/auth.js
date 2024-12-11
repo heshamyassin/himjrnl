@@ -45,36 +45,34 @@ async function authMain() {
 
     parseLoginAuth();
 
-    if ((localStorage.getItem('customerLoggedIn') != false) && (localStorage.getItem('customerLoggedIn') != null)) {
-        getCustomer(JSON.parse(localStorage.getItem('customerProfile'))['id']).then((customer) => {
-            localStorage.setItem('customerProfile', JSON.stringify(customer));
+    if ((getCookie('customerLoggedIn') != false) && (getCookie('customerLoggedIn') != null) && JSON.parse(getCookie('customerProfile')) != null) {
+        /* HYASSIN: Customer is loggedin already, retrieve the customer subscription status */
+        getCustomer(JSON.parse(getCookie('customerProfile'))['id']).then((customer) => {
+            setCookie('customerProfile', JSON.stringify(customer), 7);
         });
         prepareProfile();
-	} else {
-		/* Do Nothing */
-	}
-
-    /* HYASSIN:
-     * In case of localstorage has loggedin customer, retrieve the customer subscription status,
-     * otherwise, if the url has session_id, then parseCheckoutSessionData
-     * else, do nothing
-     */
-    if ((localStorage.getItem('customerLoggedIn') != false) && (localStorage.getItem('customerLoggedIn') != null)) {
-        /* HYASSIN: TO DO - Customer is loggedin already, retrieve the customer subscription status */
-    } else if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
+        window.open(domain + '/auth/profile.html', '_self');
+    } else if ((getCookie('customerLoggedIn') == false) || (getCookie('customerLoggedIn') == null) || JSON.parse(getCookie('customerProfile')) == null) {
+        /* HYASSIN: Customer is either not loggedin, or customer data are not available
+        an active Checkout Session needs to be parsed */
         parseCheckoutSessionData().then((session) => {
             if (session != null) {
-                /* HYASEIN: TO DO - What action when Payment is return SUCCESSFUL */
+                /* HYASEIN: What action when Payment is return SUCCESSFUL */
                 if (session['payment_status'] == "paid" && session['status'] == "complete" && session['subscription'] != null) {
                     retrieveSubscriptionStatus(session['subscription']).then((subscriptionData) => {
                         if (subscriptionData['status'] == "active") {
-                            /* HYASSIN: TO DO - What action when subscription is Active? */
+                            /* HYASSIN: TO DO - What action when subscription is Active?
+                             * retrieve customer and trigger login event
+                             * enable members-only features
+                             */
                         } else {
                             /* HYASSIN: TO DO - What action when subscription is not Active?
-
-                            Subscription is not active, it could be Failed Payment ➔ past_due
-                            or Retries Exhausted (with no payment) ➔ unpaid (if cancellation isn’t automatic)
-                            or canceled (if automatic cancellation is configured)
+                             * Subscription is not active, it could be Failed Payment ➔ past_due
+                             * or Retries Exhausted (with no payment) ➔ unpaid (if cancellation isn’t automatic)
+                             * or canceled (if automatic cancellation is configured)
+                             * 
+                             * disable members-only features
+                             * go to subscription management -> do we have a customer?
                             */
                         }
                     })
@@ -87,8 +85,8 @@ async function authMain() {
             }
         });
     } else {
-
-    }
+        /* No active Checkout Sessions or customer is not loggedin */
+    }   
 }
 
 async function parseCheckoutSessionData() {
@@ -136,7 +134,7 @@ function secureRandom(size) {
 async function googleLogin(mode) {
     sessionStorage.setItem("securityToken", "security_token="+secureRandom(32));
     sessionStorage.setItem("loginMode", mode);
-    window.open("https://accounts.google.com/o/oauth2/v2/auth?response_type="+encodeURIComponent(responseType)+"&client_id="+await getConfig('GOOGLE_AUTH_CLIENT_ID')+"&scope="+encodeURIComponent(scopes)+"&nonce="+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"&prompt=consent&display=popup&redirect_uri="+redirectURI.href.toString()+"&state="+encodeURIComponent(sessionStorage.getItem("securityToken")), "_self");
+    window.open("https://accounts.google.com/o/oauth2/v2/auth?response_type="+encodeURIComponent(responseType)+"&client_id="+window.atob(await getConfig('GOOGLE_AUTH_CLIENT_ID'))+"&scope="+encodeURIComponent(scopes)+"&nonce="+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"-"+encodeURIComponent(secureRandom(7))+"&prompt=consent&display=popup&redirect_uri="+redirectURI.href.toString()+"&state="+encodeURIComponent(sessionStorage.getItem("securityToken")), "_self");
 }
 
 function formLogin(mode) {
@@ -171,34 +169,28 @@ function parseLoginAuth() {
 	
     if (state && code) {
 		if (state == sessionStorage.getItem("securityToken")) {
-			// Authentication Confirmed => Get Google Profile Info
+			/* Authentication Confirmed => Get Google Profile Info */
             getGoogleInfo(code);
 		} else {
-			// Authentication Not Confirmed
-            // Choose to Login with e-mail & password or Signup
-            /* Do Nothing */
+			/* Do Nothing */
 		}
 	} else {
         /* Do Nothing */
 	}
 }
 
-// curl -X POST 'https://oauth2.googleapis.com/token?code=4/0AeaYSHBblOaRVIXcXv0inTQBPtjrM7b-MlJal67bRg5v3T03lCuMLI9khr0d-4j2VnvT3w&client_id=324503206928-c9vc49mtttkf4gfi5qf4qnn838p4j2fk.apps.googleusercontent.com&client_secret=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&redirect_uri=http://127.0.0.1:54218/preview/B6D4FB05-FC9D-4EE6-94D1-CEC978DA4CBF-96889-000009762F886613/Users/hyasein/Downloads/himjrnl/auth/login.html&grant_type=authorization_code' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'
 async function getGoogleInfo(code) {
-    await fetch("https://oauth2.googleapis.com/token?code="+code+"&client_id="+await getConfig('GOOGLE_AUTH_CLIENT_ID')+"&client_secret="+await getConfig('GOOGLE_AUTH_CLIENT_SECRET')+"&redirect_uri="+redirectURI.href.toString()+"&grant_type=authorization_code", {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    await fetch("https://oauth2.googleapis.com/token?code="+code+"&client_id="+window.atob(await getConfig('GOOGLE_AUTH_CLIENT_ID'))+"&client_secret="+window.atob(await getConfig('GOOGLE_AUTH_CLIENT_SECRET'))+"&redirect_uri="+redirectURI.href.toString()+"&grant_type=authorization_code", {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then((response) => {
         return response.json();
     }).then((json) => {
-        // retrieve customer e-mail from stripe
         let googleProfile = JSON.parse(base64URLdecode(json['id_token']));
-
+        
         if (googleProfile['email_verified'] == true) {
-            // email verified => Choose to Login or Signup
-            // retrieve customer and compare email with stored customers
             customerLogin('google', googleProfile, sessionStorage.getItem("loginMode"));
         } else {
             alert('email not verified => Choose to Login with e-mail & password or Signup');
@@ -212,12 +204,31 @@ function base64URLdecode(str) {
     return decodeURIComponent(atob(str.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
 }
 
+function convertPNGToBase64(imageUrl) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = imageUrl;
+    
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            
+            const base64String = canvas.toDataURL('image/png');
+            resolve(base64String);
+        };
+    
+        img.onerror = (error) => {
+            reject(error);
+        };
+    });
+}
+
 async function customerLogin(source, data, mode) {
-    /***********
-     * source: check if google, facebook, form
-     * data: the login or signup customer profile data
-     * mode: check if login or signup
-     ***********/
+    const defaultProfilePicture = await getConfig('DEFAULT_PROFILE_PICTURE');
+    
     if (mode == 'login') {
         await retrieveCustomer(data['email']).then((customers) => {
             if (customers.length > 0) {
@@ -245,68 +256,63 @@ async function customerLogin(source, data, mode) {
             }
         });
     } else { // mode == signup
-        switch (source) {
-            case 'facebook':
-            case 'google':
-                // retrieve customer and compare email with stored customers
-                // if customer found, show error "entered e-mail matches a member in our club, login?"
-                // else, Create Customer & Continue Login Flow
-                retrieveCustomer(data['email']).then((customers) => {
-                    if (customers.length > 0) {
-                        alert('entered e-mail matches a member in our club, login?');
-                    } else {
-                        alert("Create Customer & Continue Login Flow");
-                        // Create Customer with name, e-mail, default profile picture and password
-                        // Save customerId
-                        // prepareCheckoutSession with customerId
-                        // listen for success webhook, then return to profile
-                        // otherwise, ...
-                    }
-                });
-                break;
-            case 'form':
-                // retrieve customer and compare email with stored customers
-                // if customer found, show error show error "entered e-mail matches a member in our club, login?";
-                // else, Create Customer & Continue Login Flow
-                const customerData = JSON.parse('{ \
-                    "name": "HESHAM ELLETEZ", \
-                    "email": "elletez@gmail.com", \
-                    "metadata": { \
-                        "password": "elletez", \
-                        "newsletterSubscription": "true", \
-                        "profilePicture": "'+domain+"/resources/pics/HiMIcon.png"+'" \
-                    } \
-                }');
-                prepareCheckoutForm(customerData);
-                /* HYASSIN: TO DO - Uncomment */
-                /* retrieveCustomer(data['email']).then((customers) => {
-                    if (customers.length > 0) {
-                        // HYASSIN: TO DO - Change alert
-                        alert('entered e-mail matches a member in our club, login?');
-                    } else {
-                        const customerData = JSON.parse('{ \
+        // retrieve customer and compare email with stored customers
+        // if customer found, show error "entered e-mail matches a member in our club, login?"
+        // else, Create Customer & Continue Login Flow
+        await retrieveCustomer(data['email']).then((customers) => {
+            if (customers.length > 0) {
+                /* HYASSIN: TO DO - Change alert */
+                alert('entered e-mail matches a member in our club, login?');
+            } else {
+                switch (source) {
+                    case 'facebook':
+                    case 'google':
+                        console.log(data)
+                        const googleCustomerData = JSON.parse('{ \
                             "name": "'+data['name']+'", \
                             "email": "'+data['email']+'", \
                             "metadata": { \
-                                "password": "'+data['password']+'", \
+                                "password": "", \
                                 "newsletterSubscription": "'+data['newsletter']+'", \
-                                "profilePicture": "'+domain+"/resources/pics/HiMIcon.png"+'" \
+                                "profilePicture": "'+(data['picture']!=null?data['picture']:defaultProfilePicture)+'" \
                             } \
                         }');
-                        // Create Customer with name, e-mail, default profile picture and password
-                        createNewCustomer(customerData).then((customer) => {
+
+                        createNewCustomer(googleCustomerData).then((customer) => {
                             // Save customer & login
-                            localStorage.setItem('customerLoggedIn', true);
-                            localStorage.setItem('customerProfile', JSON.stringify(customer));
+                            setCookie('customerLoggedIn', true, 7);
+                            setCookie('customerProfile', JSON.stringify(customer), 7);
                             // prepareCheckoutSession with customerId
                             prepareCheckoutForm(customer);
                             // listen for success webhook, then return to profile
                             // otherwise, ...
                         });
-                    }
-                }); */
-                break;
-        }
+                        break;
+                    case 'form':
+                        // Create Customer with name, e-mail, default profile picture and password
+                        const formCustomerData = JSON.parse('{ \
+                            "name": "'+data['name']+'", \
+                            "email": "'+data['email']+'", \
+                            "metadata": { \
+                                "password": "'+data['password']+'", \
+                                "newsletterSubscription": "'+data['newsletter']+'", \
+                                "profilePicture": "'+defaultProfilePicture+'" \
+                            } \
+                        }');
+                        
+                        createNewCustomer(formCustomerData).then((customer) => {
+                            // Save customer & login
+                            setCookie('customerLoggedIn', true, 7);
+                            setCookie('customerProfile', JSON.stringify(customer), 7);
+                            // prepareCheckoutSession with customerId
+                            prepareCheckoutForm(customer);
+                            // listen for success webhook, then return to profile
+                            // otherwise, ...
+                        });
+                        break;
+                }
+            }
+        });
     }
 }
 
@@ -363,27 +369,22 @@ async function parseCheckoutFormData() {
 /********************************************************************
  ****************** Handle User Account Management *****************
 ********************************************************************/
-/*
-<label for="file"> \
-    <span>Change Image</span> \
-</label> \
-<input type="file" onchange="loadFile(event)"/> \
-*/
-function prepareProfile() {
+async function prepareProfile() {
     const profileCard = document.getElementById('profileCard');
-    const profileName = JSON.parse(localStorage.getItem('customerProfile'))['name'] != null ? JSON.parse(localStorage.getItem('customerProfile'))['name'] : '';
-    const profileEmail = JSON.parse(localStorage.getItem('customerProfile'))['email'] != null ? JSON.parse(localStorage.getItem('customerProfile'))['email'] : '';
-    const profileAddress = JSON.parse(localStorage.getItem('customerProfile'))['address'] != null ? JSON.parse(localStorage.getItem('customerProfile'))['address']['line1']+', '
-    +JSON.parse(localStorage.getItem('customerProfile'))['address']['postal_code']+' '
-    +JSON.parse(localStorage.getItem('customerProfile'))['address']['city']+', '
-    +JSON.parse(localStorage.getItem('customerProfile'))['address']['country'] : '';
-    const profilePhone = JSON.parse(localStorage.getItem('customerProfile'))['phone'] != null ? JSON.parse(localStorage.getItem('customerProfile'))['phone'] : '';
-    /* HYASSIN: TO DO - get the image from customer */
+    const profileName = JSON.parse(getCookie('customerProfile'))['name'] != null ? JSON.parse(getCookie('customerProfile'))['name'] : '';
+    const profileEmail = JSON.parse(getCookie('customerProfile'))['email'] != null ? JSON.parse(getCookie('customerProfile'))['email'] : '';
+    const profileAddress = JSON.parse(getCookie('customerProfile'))['address'] != null ? JSON.parse(getCookie('customerProfile'))['address']['line1']+', '
+    +JSON.parse(getCookie('customerProfile'))['address']['postal_code']+' '
+    +JSON.parse(getCookie('customerProfile'))['address']['city']+', '
+    +JSON.parse(getCookie('customerProfile'))['address']['country'] : '';
+    const profilePhone = JSON.parse(getCookie('customerProfile'))['phone'] != null ? JSON.parse(getCookie('customerProfile'))['phone'] : '';
+    const profilePicture = JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture'] != null ? JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture'] : await getConfig('DEFAULT_PROFILE_PICTURE');
+
     const saveProfile = $(' \
     <div class="row justify-content-center" style="z-index: 1 !important;"> \
         <div class="col-lg-3 order-lg-2"> \
             <div class="card-profile-image"> \
-                    <img id="profilePicture" src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg" class="rounded-circle"> \
+                    <img id="profilePicture" src="'+profilePicture+'" class="rounded-circle"> \
             </div> \
         </div> \
     </div> \
@@ -455,7 +456,7 @@ function prepareProfile() {
     <div class="row justify-content-center" style="z-index: 1 !important;"> \
         <div class="col-lg-3 order-lg-2"> \
             <div class="card-profile-image" onClick="changeProfilePicture()"> \
-            <img id="profilePicture" src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg" class="rounded-circle"> \
+            <img id="profilePicture" src="'+profilePicture+'" class="rounded-circle"> \
             <div class="overlay"> \
                     <i class="fas fa-camera"></i> \
                 </div> \
@@ -522,41 +523,41 @@ function prepareProfile() {
     ');
 
     /* Prepare address element default values */
-    if (JSON.parse(localStorage.getItem('customerProfile'))['address'] == null) {
-        if (JSON.parse(localStorage.getItem('customerProfile'))['phone'] == null) {
+    if (JSON.parse(getCookie('customerProfile'))['address'] == null) {
+        if (JSON.parse(getCookie('customerProfile'))['phone'] == null) {
             var addressDefaultValues = JSON.parse('{ \
-                "name": "'+JSON.parse(localStorage.getItem('customerProfile'))['name']+'" \
+                "name": "'+JSON.parse(getCookie('customerProfile'))['name']+'" \
             }');
         } else {
             var addressDefaultValues = JSON.parse('{ \
-                "name": "'+JSON.parse(localStorage.getItem('customerProfile'))['name']+'", \
-                "phone": "'+JSON.parse(localStorage.getItem('customerProfile'))['phone']+'" \
+                "name": "'+JSON.parse(getCookie('customerProfile'))['name']+'", \
+                "phone": "'+JSON.parse(getCookie('customerProfile'))['phone']+'" \
             }');
         }
     } else {
-        if (JSON.parse(localStorage.getItem('customerProfile'))['phone'] == null) {
+        if (JSON.parse(getCookie('customerProfile'))['phone'] == null) {
             var addressDefaultValues = {
-                "name": JSON.parse(localStorage.getItem('customerProfile'))['name'],
+                "name": JSON.parse(getCookie('customerProfile'))['name'],
                 "address": {
-                    "line1": JSON.parse(localStorage.getItem('customerProfile'))['address']['line1'],
-                    "line2": JSON.parse(localStorage.getItem('customerProfile'))['address']['line2'],
-                    "city": JSON.parse(localStorage.getItem('customerProfile'))['address']['city'],
-                    "state": JSON.parse(localStorage.getItem('customerProfile'))['address']['state'],
-                    "postal_code": JSON.parse(localStorage.getItem('customerProfile'))['address']['postal_code'],
-                    "country": JSON.parse(localStorage.getItem('customerProfile'))['address']['country']
+                    "line1": JSON.parse(getCookie('customerProfile'))['address']['line1'],
+                    "line2": JSON.parse(getCookie('customerProfile'))['address']['line2'],
+                    "city": JSON.parse(getCookie('customerProfile'))['address']['city'],
+                    "state": JSON.parse(getCookie('customerProfile'))['address']['state'],
+                    "postal_code": JSON.parse(getCookie('customerProfile'))['address']['postal_code'],
+                    "country": JSON.parse(getCookie('customerProfile'))['address']['country']
                 }
             };
         } else {
             var addressDefaultValues = {
-                "name": JSON.parse(localStorage.getItem('customerProfile'))['name'],
-                "phone": JSON.parse(localStorage.getItem('customerProfile'))['phone'],
+                "name": JSON.parse(getCookie('customerProfile'))['name'],
+                "phone": JSON.parse(getCookie('customerProfile'))['phone'],
                 "address": {
-                    "line1": JSON.parse(localStorage.getItem('customerProfile'))['address']['line1'],
-                    "line2": JSON.parse(localStorage.getItem('customerProfile'))['address']['line2'],
-                    "city": JSON.parse(localStorage.getItem('customerProfile'))['address']['city'],
-                    "state": JSON.parse(localStorage.getItem('customerProfile'))['address']['state'],
-                    "postal_code": JSON.parse(localStorage.getItem('customerProfile'))['address']['postal_code'],
-                    "country": JSON.parse(localStorage.getItem('customerProfile'))['address']['country']
+                    "line1": JSON.parse(getCookie('customerProfile'))['address']['line1'],
+                    "line2": JSON.parse(getCookie('customerProfile'))['address']['line2'],
+                    "city": JSON.parse(getCookie('customerProfile'))['address']['city'],
+                    "state": JSON.parse(getCookie('customerProfile'))['address']['state'],
+                    "postal_code": JSON.parse(getCookie('customerProfile'))['address']['postal_code'],
+                    "country": JSON.parse(getCookie('customerProfile'))['address']['country']
                 }
             };
         }
@@ -664,18 +665,19 @@ function listenToChanges() {
     }
 }
 
-function saveProfile() {
+async function saveProfile() {
+    const profilePicture = JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture'] != null ? JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture'] : await getConfig('DEFAULT_PROFILE_PICTURE');
     var updateData = JSON.parse('{ \
-        "name": "'+JSON.parse(localStorage.getItem('customerProfile'))['name']+'", \
-        "email": "'+JSON.parse(localStorage.getItem('customerProfile'))['email']+'", \
-        "phone": "'+JSON.parse(localStorage.getItem('customerProfile'))['phone']+'", \
+        "name": "'+JSON.parse(getCookie('customerProfile'))['name']+'", \
+        "email": "'+JSON.parse(getCookie('customerProfile'))['email']+'", \
+        "phone": "'+JSON.parse(getCookie('customerProfile'))['phone']+'", \
         "metadata": '+JSON.stringify(JSON.parse('{ \
-            "password": "'+JSON.parse(localStorage.getItem('customerProfile'))['metadata']['password']+'", \
-            "newsletterSubscription": "'+JSON.parse(localStorage.getItem('customerProfile'))['metadata']['newsletterSubscription']+'", \
-            "profilePicture": "'+JSON.parse(localStorage.getItem('customerProfile'))['metadata']['profilePicture']+'" \
+            "password": "'+JSON.parse(getCookie('customerProfile'))['metadata']['password']+'", \
+            "newsletterSubscription": "'+JSON.parse(getCookie('customerProfile'))['metadata']['newsletterSubscription']+'", \
+            "profilePicture": "'+profilePicture+'" \
         }'))+', \
-        "address": '+JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(localStorage.getItem('customerProfile'))['address']), (key, value) => value === null ? "": value))+', \
-        "shipping": '+JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(localStorage.getItem('customerProfile'))['shipping']), (key, value) => value === null ? "": value))+' \
+        "address": '+JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(getCookie('customerProfile'))['address']), (key, value) => value === null ? "": value))+', \
+        "shipping": '+JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(getCookie('customerProfile'))['shipping']), (key, value) => value === null ? "": value))+' \
     }');
     
     if (profilePictureChange['change']) {
@@ -691,7 +693,7 @@ function saveProfile() {
     }
 
     if (confirmNewPasswordChange['change']) {
-        if (oldPasswordChange['data'] == JSON.parse(localStorage.getItem('customerProfile'))['metadata']['password']) {
+        if (oldPasswordChange['data'] == JSON.parse(getCookie('customerProfile'))['metadata']['password']) {
             updateData['metadata']['password'] = newPasswordChange['data'];
         } else {
             alert('Old password doesn´t match our records');
@@ -715,8 +717,8 @@ function saveProfile() {
     }
 
     // Update Customer
-    updateCustomer(JSON.parse(localStorage.getItem('customerProfile'))['id'], updateData).then((customer) => {
-        localStorage.setItem('customerProfile', JSON.stringify(customer));
+    updateCustomer(JSON.parse(getCookie('customerProfile'))['id'], updateData).then((customer) => {
+        setCookie('customerProfile', JSON.stringify(customer), 7);
         prepareProfile();
     }).catch((error) => {
         alert('Failed to update profile due to the following error: ' + error);
@@ -739,8 +741,8 @@ function validateCustomerData(data, mode) {
 }
 
 function goToCustomerPortal() {
-    var customerId = JSON.parse(localStorage.getItem('customerProfile'))['id'];
-    
+    var customerId = JSON.parse(getCookie('customerProfile'))['id'];
+
     if (customerId != null) {
         createPortalSession(customerId, domain + "/auth/profile.html").then((customerPortalSession) => {
             window.open(customerPortalSession['url'], "_self");

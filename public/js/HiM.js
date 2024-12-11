@@ -65,7 +65,7 @@
  * / 25. Share in article shareBTN()
  * X 26. Editorial Menu
  * / 27. Build HiM Club Page
- * -- 28. Build Under Construction, About Us, Contact Us, Newsletter and / Login Page
+ * -- 28. Build Under Construction, About Us, Contact Us, / Newsletter and / Login Page
  * / 29. Magazine to take from JSON
  * -- 30. Newsletter send e-mail and register to JSON file
  **** / 1. Send e-mail by auth client :()
@@ -75,12 +75,13 @@
  **** / 5. POST newsletter subscriber to Github either Secrets or newsletter file
  **** -- 6. Newsletter email templates (/ welcome, -- monthly, HiMClub, Magazine Edition Introduction)
  **** / 7. Check if email is already registered, then skip
- **** -- 8. Publish WebApp
+ **** / 8. Publish WebApp
  **** -- 9. Unsubscribe from newsletter (work on parseUrl())
  **** X 10. newsletter subscribers to stripe, instead of github (5)
  		--> doesn't work if the newsletter subscriber is not a stripe customer
 		--> instead, register the stripe customers who checked newsletter subscription to github json
- **** -- 11. send newsletter e-mail (8)
+ **** / 11. send newsletter e-mail
+ **** -- 12. newsletter at signup is written to github
  * / 31. Add Pinterest, YouTube, Meetup
  * -- 32. / Subscribe, / stripe session retrieval, / check subscription status on login, and -- redirect to subscription update/profile in case of unscubscribed
  * / 33. Profile, update stripe billing info
@@ -92,8 +93,6 @@
  * 39. readFile > reference needs to replace public with ''
  */
 
-// const domain = window.location.protocol +'//' + window.location.href.split('/')[2] + '/' + window.location.href.split('/')[3] + '/' + window.location.href.split('/')[4] + '/' + window.location.href.split('/')[5] + '/' + window.location.href.split('/')[6] + '/' + window.location.href.split('/')[7] + '/' + window.location.href.split('/')[8];
-// const domain = window.location.protocol +'//' + window.location.href.split('/')[2];
 const domain = window.location.protocol + '//' + window.location.host;
 var membersOnlyActivated = false;
 
@@ -127,12 +126,15 @@ async function loadMainApp() {
 		/* Do nothing */
 	}
 
-	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
-		/* Trigger Customer Logout */
-		membersOnlyActivated = false;
-	} else { /* Customer is Loggedin */
-		/* Retrieve subscriptions */
+	if ((getCookie('customerLoggedIn') != false) && (getCookie('customerLoggedIn') != null)) {
+        getCustomer(JSON.parse(getCookie('customerProfile'))['id']).then((customer) => {
+            setCookie('customerProfile', JSON.stringify(customer), 7);
+        });
+        /* HYASSIN: TO DO - Retrieve subscriptions */
 		membersOnlyActivated = true;
+	} else {
+		/* HYASSIN: TO DO - Trigger Customer Logout */
+		membersOnlyActivated = false;
 	}
 }
 
@@ -177,6 +179,8 @@ function loadMenu() {
 	}
 
 	addSideMenu();
+
+	addProfileMenu();
 }
 
 function mobileMenu(topPanel) {
@@ -256,9 +260,9 @@ function desktopMenu(topPanel, topPanelMenu) {
 	<i id:"" class="fa fa-youtube-play"></i></a> \
 	', {id:"", class:""}).appendTo(spanShare);
 	
-	if ((localStorage.getItem('customerLoggedIn') == false) || (localStorage.getItem('customerLoggedIn') == null)) {
+	if ((getCookie('customerLoggedIn') == false) || (getCookie('customerLoggedIn') == null)) {
 		$(' \
-		<a id="userLogout" title="Login/SignUp" style="display:inline-flex;align-items:center;" class="top-download" href="javascript:goToLogin()"> \
+		<a id="userLogout" title="Login/SignUp" style="display:inline-flex;align-items:center;" class="top-download" href="javascript:toggleProfileMenu()"> \
 			<i id="" class="fa fa-user"></i> \
 		</a> \
 		').appendTo(spanShare);
@@ -266,7 +270,7 @@ function desktopMenu(topPanel, topPanelMenu) {
 		$(' \
 		<a id="userLogin" title="Profile" style="display:inline-flex;align-items:center;" class="top-download" onClick="javascript:document.dispatchEvent(new CustomEvent(\'customerLoggedOut\'))"> \
 			<span class="avatar avatar-sm rounded-circle"> \
-				<img alt="HiM Profile Picture" src="'+JSON.parse(localStorage.getItem('customerProfile'))['metadata']['profilePicture']+'"> \
+				<img alt="HiM Profile Picture" src="'+JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture']+'"> \
 			</span> \
 		</a> \
 		').appendTo(spanShare);
@@ -364,6 +368,37 @@ function addSideMenu() {
 	addShare(sideMenuReg);
 }
 
+function addProfileMenu() {
+	var appendReg = document.getElementById('container'),
+	sideMenuReg = $('<div id="sidemenu-profile" class="sidemenu-profile"/>'),
+	spanEditReg = $('<span />', {'id': '', 'class': ''});
+
+	/* HYASSIN: TO DO - Depends on customer is loggedin or not */
+	var spanTopMenuContent = $(' \
+	<a title="PROFILE" style="" class="spanSideMenuItem" onClick="javascript:window.open(domain + \'/auth/profile.html\', \'_self\')">Profile</a> \
+	<a title="LOGOUT" style="" class="spanSideMenuItem" onClick="javascript:document.dispatchEvent(new CustomEvent(\'customerLoggedOut\'))">Logout</a> \
+	', {id:"", class:""});
+
+	spanTopMenuContent.appendTo(spanEditReg);
+	spanEditReg.appendTo(sideMenuReg);
+	sideMenuReg.appendTo(appendReg);
+}
+
+function toggleProfileMenu() {
+	if ($("#sidemenu-profile").css("display") === "none") {
+		$("#sidemenu-profile").css({
+			display: "inline-block",
+			height: 'auto'
+		});
+		$("#profileMenuButton").attr("class", 'fa fa-close');
+	} else {
+		$("#sidemenu-profile").css({
+			display: "none"
+		});
+		$("#profileMenuButton").attr("class", 'fa fa-user');
+	}
+}
+
 function toggleSideMenuPanel() {
 	if ($("#sidemenu-panel").css("display") === "none") {
 		$("#sidemenu-panel").css({
@@ -380,7 +415,6 @@ function toggleSideMenuPanel() {
 	}
 }
 
-/* Set the width and height for the viewport */
 function toggleShareMenu() {
 	var sharePanel = document.getElementById("share-panel");
 	var shareButton = document.getElementById("shareButton");
@@ -828,9 +862,9 @@ function setProfileIcon() {
 	document.getElementById('userLogout').remove();
 	
 	$(' \
-	<a id="userLogin" title="Profile" style="display:inline-flex;align-items:center;" class="top-download" onClick="javascript:document.dispatchEvent(new CustomEvent(\'customerLoggedOut\'))"> \
+	<a id="userLogin" title="Profile" style="display:inline-flex;align-items:center;" class="top-download" onClick="toggleSideMenuPanel()"> \
 		<span class="avatar avatar-sm rounded-circle"> \
-			<img alt="HiM Profile Picture" src="'+JSON.parse(localStorage.getItem('customerProfile'))['metadata']['profilePicture']+'"> \
+			<img alt="HiM Profile Picture" src="'+JSON.parse(getCookie('customerProfile'))['metadata']['profilePicture']+'"> \
 		</span> \
 	</a> \
 	').appendTo(spanShare);
@@ -840,8 +874,8 @@ function setProfileIcon() {
 document.addEventListener("customerLoggedIn", (event) => {
     const customer = event.detail
 
-    localStorage.setItem('customerLoggedIn', true);
-    localStorage.setItem('customerProfile', JSON.stringify(customer));
+    setCookie('customerLoggedIn', true, 7);
+    setCookie('customerProfile', JSON.stringify(customer), 7);
 
     setProfileIcon();
 
@@ -863,17 +897,42 @@ document.addEventListener("customerLoggedIn", (event) => {
 document.addEventListener("customerLoggedOut", () => {
     var spanShare = document.getElementById('spanShare');
     
-    localStorage.removeItem('customerLoggedIn');
-    localStorage.removeItem('customerProfile');
+    removeCookie('customerLoggedIn');
+    removeCookie('customerProfile');
     
     document.getElementById('userLogin').remove();
     
     $(' \
-    <a id="userLogout" title="Login/SignUp" style="display:inline-flex;align-items:center;" class="top-download" href="javascript:goToLogin()"> \
-        <i id="" class="fa fa-user"></i> \
+    <a id="userLogout" title="Login/SignUp" style="display:inline-flex;align-items:center;" class="top-download" href="javascript:toggleProfileMenu()"> \
+        <i id="profileMenuButton" class="fa fa-user"></i> \
     </a> \
     ').appendTo(spanShare);
 });
+
+function setCookie(item, value, days) {
+	let expires = "";
+	if (days) {
+		let date = new Date();
+		date.setTime(date.getTime() + (days*24*60*60*1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = item + "=" + window.btoa(value || "") + expires + "; path=/";
+}
+  
+function getCookie(item) {
+	const nameEQ = item + "=";
+	const ca = document.cookie.split(';');
+	for(let i=0;i < ca.length;i++) {
+		let c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return window.atob(c.substring(nameEQ.length,c.length));
+	}
+	return null;
+}
+
+function removeCookie(item) {
+	document.cookie = item + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+}
 
 /**********************************************************
 * 
@@ -1165,8 +1224,7 @@ async function readFile(TL,FN,LN,EM) {
 }
 
 async function newsletterUnsubscribe(unsubscribeEmail) {
-	alert("Unsubscribed " + unsubscribeEmail);
-	/* await getNewsletter(async function(newsletter) {
+	await getNewsletter(async function(newsletter) {
 		let newsletterContent = JSON.parse(window.atob(newsletter.content));
 		let unsubscribeAlert = false;
 		for (let element = 0; element < newsletterContent['subscribers'].length; element++) {
@@ -1184,26 +1242,28 @@ async function newsletterUnsubscribe(unsubscribeEmail) {
 			const JSONData = '{"message":"'+unsubscribeEmail+' Unsubscribed from Newsletter","committer":{"name":"HiM","email":"himjrnl@gmail.com"},"content":"'+encodedNewsletterSubscription+'","sha":"'+newsletter.sha+'"}';
 			
 			let response = await fetch(await getConfig('GITHUB_NEWSLETTER_URL'), {
-				method: "PUT", // *GET, POST, PUT, DELETE, etc.
-				cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-				mode: "cors", // no-cors, *cors, same-origin
+				method: "PUT",
+				cache: "no-cache",
+				mode: "cors",
 				headers: {
 					'Authorization': 'Bearer '+window.atob(await getConfig('GITHUB_NEWSLETTER_TOKEN')),
 					'Accept': 'application/vnd.github+json, *\/*',
 					'Content-Type': 'application/json'
 				},
-				referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-				redirect: "follow", // manual, *follow, error
+				referrerPolicy: "no-referrer",
+				redirect: "follow",
 				body: JSONData
 			});
 
 			if (response.status == 200) {
-				// Show Unsubscribed Successfully
+				/* HYASSIN: TO DO - Unsubscribed successfully */
+			} else {
+				/* HYASSIN: TO DO - Alert something wrong happened */
 			}
 		} else {
-			// Show Error at Unsubscription
+			/* HYASSIN: TO DO - Show e-mail not found */
 		}
-	}); */
+	});
 }
 
 function parseUrl() {
@@ -1243,5 +1303,77 @@ async function getConfig(key) {
 		}
 	} catch (error) {
 		alert(`Error getting Config: ${error.message}`);
+	}
+}
+
+/* async function fetchProtectedData() {
+	try {
+        const response = await fetch('http://localhost:3000/api/secret', {
+			method: "GET",
+			mode: "cors",
+			credentials: "include",
+			headers: {
+				'x-client-token': '000-000-000',
+				'Content-Type': 'application/json',
+			}
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+		  alert('ok')
+        } else {
+          console.error('Error: Unauthorized or forbidden');
+        }
+	} catch (error) {
+        console.error('Request failed', error);
+	}
+} */
+
+async function requestJWTToken() {
+	try {
+		const jwtResponse = await fetch('http://localhost:3000/api/generate-token', {
+			method: "GET",
+			mode: "cors",
+			credentials: "include",
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		});
+
+		if (jwtResponse.ok) {
+			const jwtData = await jwtResponse.json();
+            console.log(jwtData.message);
+
+			fetchProtectedData();
+		} else {
+			console.error('Error: Unauthorized or forbidden');
+		}
+	} catch (error) {
+		console.error('Request failed', error);
+	}
+}
+
+setInterval(requestJWTToken, 60000);
+
+async function fetchProtectedData() {
+	try {
+		const secretResponse = await fetch('http://localhost:3000/api/secret', {
+			method: "GET",
+			mode: "cors",
+			credentials: "include",
+			headers: {
+				/* 'Authorization': `Bearer ${jwtToken}`, */
+				'Content-Type': 'application/json',
+			}
+		});
+
+		if (secretResponse.ok) {
+			const secretData = await secretResponse.json();
+			console.log('Secret Key:', secretData.secret_key);
+		} else {
+			console.error('Error: Unauthorized or forbidden');
+		}
+	} catch (error) {
+		console.error('Request failed', error);
 	}
 }
